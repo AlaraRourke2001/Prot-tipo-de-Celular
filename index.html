@@ -262,7 +262,7 @@
         .conversation {
             display: flex;
             align-items: center;
-            padding: 10px 12px;
+            padding: 12px;
             background: #111b21;
             border-bottom: 1px solid #222e35;
             cursor: pointer;
@@ -282,8 +282,9 @@
             justify-content: center;
             font-size: 18px;
             color: white;
-            margin-right: 10px;
+            margin-right: 12px;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .conversation-avatar img {
@@ -294,18 +295,38 @@
 
         .conversation-info {
             flex: 1;
+            min-width: 0;
+        }
+
+        .conversation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px;
         }
 
         .conversation-name {
             color: white;
             font-weight: 500;
-            margin-bottom: 2px;
-            font-size: 14px;
+            font-size: 15px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .conversation-date {
+            color: #8696a0;
+            font-size: 11px;
+            flex-shrink: 0;
+            margin-left: 8px;
         }
 
         .conversation-preview {
             color: #8696a0;
-            font-size: 12px;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .chat-screen {
@@ -1037,13 +1058,25 @@
             flex: 1;
         }
 
-        .gallery-grid {
+        .gallery-content {
             flex: 1;
             overflow-y: auto;
             padding: 15px;
+        }
+
+        .gallery-date-header {
+            color: #8e8e93;
+            font-size: 14px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #2c2c2e;
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
         .gallery-item {
@@ -1052,6 +1085,11 @@
             border-radius: 8px;
             overflow: hidden;
             aspect-ratio: 1;
+            transition: transform 0.2s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
         }
 
         .gallery-item img {
@@ -1061,8 +1099,9 @@
             transition: transform 0.3s;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
+        .gallery-item.selected {
+            outline: 3px solid #007aff;
+            outline-offset: -3px;
         }
 
         /* Modal para imagem ampliada */
@@ -1083,6 +1122,7 @@
         .image-modal-content {
             max-width: 100%;
             max-height: 100%;
+            position: relative;
         }
 
         .image-modal-content img {
@@ -1090,6 +1130,36 @@
             max-height: calc(100vh - 40px);
             object-fit: contain;
             border-radius: 8px;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
         }
 
         .close-modal {
@@ -1111,6 +1181,17 @@
 
         .close-modal:hover {
             background: rgba(255, 255, 255, 0.3);
+        }
+
+        .image-info {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         .profile-pic {
@@ -1414,7 +1495,7 @@
                     <button class="back-button" id="backFromGallery">←</button>
                     <div class="gallery-title">Galeria</div>
                 </div>
-                <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-content" id="galleryContent">
                     <!-- Fotos serão carregadas aqui -->
                 </div>
             </div>
@@ -1422,8 +1503,11 @@
             <!-- Modal para imagem ampliada -->
             <div class="image-modal" id="imageModal">
                 <button class="close-modal" id="closeModal">×</button>
+                <button class="modal-nav modal-prev" id="modalPrev">‹</button>
+                <button class="modal-nav modal-next" id="modalNext">›</button>
                 <div class="image-modal-content">
                     <img id="modalImage" src="" alt="Imagem ampliada">
+                    <div class="image-info" id="imageInfo"></div>
                 </div>
             </div>
         </div>
@@ -1441,20 +1525,134 @@
         let currentEmail = null;
         let notes = [];
         let emails = [];
+        let currentImageIndex = 0;
         
-        // URLs de imagens reais para a galeria (Unsplash)
+        // URLs de imagens reais para a galeria (Unsplash) - organizadas por datas
         const galleryImages = [
-            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
-            "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-            "https://images.unsplash.com/photo-1518837695005-2083093ee35b",
-            "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
-            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
-            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
-            "https://images.unsplash.com/photo-1501854140801-50d01698950b",
-            "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-            "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1"
-        ].map(url => url + "?w=400&h=400&fit=crop&crop=center");
+            {
+                url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=400&fit=crop&crop=center",
+                date: "Hoje",
+                title: "Montanhas ao entardecer"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop&crop=center",
+                date: "Hoje",
+                title: "Floresta nevada"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w-400&h=400&fit=crop&crop=center",
+                date: "Hoje",
+                title: "Praia tropical"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400&h=400&fit=crop&crop=center",
+                date: "Ontem",
+                title: "Cachoeira na floresta"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop&crop=center",
+                date: "Ontem",
+                title: "Neblina nas montanhas"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=400&fit=crop&crop=center",
+                date: "Ontem",
+                title: "Campo de flores"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=400&fit=crop&crop=center",
+                date: "Esta semana",
+                title: "Lago nas montanhas"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop&crop=center",
+                date: "Esta semana",
+                title: "Aurora boreal"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&h=400&fit=crop&crop=center",
+                date: "Este mês",
+                title: "Pôr do sol na praia"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&crop=center",
+                date: "Este mês",
+                title: "Floresta de outono"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop&crop=center",
+                date: "Este mês",
+                title: "Montanhas cobertas de neve"
+            },
+            {
+                url: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=400&h=400&fit=crop&crop=center",
+                date: "Este mês",
+                title: "Lago de montanha"
+            }
+        ];
         
+        // Conversas do WhatsApp com datas
+        const conversations = [
+            {
+                id: 1,
+                name: "Maria Silva",
+                lastMessage: "Ok, te encontro lá!",
+                date: "Hoje",
+                time: "09:36",
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                messages: [
+                    { text: "Olá! Tudo bem?", time: "09:30", type: "received" },
+                    { text: "Tudo sim! E você?", time: "09:32", type: "sent" },
+                    { text: "Também tudo bem. Vamos nos encontrar hoje?", time: "09:33", type: "received" },
+                    { text: "Claro! Às 15h no shopping?", time: "09:35", type: "sent" },
+                    { text: "Ok, te encontro lá!", time: "09:36", type: "received" }
+                ]
+            },
+            {
+                id: 2,
+                name: "João Santos",
+                lastMessage: "Mandei o arquivo",
+                date: "Ontem",
+                time: "08:30",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                messages: [
+                    { text: "Bom dia! Pode me ajudar com o projeto?", time: "08:15", type: "received" },
+                    { text: "Bom dia! Claro, o que precisa?", time: "08:20", type: "sent" },
+                    { text: "Preciso daquele documento que falamos", time: "08:22", type: "received" },
+                    { text: "Já vou enviar", time: "08:25", type: "sent" },
+                    { text: "Mandei o arquivo", time: "08:30", type: "sent" }
+                ]
+            },
+            {
+                id: 3,
+                name: "Ana Clara",
+                lastMessage: "Obrigada pela ajuda!",
+                date: "26/01",
+                time: "14:20",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                messages: [
+                    { text: "Oi, você tem o contato do advogado?", time: "14:10", type: "received" },
+                    { text: "Sim, vou te passar", time: "14:15", type: "sent" },
+                    { text: "O número é (11) 99999-9999", time: "14:16", type: "sent" },
+                    { text: "Obrigada pela ajuda!", time: "14:20", type: "received" }
+                ]
+            },
+            {
+                id: 4,
+                name: "Pedro Almeida",
+                lastMessage: "A reunião foi adiada",
+                date: "25/01",
+                time: "16:45",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                messages: [
+                    { text: "Boa tarde, tudo bem?", time: "16:30", type: "received" },
+                    { text: "Tudo sim! E contigo?", time: "16:35", type: "sent" },
+                    { text: "A reunião de amanhã foi adiada para sexta", time: "16:40", type: "received" },
+                    { text: "A reunião foi adiada", time: "16:45", type: "received" }
+                ]
+            }
+        ];
+
         // Carregar notas do localStorage
         function loadNotes() {
             const savedNotes = localStorage.getItem('phoneSimulatorNotes');
@@ -1651,24 +1849,55 @@
             });
         }
         
-        // Carregar galeria
+        // Carregar galeria organizada por data
         function loadGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = '';
+            const galleryContent = document.getElementById('galleryContent');
+            galleryContent.innerHTML = '';
             
-            galleryImages.forEach((imageUrl, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
+            // Agrupar imagens por data
+            const groupedImages = {};
+            galleryImages.forEach(image => {
+                if (!groupedImages[image.date]) {
+                    groupedImages[image.date] = [];
+                }
+                groupedImages[image.date].push(image);
+            });
+            
+            // Criar seções por data
+            Object.keys(groupedImages).forEach(date => {
+                const dateSection = document.createElement('div');
+                dateSection.className = 'gallery-section';
                 
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = `Imagem ${index + 1}`;
-                img.loading = "lazy";
+                const dateHeader = document.createElement('div');
+                dateHeader.className = 'gallery-date-header';
+                dateHeader.textContent = date;
                 
-                galleryItem.appendChild(img);
-                galleryItem.addEventListener('click', () => openImageModal(imageUrl));
+                const galleryGrid = document.createElement('div');
+                galleryGrid.className = 'gallery-grid';
                 
-                galleryGrid.appendChild(galleryItem);
+                // Adicionar imagens desta data
+                groupedImages[date].forEach((image, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.dataset.index = galleryImages.findIndex(img => img.url === image.url);
+                    
+                    const img = document.createElement('img');
+                    img.src = image.url;
+                    img.alt = image.title;
+                    img.loading = "lazy";
+                    
+                    galleryItem.appendChild(img);
+                    galleryItem.addEventListener('click', () => {
+                        const imageIndex = galleryImages.findIndex(img => img.url === image.url);
+                        openImageModal(imageIndex);
+                    });
+                    
+                    galleryGrid.appendChild(galleryItem);
+                });
+                
+                dateSection.appendChild(dateHeader);
+                dateSection.appendChild(galleryGrid);
+                galleryContent.appendChild(dateSection);
             });
         }
         
@@ -1757,12 +1986,56 @@
         }
         
         // Abrir modal de imagem ampliada
-        function openImageModal(imageUrl) {
+        function openImageModal(index) {
+            currentImageIndex = index;
+            const image = galleryImages[index];
             const modal = document.getElementById('imageModal');
             const modalImage = document.getElementById('modalImage');
+            const imageInfo = document.getElementById('imageInfo');
             
-            modalImage.src = imageUrl;
+            modalImage.src = image.url;
+            imageInfo.textContent = `${image.title} (${index + 1}/${galleryImages.length})`;
             modal.style.display = 'flex';
+            
+            // Atualizar estado dos botões de navegação
+            updateModalNavButtons();
+        }
+        
+        // Atualizar botões de navegação do modal
+        function updateModalNavButtons() {
+            const modalPrev = document.getElementById('modalPrev');
+            const modalNext = document.getElementById('modalNext');
+            
+            modalPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
+            modalNext.style.display = currentImageIndex < galleryImages.length - 1 ? 'flex' : 'none';
+        }
+        
+        // Navegar para imagem anterior
+        function navigateToPrevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                const image = galleryImages[currentImageIndex];
+                const modalImage = document.getElementById('modalImage');
+                const imageInfo = document.getElementById('imageInfo');
+                
+                modalImage.src = image.url;
+                imageInfo.textContent = `${image.title} (${currentImageIndex + 1}/${galleryImages.length})`;
+                updateModalNavButtons();
+            }
+        }
+        
+        // Navegar para próxima imagem
+        function navigateToNextImage() {
+            if (currentImageIndex < galleryImages.length - 1) {
+                currentImageIndex++;
+                const image = galleryImages[currentImageIndex];
+                const modalImage = document.getElementById('modalImage');
+                const imageInfo = document.getElementById('imageInfo');
+                
+                modalImage.src = image.url;
+                imageInfo.textContent = `${image.title} (${currentImageIndex + 1}/${galleryImages.length})`;
+                updateModalNavButtons();
+            }
         }
         
         // Fechar modal de imagem
@@ -1928,35 +2201,63 @@
             }, 2000);
         }
         
-        // Conversas e mensagens simuladas
-        const conversations = [
-            {
-                id: 1,
-                name: "Maria Silva",
-                lastMessage: "Ok, te encontro lá!",
-                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { text: "Olá! Tudo bem?", time: "09:30", type: "received" },
-                    { text: "Tudo sim! E você?", time: "09:32", type: "sent" },
-                    { text: "Também tudo bem. Vamos nos encontrar hoje?", time: "09:33", type: "received" },
-                    { text: "Claro! Às 15h no shopping?", time: "09:35", type: "sent" },
-                    { text: "Ok, te encontro lá!", time: "09:36", type: "received" }
-                ]
-            },
-            {
-                id: 2,
-                name: "João Santos",
-                lastMessage: "Mandei o arquivo",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { text: "Bom dia! Pode me ajudar com o projeto?", time: "08:15", type: "received" },
-                    { text: "Bom dia! Claro, o que precisa?", time: "08:20", type: "sent" },
-                    { text: "Preciso daquele documento que falamos", time: "08:22", type: "received" },
-                    { text: "Já vou enviar", time: "08:25", type: "sent" },
-                    { text: "Mandei o arquivo", time: "08:30", type: "sent" }
-                ]
-            }
-        ];
+        // Carregar conversas do WhatsApp com datas
+        function loadConversations() {
+            const conversationsList = document.querySelector('.conversations-list');
+            conversationsList.innerHTML = '';
+            
+            conversations.forEach(conversation => {
+                const conversationElement = document.createElement('div');
+                conversationElement.className = 'conversation';
+                conversationElement.innerHTML = `
+                    <div class="conversation-avatar">
+                        <img src="${conversation.avatar}" alt="${conversation.name}" 
+                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23667eea%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22>${conversation.name.charAt(0)}</text></svg>';">
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <div class="conversation-name">${conversation.name}</div>
+                            <div class="conversation-date">${conversation.date}, ${conversation.time}</div>
+                        </div>
+                        <div class="conversation-preview">${conversation.lastMessage}</div>
+                    </div>
+                `;
+                
+                conversationElement.addEventListener('click', () => openChat(conversation));
+                conversationsList.appendChild(conversationElement);
+            });
+        }
+
+        // Abrir chat
+        function openChat(conversation) {
+            const whatsappScreen = document.getElementById('whatsappScreen');
+            const chatScreen = document.getElementById('chatScreen');
+            const chatHeader = chatScreen.querySelector('.whatsapp-title');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            currentChat = conversation;
+            chatHeader.textContent = conversation.name;
+            
+            // Carregar mensagens
+            chatMessages.innerHTML = '';
+            conversation.messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.type}`;
+                messageElement.innerHTML = `
+                    ${message.text}
+                    <div class="message-time">${message.time}</div>
+                `;
+                chatMessages.appendChild(messageElement);
+            });
+            
+            // Rolar para baixo
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Transição
+            whatsappScreen.style.display = 'none';
+            chatScreen.style.display = 'flex';
+            currentScreen = "chat";
+        }
 
         // Atualizar data e hora
         function updateDateTime() {
@@ -2036,61 +2337,6 @@
                 enteredPassword = "";
                 updatePasswordDots();
             }, 300);
-        }
-
-        // Carregar conversas do WhatsApp
-        function loadConversations() {
-            const conversationsList = document.querySelector('.conversations-list');
-            conversationsList.innerHTML = '';
-            
-            conversations.forEach(conversation => {
-                const conversationElement = document.createElement('div');
-                conversationElement.className = 'conversation';
-                conversationElement.innerHTML = `
-                    <div class="conversation-avatar">
-                        <img src="${conversation.avatar}" alt="${conversation.name}" 
-                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23667eea%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22>${conversation.name.charAt(0)}</text></svg>';">
-                    </div>
-                    <div class="conversation-info">
-                        <div class="conversation-name">${conversation.name}</div>
-                        <div class="conversation-preview">${conversation.lastMessage}</div>
-                    </div>
-                `;
-                
-                conversationElement.addEventListener('click', () => openChat(conversation));
-                conversationsList.appendChild(conversationElement);
-            });
-        }
-
-        // Abrir chat
-        function openChat(conversation) {
-            const whatsappScreen = document.getElementById('whatsappScreen');
-            const chatScreen = document.getElementById('chatScreen');
-            const chatHeader = chatScreen.querySelector('.whatsapp-title');
-            const chatMessages = document.getElementById('chatMessages');
-            
-            currentChat = conversation;
-            chatHeader.textContent = conversation.name;
-            
-            // Carregar mensagens
-            chatMessages.innerHTML = '';
-            conversation.messages.forEach(message => {
-                const messageElement = document.createElement('div');
-                messageElement.className = `message ${message.type}`;
-                messageElement.innerHTML = `
-                    ${message.text}
-                    <div class="message-time">${message.time}</div>
-                `;
-                chatMessages.appendChild(messageElement);
-            });
-            
-            // Rolar para baixo
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            
-            // Transição
-            whatsappScreen.style.display = 'none';
-            chatScreen.style.display = 'flex';
-            currentScreen = "chat";
         }
 
         // Navegação entre telas
@@ -2271,11 +2517,26 @@
             document.getElementById('backFromComposer').addEventListener('click', goBack);
             document.getElementById('backFromGallery').addEventListener('click', goBack);
             
-            // Evento para fechar modal
+            // Eventos do modal de imagem
             document.getElementById('closeModal').addEventListener('click', closeImageModal);
+            document.getElementById('modalPrev').addEventListener('click', navigateToPrevImage);
+            document.getElementById('modalNext').addEventListener('click', navigateToNextImage);
             document.getElementById('imageModal').addEventListener('click', (e) => {
                 if (e.target.id === 'imageModal') {
                     closeImageModal();
+                }
+            });
+            
+            // Eventos do teclado no modal
+            document.addEventListener('keydown', (e) => {
+                if (document.getElementById('imageModal').style.display === 'flex') {
+                    if (e.key === 'Escape') {
+                        closeImageModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        navigateToPrevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        navigateToNextImage();
+                    }
                 }
             });
             
@@ -2329,7 +2590,7 @@
                 } else if (e.key === 'Backspace' && currentScreen === "lock") {
                     enteredPassword = enteredPassword.slice(0, -1);
                     updatePasswordDots();
-                } else if (e.key === 'Escape') {
+                } else if (e.key === 'Escape' && document.getElementById('imageModal').style.display !== 'flex') {
                     goBack();
                 }
             });
