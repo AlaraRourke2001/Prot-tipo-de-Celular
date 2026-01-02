@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto Celular - Protótipo GitHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .phone-container {
+            width: 360px;
+            height: 700px;
+            background-color: #111;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            position: relative;
+            border: 12px solid #000;
+        }
+        
+        .phone-header {
+            height: 24px;
+            background-color: #000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .screen {
+            height: calc(100% - 24px);
+            background-color: #f2f2f7;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Tela de bloqueio */
+        .lock-screen {
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 20px 60px;
+            color: white;
+        }
+        
+        .time-display {
+            text-align: center;
+        }
+        
+        .current-time {
+            font-size: 64px;
+            font-weight: 200;
+            margin-bottom: 5px;
+        }
+        
+        .current-date {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .keypad {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .keypad button {
+            height: 70px;
+            border-radius: 35px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 28px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .keypad button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .keypad button:active {
+            background-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        .unlock-button {
+            grid-column: 1 / span 3;
+            background-color: rgba(255, 255, 255, 0.3) !important;
+            font-size: 18px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .password-display {
+            width: 120px;
+            height: 12px;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .password-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .password-dot.filled {
+            background-color: white;
+        }
+        
+        /* Tela inicial */
+        .home-screen {
+            height: 100%;
+            display: none;
+            flex-direction: column;
+        }
+        
+        .status-bar {
+            height: 44px;
+            background-color: rgba(0, 0, 0, 0);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+        }
+        
+        .app-grid {
+            flex: 1;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 15px;
+        }
+        
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .app-icon:hover {
+            transform: scale(1.05);
+        }
+        
+        .app-icon i {
+            font-size: 28px;
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-bottom: 8px;
+        }
+        
+        .app-name {
+            font-size: 12px;
+            color: #333;
+        }
+        
+        /* Telas de aplicativos */
+        .app-screen {
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            background-color: white;
+        }
+        
+        .app-header {
+            height: 60px;
+            background-color: #f8f8f8;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .app-header h2 {
+            margin-left: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .back-button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #007aff;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .app-content {
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        /* WhatsApp */
+        .chat-list {
+            padding: 10px;
+        }
+        
+        .chat-item {
+            display: flex;
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+        
+        .chat-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #555;
+        }
+        
+        .chat-info {
+            flex: 1;
+        }
+        
+        .chat-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .chat-last-message {
+            font-size: 14px;
+            color: #777;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 200px;
+        }
+        
+        .chat-time {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* Instagram */
+        .instagram-post {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+        }
+        
+        .post-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #ddd;
+        }
+        
+        .post-username {
+            font-weight: 600;
+            color: #262626;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 360px;
+            background-color: #f0f0f0;
+            object-fit: cover;
+        }
+        
+        .post-actions {
+            padding: 10px 12px;
+            display: flex;
+            gap: 15px;
+            font-size: 22px;
+            color: #262626;
+        }
+        
+        .post-likes {
+            font-weight: 600;
+            padding: 0 12px 10px;
+            color: #262626;
+        }
+        
+        /* Configurações */
+        .settings-list {
+            padding: 15px 0;
+        }
+        
+        .settings-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: not-allowed;
+            border-bottom: 1px solid #f0f0f0;
+            color: #999;
+        }
+        
+        .settings-item i {
+            width: 30px;
+            font-size: 20px;
+            color: #555;
+        }
+        
+        .settings-item span {
+            margin-left: 15px;
+            font-size: 16px;
+        }
+        
+        /* Notas */
+        .notes-list {
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .note {
+            background-color: #fffacd;
+            border-radius: 8px;
+            padding: 12px;
+            min-height: 120px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            border-left: 4px solid #ffd700;
+        }
+        
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .note-content {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        /* E-mail */
+        .email-list {
+            padding: 10px;
+        }
+        
+        .email-item {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+        
+        .email-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .email-sender {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .email-subject {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .email-preview {
+            font-size: 14px;
+            color: #777;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 100%;
+        }
+        
+        .email-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 8px;
+            text-align: right;
+        }
+        
+        /* Galeria */
+        .gallery-grid {
+            padding: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 1;
+            background-color: #ddd;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Tela de imagem ampliada */
+        .image-viewer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .viewer-header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 60px;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+        }
+        
+        .full-image {
+            max-width: 100%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+        
+        .close-viewer {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        /* Barra de navegação */
+        .navigation-bar {
+            height: 50px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #8e8e93;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #007aff;
+        }
+        
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 400px) {
+            .phone-container {
+                width: 100%;
+                height: 650px;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="phone-header">
+            <span id="status-time">12:00</span>
+            <div>
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi" style="margin: 0 8px;"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+            </div>
+        </div>
+        
+        <div class="screen">
+            <!-- Tela de bloqueio -->
+            <div id="lock-screen" class="lock-screen">
+                <div class="time-display">
+                    <div id="current-time" class="current-time">12:00</div>
+                    <div id="current-date" class="current-date">Sexta-feira, 15 de setembro</div>
+                </div>
+                
+                <div class="password-display" id="password-display">
+                    <div class="password-dot"></div>
+                    <div class="password-dot"></div>
+                    <div class="password-dot"></div>
+                    <div class="password-dot"></div>
+                </div>
+                
+                <div class="keypad">
+                    <button class="key" data-key="1">1</button>
+                    <button class="key" data-key="2">2</button>
+                    <button class="key" data-key="3">3</button>
+                    <button class="key" data-key="4">4</button>
+                    <button class="key" data-key="5">5</button>
+                    <button class="key" data-key="6">6</button>
+                    <button class="key" data-key="7">7</button>
+                    <button class="key" data-key="8">8</button>
+                    <button class="key" data-key="9">9</button>
+                    <button></button>
+                    <button class="key" data-key="0">0</button>
+                    <button id="delete-key"><i class="fas fa-delete-left"></i></button>
+                    <button id="unlock-button" class="unlock-button">
+                        <i class="fas fa-lock-open"></i> Desbloquear
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tela inicial -->
+            <div id="home-screen" class="home-screen">
+                <div class="status-bar">
+                    <span id="home-time">12:00</span>
+                    <div>
+                        <i class="fas fa-signal"></i>
+                        <i class="fas fa-wifi" style="margin: 0 8px;"></i>
+                        <i class="fas fa-battery-three-quarters"></i>
+                    </div>
+                </div>
+                
+                <div class="app-grid">
+                    <!-- Apps serão adicionados via JavaScript -->
+                </div>
+                
+                <div class="navigation-bar">
+                    <div class="nav-item" onclick="showApp('phone')">
+                        <i class="fas fa-phone"></i>
+                        <span>Telefone</span>
+                    </div>
+                    <div class="nav-item" onclick="showApp('whatsapp')">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="nav-item active" onclick="showHomeScreen()">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </div>
+                    <div class="nav-item" onclick="showApp('email')">
+                        <i class="fas fa-envelope"></i>
+                        <span>E-mail</span>
+                    </div>
+                    <div class="nav-item" onclick="showApp('settings')">
+                        <i class="fas fa-cog"></i>
+                        <span>Configurações</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tela do WhatsApp -->
+            <div id="whatsapp-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>WhatsApp</h2>
+                </div>
+                <div class="app-content" id="whatsapp-content">
+                    <!-- Conteúdo será gerado via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tela do Instagram -->
+            <div id="instagram-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>Instagram</h2>
+                </div>
+                <div class="app-content" id="instagram-content">
+                    <!-- Conteúdo será gerado via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tela de Configurações -->
+            <div id="settings-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>Configurações</h2>
+                </div>
+                <div class="app-content">
+                    <div class="settings-list">
+                        <div class="settings-item">
+                            <i class="fas fa-wifi"></i>
+                            <span>Wi-fi</span>
+                        </div>
+                        <div class="settings-item">
+                            <i class="fas fa-sun"></i>
+                            <span>Brilho</span>
+                        </div>
+                        <div class="settings-item">
+                            <i class="fas fa-battery-full"></i>
+                            <span>Bateria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tela de Notas -->
+            <div id="notes-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>Notas</h2>
+                </div>
+                <div class="app-content" id="notes-content">
+                    <!-- Conteúdo será gerado via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tela de E-mail -->
+            <div id="email-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>E-mail</h2>
+                </div>
+                <div class="app-content" id="email-content">
+                    <!-- Conteúdo será gerado via JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Tela da Galeria -->
+            <div id="gallery-screen" class="app-screen">
+                <div class="app-header">
+                    <div class="back-button" onclick="showHomeScreen()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>Galeria</h2>
+                </div>
+                <div class="app-content">
+                    <div class="gallery-grid" id="gallery-grid">
+                        <!-- Imagens serão adicionadas via JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Visualizador de imagem ampliada -->
+            <div id="image-viewer" class="image-viewer">
+                <div class="viewer-header">
+                    <div class="back-button" onclick="closeImageViewer()">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <h2>Foto</h2>
+                </div>
+                <img id="full-image" class="full-image" src="" alt="Imagem ampliada">
+                <div class="close-viewer" onclick="closeImageViewer()">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados iniciais
+        let enteredPassword = '';
+        const correctPassword = '1234';
+        let currentScreen = 'lock-screen';
+        
+        // Aplicativos da tela inicial
+        const apps = [
+            { id: 'whatsapp', name: 'WhatsApp', icon: 'fab fa-whatsapp', color: '#25D366' },
+            { id: 'instagram', name: 'Instagram', icon: 'fab fa-instagram', color: '#E4405F' },
+            { id: 'settings', name: 'Configurações', icon: 'fas fa-cog', color: '#8E8E93' },
+            { id: 'notes', name: 'Notas', icon: 'fas fa-sticky-note', color: '#FFC107' },
+            { id: 'email', name: 'E-mail', icon: 'fas fa-envelope', color: '#EA4335' },
+            { id: 'gallery', name: 'Galeria', icon: 'fas fa-images', color: '#34C759' },
+            { id: 'calendar', name: 'Calendário', icon: 'fas fa-calendar', color: '#AF52DE' },
+            { id: 'maps', name: 'Mapas', icon: 'fas fa-map', color: '#2997FF' }
+        ];
+        
+        // Conversas do WhatsApp
+        const whatsappChats = [
+            { name: 'Maria Silva', lastMessage: 'Oi, tudo bem?', time: '09:30', unread: 2 },
+            { name: 'João Santos', lastMessage: 'A reunião é amanhã às 10h', time: '09:15', unread: 0 },
+            { name: 'Ana Costa', lastMessage: 'Enviei o arquivo que você pediu', time: '08:45', unread: 1 },
+            { name: 'Pedro Alves', lastMessage: 'Vamos sair hoje à noite?', time: 'Ontem', unread: 0 },
+            { name: 'Carla Mendes', lastMessage: 'Lembrou de pagar a conta?', time: 'Ontem', unread: 3 },
+            { name: 'Lucas Oliveira', lastMessage: 'Obrigado pela ajuda!', time: 'Sábado', unread: 0 },
+            { name: 'Beatriz Souza', lastMessage: 'Precisamos conversar', time: 'Sexta', unread: 1 },
+            { name: 'Rafael Lima', lastMessage: 'Amanhã tem futebol', time: 'Quinta', unread: 0 }
+        ];
+        
+        // Notas
+        const notes = [
+            { title: 'Compras do supermercado', content: 'Leite, ovos, pão, frutas, café', color: '#fffacd' },
+            { title: 'Ideias para o projeto', content: 'Melhorar interface, adicionar dark mode, otimizar performance', color: '#e6f2ff' },
+            { title: 'Reunião segunda-feira', content: 'Preparar apresentação para a reunião às 14h', color: '#f0f8ff' },
+            { title: 'Lista de livros para ler', content: '1984, O Hobbit, Dom Casmurro, Sapiens', color: '#f0fff0' },
+            { title: 'Metas do mês', content: 'Finalizar protótipo, estudar React, exercícios físicos', color: '#fff0f5' },
+            { title: 'Receita de bolo', content: '3 ovos, 2 xícaras de farinha, 1 xícara de açúcar, 1 copo de leite', color: '#f5f5dc' }
+        ];
+        
+        // E-mails
+        const emails = [
+            { sender: 'GitHub Notifications', subject: 'Your repository has 3 new stars', preview: 'Your repository mobile-prototype has received 3 new stars from developers...', time: '10:30' },
+            { sender: 'LinkedIn', subject: 'Nova mensagem de Maria Silva', preview: 'Maria Silva enviou uma mensagem: Olá, gostei do seu perfil...', time: '09:45' },
+            { sender: 'Amazon', subject: 'Seu pedido foi enviado', preview: 'Seu pedido #123456789 foi enviado e chegará em 2 dias úteis...', time: '08:20' },
+            { sender: 'Netflix', subject: 'Confira o que há de novo', preview: 'Novos filmes e séries foram adicionados à Netflix este mês...', time: 'Ontem' },
+            { sender: 'Google', subject: 'Atualização de segurança', preview: 'Recomendamos que você verifique as configurações de segurança da sua conta...', time: '25/09' },
+            { sender: 'Equipe do projeto', subject: 'Reunião de progresso', preview: 'Lembrete: Reunião de progresso do projeto amanhã às 14h...', time: '24/09' }
+        ];
+        
+        // URLs de imagens reais para o Instagram (usando Unsplash)
+        const instagramImages = [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4',
+            'https://images.unsplash.com/photo-1439066615861-d1af74d74000',
+            'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1'
+        ];
+        
+        // URLs de imagens reais para a galeria (usando Unsplash)
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b',
+            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e',
+            'https://images.unsplash.com/photo-1518837695005-2083093ee35b',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
+            'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07',
+            'https://images.unsplash.com/photo-1502082553048-f009c37129b9',
+            'https://images.unsplash.com/photo-1426604966848-d7adac402bff',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+            'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'
+        ];
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            // Configurar data e hora
+            updateTime();
+            setInterval(updateTime, 60000);
+            
+            // Gerar apps na tela inicial
+            generateApps();
+            
+            // Gerar conteúdo dos apps
+            generateWhatsAppChats();
+            generateInstagramPosts();
+            generateNotes();
+            generateEmails();
+            generateGallery();
+            
+            // Configurar eventos do teclado
+            setupKeypadEvents();
+            
+            // Configurar evento do botão desbloquear
+            document.getElementById('unlock-button').addEventListener('click', unlockPhone);
+            
+            // Configurar evento do botão delete
+            document.getElementById('delete-key').addEventListener('click', deletePasswordDigit);
+        });
+        
+        // Atualizar hora e data
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
+            const dateString = now.toLocaleDateString('pt-BR', { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long' 
+            });
+            
+            // Capitalizar primeira letra
+            const formattedDate = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+            
+            // Atualizar em todas as telas
+            document.getElementById('current-time').textContent = timeString;
+            document.getElementById('current-date').textContent = formattedDate;
+            document.getElementById('status-time').textContent = timeString;
+            document.getElementById('home-time').textContent = timeString;
+        }
+        
+        // Gerar apps na tela inicial
+        function generateApps() {
+            const appGrid = document.querySelector('.app-grid');
+            appGrid.innerHTML = '';
+            
+            apps.forEach(app => {
+                const appElement = document.createElement('div');
+                appElement.className = 'app-icon';
+                appElement.setAttribute('onclick', `showApp('${app.id}')`);
+                
+                appElement.innerHTML = `
+                    <i class="${app.icon}" style="background-color: ${app.color};"></i>
+                    <span class="app-name">${app.name}</span>
+                `;
+                
+                appGrid.appendChild(appElement);
+            });
+        }
+        
+        // Configurar eventos do teclado
+        function setupKeypadEvents() {
+            document.querySelectorAll('.key').forEach(key => {
+                key.addEventListener('click', function() {
+                    const digit = this.getAttribute('data-key');
+                    addPasswordDigit(digit);
+                });
+            });
+        }
+        
+        // Adicionar dígito à senha
+        function addPasswordDigit(digit) {
+            if (enteredPassword.length < 4) {
+                enteredPassword += digit;
+                updatePasswordDisplay();
+                
+                // Se a senha estiver completa, tentar desbloquear
+                if (enteredPassword.length === 4) {
+                    if (enteredPassword === correctPassword) {
+                        unlockPhone();
+                    } else {
+                        // Senha incorreta
+                        setTimeout(() => {
+                            enteredPassword = '';
+                            updatePasswordDisplay();
+                            shakePasswordDisplay();
+                        }, 500);
+                    }
+                }
+            }
+        }
+        
+        // Remover último dígito da senha
+        function deletePasswordDigit() {
+            if (enteredPassword.length > 0) {
+                enteredPassword = enteredPassword.slice(0, -1);
+                updatePasswordDisplay();
+            }
+        }
+        
+        // Atualizar exibição da senha
+        function updatePasswordDisplay() {
+            const dots = document.querySelectorAll('.password-dot');
+            
+            dots.forEach((dot, index) => {
+                if (index < enteredPassword.length) {
+                    dot.classList.add('filled');
+                } else {
+                    dot.classList.remove('filled');
+                }
+            });
+        }
+        
+        // Agitar a exibição da senha (para senha incorreta)
+        function shakePasswordDisplay() {
+            const display = document.getElementById('password-display');
+            display.classList.add('shake');
+            
+            setTimeout(() => {
+                display.classList.remove('shake');
+            }, 500);
+        }
+        
+        // Desbloquear o celular
+        function unlockPhone() {
+            if (enteredPassword === correctPassword) {
+                // Mostrar tela inicial
+                document.getElementById('lock-screen').style.display = 'none';
+                document.getElementById('home-screen').style.display = 'flex';
+                
+                // Atualizar navegação ativa
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    if (item.querySelector('span').textContent === 'Início') {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Resetar senha
+                enteredPassword = '';
+                updatePasswordDisplay();
+                
+                currentScreen = 'home-screen';
+            } else {
+                // Senha incorreta
+                enteredPassword = '';
+                updatePasswordDisplay();
+                shakePasswordDisplay();
+            }
+        }
+        
+        // Mostrar tela inicial
+        function showHomeScreen() {
+            // Esconder todas as telas de apps
+            document.querySelectorAll('.app-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            // Mostrar tela inicial
+            document.getElementById('home-screen').style.display = 'flex';
+            
+            // Atualizar navegação ativa
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.querySelector('span').textContent === 'Início') {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            currentScreen = 'home-screen';
+        }
+        
+        // Mostrar app específico
+        function showApp(appId) {
+            // Esconder todas as telas
+            document.getElementById('home-screen').style.display = 'none';
+            document.querySelectorAll('.app-screen').forEach(screen => {
+                screen.style.display = 'none';
+            });
+            
+            // Mostrar tela do app
+            document.getElementById(`${appId}-screen`).style.display = 'flex';
+            
+            // Atualizar navegação ativa
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.querySelector('span').textContent === appId.charAt(0).toUpperCase() + appId.slice(1)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            
+            currentScreen = `${appId}-screen`;
+        }
+        
+        // Gerar conversas do WhatsApp
+        function generateWhatsAppChats() {
+            const whatsappContent = document.getElementById('whatsapp-content');
+            whatsappContent.innerHTML = '';
+            
+            whatsappChats.forEach(chat => {
+                const chatElement = document.createElement('div');
+                chatElement.className = 'chat-item';
+                chatElement.innerHTML = `
+                    <div class="chat-avatar">${chat.name.charAt(0)}</div>
+                    <div class="chat-info">
+                        <div class="chat-name">${chat.name}</div>
+                        <div class="chat-last-message">${chat.lastMessage}</div>
+                    </div>
+                    <div class="chat-time">${chat.time}</div>
+                `;
+                
+                whatsappContent.appendChild(chatElement);
+            });
+        }
+        
+        // Gerar posts do Instagram
+        function generateInstagramPosts() {
+            const instagramContent = document.getElementById('instagram-content');
+            instagramContent.innerHTML = '';
+            
+            const usernames = ['ana_costa', 'pedro_alves', 'carla_mendes', 'lucas.oliveira', 'beatrizs'];
+            
+            instagramImages.forEach((image, index) => {
+                const postElement = document.createElement('div');
+                postElement.className = 'instagram-post fade-in';
+                postElement.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-username">${usernames[index]}</div>
+                    </div>
+                    <img class="post-image" src="${image}?w=400&h=400&fit=crop&crop=center" alt="Post do Instagram">
+                    <div class="post-actions">
+                        <i class="far fa-heart"></i>
+                        <i class="far fa-comment"></i>
+                        <i class="far fa-paper-plane"></i>
+                        <i class="far fa-bookmark" style="margin-left: auto;"></i>
+                    </div>
+                    <div class="post-likes">${Math.floor(Math.random() * 500) + 100} curtidas</div>
+                `;
+                
+                instagramContent.appendChild(postElement);
+            });
+        }
+        
+        // Gerar notas
+        function generateNotes() {
+            const notesContent = document.getElementById('notes-content');
+            notesContent.innerHTML = '';
+            
+            notes.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'note';
+                noteElement.style.backgroundColor = note.color;
+                noteElement.innerHTML = `
+                    <div class="note-title">${note.title}</div>
+                    <div class="note-content">${note.content}</div>
+                `;
+                
+                notesContent.appendChild(noteElement);
+            });
+        }
+        
+        // Gerar e-mails
+        function generateEmails() {
+            const emailContent = document.getElementById('email-content');
+            emailContent.innerHTML = '';
+            
+            emails.forEach(email => {
+                const emailElement = document.createElement('div');
+                emailElement.className = 'email-item';
+                emailElement.innerHTML = `
+                    <div class="email-sender">${email.sender}</div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-preview">${email.preview}</div>
+                    <div class="email-time">${email.time}</div>
+                `;
+                
+                emailContent.appendChild(emailElement);
+            });
+        }
+        
+        // Gerar galeria
+        function generateGallery() {
+            const galleryGrid = document.getElementById('gallery-grid');
+            galleryGrid.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img class="gallery-img" src="${image}?w=200&h=200&fit=crop&crop=center" alt="Foto ${index + 1}" onclick="openImageViewer('${image}?w=800&h=800&fit=crop&crop=center')">
+                `;
+                
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+        
+        // Abrir visualizador de imagem
+        function openImageViewer(imageUrl) {
+            document.getElementById('full-image').src = imageUrl;
+            document.getElementById('image-viewer').style.display = 'flex';
+        }
+        
+        // Fechar visualizador de imagem
+        function closeImageViewer() {
+            document.getElementById('image-viewer').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
