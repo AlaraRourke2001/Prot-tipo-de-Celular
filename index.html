@@ -23,21 +23,21 @@
         }
 
         .phone {
-            width: 360px;
-            height: 780px;
+            width: 320px;
+            height: 680px;
             background: #111;
-            border-radius: 40px;
+            border-radius: 35px;
             position: relative;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
             overflow: hidden;
-            border: 12px solid #222;
+            border: 10px solid #222;
         }
 
         .screen {
             width: 100%;
             height: 100%;
             background: #000;
-            border-radius: 28px;
+            border-radius: 25px;
             overflow: hidden;
             position: relative;
         }
@@ -52,7 +52,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 60px 20px 20px;
+            padding: 40px 20px 20px;
             position: absolute;
             top: 0;
             left: 0;
@@ -60,35 +60,35 @@
 
         .time-container {
             text-align: center;
-            margin-top: 60px;
+            margin-top: 40px;
         }
 
         .time {
-            font-size: 64px;
+            font-size: 56px;
             font-weight: 200;
             letter-spacing: 2px;
         }
 
         .date {
-            font-size: 20px;
+            font-size: 18px;
             opacity: 0.8;
-            margin-top: 10px;
+            margin-top: 8px;
         }
 
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            gap: 12px;
             width: 100%;
-            max-width: 280px;
-            margin: 20px 0;
+            max-width: 260px;
+            margin: 10px 0 20px;
         }
 
         .key {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
+            border-radius: 28px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -108,12 +108,12 @@
         }
 
         .key-number {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 300;
         }
 
         .key-letters {
-            font-size: 9px;
+            font-size: 8px;
             opacity: 0.7;
             margin-top: 2px;
         }
@@ -121,12 +121,12 @@
         .password-display {
             display: flex;
             gap: 8px;
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .password-dot {
-            width: 10px;
-            height: 10px;
+            width: 9px;
+            height: 9px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transition: all 0.2s;
@@ -139,9 +139,9 @@
 
         .unlock-message {
             text-align: center;
-            margin-top: 15px;
-            min-height: 20px;
-            font-size: 14px;
+            margin-top: 10px;
+            min-height: 18px;
+            font-size: 13px;
             opacity: 0.8;
         }
 
@@ -155,22 +155,22 @@
         }
 
         .status-bar {
-            height: 30px;
+            height: 28px;
             background: rgba(0,0,0,0.9);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 15px;
-            font-size: 14px;
+            padding: 0 12px;
+            font-size: 13px;
         }
 
         .app-grid {
             flex: 1;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            padding: 20px;
+            gap: 12px;
+            padding: 15px;
             align-content: start;
         }
 
@@ -191,15 +191,15 @@
         }
 
         .app-icon-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             color: white;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             overflow: hidden;
         }
 
@@ -211,10 +211,11 @@
 
         .app-name {
             color: white;
-            font-size: 11px;
+            font-size: 10px;
             text-align: center;
-            max-width: 60px;
+            max-width: 55px;
             word-wrap: break-word;
+            line-height: 1.2;
         }
 
         /* Tela do WhatsApp */
@@ -232,23 +233,24 @@
         .whatsapp-header {
             background: #202c33;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .back-button {
             background: none;
             border: none;
             color: white;
-            font-size: 24px;
+            font-size: 22px;
             cursor: pointer;
-            padding: 5px;
+            padding: 4px;
+            min-width: 30px;
         }
 
         .whatsapp-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
         }
 
@@ -260,7 +262,7 @@
         .conversation {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
+            padding: 10px 12px;
             background: #111b21;
             border-bottom: 1px solid #222e35;
             cursor: pointer;
@@ -272,15 +274,15 @@
         }
 
         .conversation-avatar {
-            width: 45px;
-            height: 45px;
+            width: 42px;
+            height: 42px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             color: white;
-            margin-right: 12px;
+            margin-right: 10px;
             overflow: hidden;
         }
 
@@ -297,13 +299,13 @@
         .conversation-name {
             color: white;
             font-weight: 500;
-            margin-bottom: 3px;
-            font-size: 15px;
+            margin-bottom: 2px;
+            font-size: 14px;
         }
 
         .conversation-preview {
             color: #8696a0;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .chat-screen {
@@ -320,28 +322,28 @@
         .chat-header {
             background: #202c33;
             color: white;
-            padding: 12px 15px;
+            padding: 10px 12px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 15px;
+            padding: 12px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .message {
             max-width: 70%;
-            padding: 10px 14px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 7px;
             position: relative;
             word-wrap: break-word;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .message.received {
@@ -357,31 +359,30 @@
         }
 
         .message-time {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.8;
             text-align: right;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .chat-input {
-            padding: 12px 15px;
+            padding: 10px 12px;
             background: #202c33;
             display: flex;
-            gap: 12px;
+            gap: 10px;
+            pointer-events: none;
+            opacity: 0.7;
         }
 
         .chat-input input {
             flex: 1;
             background: #2a3942;
             border: none;
-            border-radius: 20px;
-            padding: 10px 15px;
+            border-radius: 18px;
+            padding: 8px 12px;
             color: white;
-            font-size: 14px;
-        }
-
-        .chat-input input:focus {
-            outline: none;
+            font-size: 13px;
+            pointer-events: none;
         }
 
         .send-button {
@@ -389,13 +390,14 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            font-size: 18px;
-            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            cursor: not-allowed;
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: none;
         }
 
         /* Tela de Configurações */
@@ -413,14 +415,14 @@
         .settings-header {
             background: #1c1c1e;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .settings-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
         }
 
@@ -431,7 +433,7 @@
         }
 
         .settings-item {
-            padding: 15px 20px;
+            padding: 12px 15px;
             border-bottom: 1px solid #2c2c2e;
             color: white;
             display: flex;
@@ -444,14 +446,14 @@
         }
 
         .settings-item-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
+            width: 26px;
+            height: 26px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
-            font-size: 16px;
+            margin-right: 10px;
+            font-size: 15px;
         }
 
         .settings-item-content {
@@ -461,12 +463,12 @@
         }
 
         .settings-item-title {
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .settings-item-status {
             color: #8e8e93;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         /* Tela de Notas */
@@ -484,15 +486,15 @@
         .notes-header {
             background: #1c1c1e;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
         }
 
         .notes-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
             flex: 1;
         }
@@ -502,9 +504,9 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 20px;
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -515,14 +517,14 @@
             flex: 1;
             overflow-y: auto;
             background: #000;
-            padding: 10px;
+            padding: 8px;
         }
 
         .note-item {
             background: #1c1c1e;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
             color: white;
             cursor: pointer;
             transition: background 0.2s;
@@ -537,26 +539,27 @@
         }
 
         .note-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             color: white;
         }
 
         .note-preview {
-            font-size: 14px;
+            font-size: 13px;
             color: #8e8e93;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
+            line-height: 1.3;
         }
 
         .note-date {
-            font-size: 12px;
+            font-size: 11px;
             color: #5d5d60;
-            margin-top: 8px;
+            margin-top: 6px;
             text-align: right;
         }
 
@@ -574,11 +577,11 @@
         .note-editor-header {
             background: #1c1c1e;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
         }
 
         .note-editor-title-input {
@@ -586,9 +589,10 @@
             background: transparent;
             border: none;
             color: white;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
-            padding: 5px;
+            padding: 4px;
+            min-width: 0;
         }
 
         .note-editor-title-input:focus {
@@ -597,27 +601,29 @@
 
         .note-editor-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            align-items: center;
         }
 
         .note-editor-action-button {
-            background: transparent;
+            background: #007aff;
+            color: white;
             border: none;
-            color: #007aff;
-            font-size: 16px;
-            padding: 5px 10px;
+            padding: 6px 12px;
+            font-size: 14px;
             cursor: pointer;
-            border-radius: 5px;
+            border-radius: 6px;
+            white-space: nowrap;
         }
 
         .note-editor-action-button:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: #0056cc;
         }
 
         .note-editor {
             flex: 1;
             background: #000;
-            padding: 20px;
+            padding: 15px;
         }
 
         .note-editor-textarea {
@@ -626,8 +632,8 @@
             background: transparent;
             border: none;
             color: white;
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 15px;
+            line-height: 1.4;
             resize: none;
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
@@ -650,36 +656,303 @@
         .note-viewer-header {
             background: #1c1c1e;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
         }
 
         .note-viewer-title {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 500;
             flex: 1;
         }
 
         .note-viewer-content {
             flex: 1;
-            padding: 20px;
+            padding: 15px;
             color: white;
-            font-size: 16px;
-            line-height: 1.5;
+            font-size: 15px;
+            line-height: 1.4;
             overflow-y: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
         }
 
         .note-viewer-date {
-            padding: 15px 20px;
+            padding: 12px 15px;
             color: #8e8e93;
-            font-size: 14px;
+            font-size: 13px;
             text-align: center;
             border-top: 1px solid #2c2c2e;
+        }
+
+        /* Tela de E-mail */
+        .email-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .email-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .email-title {
+            font-size: 17px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .new-email-button {
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .email-list {
+            flex: 1;
+            overflow-y: auto;
+            background: #000;
+            padding: 8px;
+        }
+
+        .email-item {
+            background: #1c1c1e;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .email-item.unread {
+            border-left-color: #007aff;
+            background: #1c1c1e;
+        }
+
+        .email-item:hover {
+            background: #2c2c2e;
+        }
+
+        .email-item:active {
+            background: #3c3c3e;
+        }
+
+        .email-sender {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .email-subject {
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color: #e5e5e5;
+        }
+
+        .email-preview {
+            font-size: 12px;
+            color: #8e8e93;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.3;
+        }
+
+        .email-date {
+            font-size: 11px;
+            color: #5d5d60;
+            margin-top: 6px;
+            text-align: right;
+        }
+
+        .email-viewer-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .email-viewer-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .email-viewer-title {
+            font-size: 17px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .email-viewer-content {
+            flex: 1;
+            background: #000;
+            overflow-y: auto;
+        }
+
+        .email-viewer-meta {
+            padding: 15px;
+            border-bottom: 1px solid #2c2c2e;
+        }
+
+        .email-viewer-from {
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .email-viewer-to {
+            font-size: 13px;
+            color: #8e8e93;
+            margin-bottom: 5px;
+        }
+
+        .email-viewer-subject {
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .email-viewer-date {
+            font-size: 12px;
+            color: #5d5d60;
+        }
+
+        .email-viewer-body {
+            padding: 15px;
+            color: white;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .email-composer-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .email-composer-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .email-composer-title {
+            font-size: 17px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .email-composer-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            gap: 12px;
+        }
+
+        .email-input {
+            background: #1c1c1e;
+            border: 1px solid #2c2c2e;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .email-input.subject {
+            font-weight: 500;
+        }
+
+        .email-body-input {
+            flex: 1;
+            background: #1c1c1e;
+            border: 1px solid #2c2c2e;
+            border-radius: 8px;
+            padding: 12px;
+            color: white;
+            font-size: 14px;
+            line-height: 1.4;
+            resize: none;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .email-body-input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        .send-email-button {
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .send-email-button:hover {
+            background: #0056cc;
         }
 
         .profile-pic {
@@ -696,12 +969,14 @@
             transform: translateX(-50%);
             background: #25d366;
             color: white;
-            padding: 12px 25px;
-            border-radius: 25px;
+            padding: 10px 20px;
+            border-radius: 20px;
             display: none;
             z-index: 1000;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            font-size: 14px;
+            font-size: 13px;
+            max-width: 90%;
+            text-align: center;
         }
     </style>
 </head>
@@ -795,6 +1070,12 @@
                             📝
                         </div>
                         <div class="app-name">Notas</div>
+                    </div>
+                    <div class="app-icon" id="emailApp">
+                        <div class="app-icon-img" style="background: #007aff;">
+                            📧
+                        </div>
+                        <div class="app-name">E-mail</div>
                     </div>
                 </div>
             </div>
@@ -918,6 +1199,48 @@
                 <div class="note-viewer-content" id="noteViewerContent"></div>
                 <div class="note-viewer-date" id="noteViewerDate"></div>
             </div>
+            
+            <!-- Tela de E-mail -->
+            <div class="email-screen" id="emailScreen">
+                <div class="email-header">
+                    <button class="back-button" id="backFromEmail">←</button>
+                    <div class="email-title">E-mail</div>
+                    <button class="new-email-button" id="newEmailButton">+</button>
+                </div>
+                <div class="email-list" id="emailList">
+                    <!-- E-mails serão carregados aqui -->
+                </div>
+            </div>
+            
+            <!-- Visualizador de E-mail -->
+            <div class="email-viewer-screen" id="emailViewerScreen">
+                <div class="email-viewer-header">
+                    <button class="back-button" id="backFromEmailViewer">←</button>
+                    <div class="email-viewer-title">E-mail</div>
+                </div>
+                <div class="email-viewer-content">
+                    <div class="email-viewer-meta" id="emailViewerMeta">
+                        <!-- Metadados do e-mail -->
+                    </div>
+                    <div class="email-viewer-body" id="emailViewerBody">
+                        <!-- Corpo do e-mail -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Compositor de E-mail -->
+            <div class="email-composer-screen" id="emailComposerScreen">
+                <div class="email-composer-header">
+                    <button class="back-button" id="backFromComposer">←</button>
+                    <div class="email-composer-title">Novo E-mail</div>
+                </div>
+                <div class="email-composer-form">
+                    <input type="text" class="email-input" id="emailToInput" placeholder="Para" maxlength="100">
+                    <input type="text" class="email-input subject" id="emailSubjectInput" placeholder="Assunto" maxlength="100">
+                    <textarea class="email-body-input" id="emailBodyInput" placeholder="Digite sua mensagem..." maxlength="2000"></textarea>
+                    <button class="send-email-button" id="sendEmailButton">Enviar</button>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -930,7 +1253,9 @@
         let currentScreen = "lock";
         let currentChat = null;
         let currentNote = null;
+        let currentEmail = null;
         let notes = [];
+        let emails = [];
         
         // Carregar notas do localStorage
         function loadNotes() {
@@ -966,9 +1291,71 @@
             }
         }
         
+        // Carregar e-mails do localStorage
+        function loadEmails() {
+            const savedEmails = localStorage.getItem('phoneSimulatorEmails');
+            if (savedEmails) {
+                emails = JSON.parse(savedEmails);
+            } else {
+                // E-mails iniciais
+                emails = [
+                    {
+                        id: 1,
+                        from: "Empresa Tech",
+                        fromEmail: "contato@empresatech.com",
+                        to: "você@exemplo.com",
+                        subject: "Bem-vindo ao nosso serviço!",
+                        body: "Olá,\n\nAgradecemos por se inscrever em nosso serviço. Estamos muito felizes em tê-lo conosco.\n\nPara começar, recomendamos que você:\n1. Complete seu perfil\n2. Explore os tutoriais iniciais\n3. Configure suas preferências\n\nSe tiver alguma dúvida, nossa equipe de suporte está disponível 24/7.\n\nAtenciosamente,\nEquipe Empresa Tech",
+                        date: new Date().toLocaleString('pt-BR'),
+                        read: false,
+                        important: true
+                    },
+                    {
+                        id: 2,
+                        from: "Banco Seguro",
+                        fromEmail: "nao-responda@bancoseguro.com",
+                        to: "você@exemplo.com",
+                        subject: "Extrato disponível",
+                        body: "Prezado cliente,\n\nSeu extrato bancário referente ao mês atual já está disponível para consulta.\n\nAcesse seu internet banking para visualizar:\n- Transações do período\n- Saldo atual\n- Investimentos\n\nLembre-se de manter seus dados cadastrais atualizados.\n\nAtenciosamente,\nBanco Seguro",
+                        date: new Date().toLocaleString('pt-BR'),
+                        read: false,
+                        important: false
+                    },
+                    {
+                        id: 3,
+                        from: "Maria Silva",
+                        fromEmail: "maria.silva@email.com",
+                        to: "você@exemplo.com",
+                        subject: "Reunião de projeto",
+                        body: "Olá,\n\nGostaria de confirmar nossa reunião para amanhã às 14h.\n\nPreparei alguns pontos para discutirmos:\n1. Progresso do projeto\n2. Próximos passos\n3. Orçamento\n\nPor favor, traga os relatórios atualizados.\n\nAtenciosamente,\nMaria",
+                        date: new Date().toLocaleString('pt-BR'),
+                        read: true,
+                        important: true
+                    },
+                    {
+                        id: 4,
+                        from: "Loja Online",
+                        fromEmail: "vendas@lojaonline.com",
+                        to: "você@exemplo.com",
+                        subject: "Seu pedido foi enviado!",
+                        body: "Olá,\n\nSeu pedido #12345 foi enviado com sucesso!\n\nDetalhes do envio:\n- Número de rastreamento: BR123456789\n- Transportadora: Correios\n- Previsão de entrega: 5 dias úteis\n\nVocê pode acompanhar seu pedido em nosso site.\n\nObrigado por comprar conosco!",
+                        date: new Date().toLocaleString('pt-BR'),
+                        read: true,
+                        important: false
+                    }
+                ];
+                saveEmails();
+            }
+        }
+        
         // Salvar notas no localStorage
         function saveNotes() {
             localStorage.setItem('phoneSimulatorNotes', JSON.stringify(notes));
+        }
+        
+        // Salvar e-mails no localStorage
+        function saveEmails() {
+            localStorage.setItem('phoneSimulatorEmails', JSON.stringify(emails));
         }
         
         // Carregar lista de notas
@@ -978,7 +1365,7 @@
             
             if (notes.length === 0) {
                 notesList.innerHTML = `
-                    <div style="color: #8e8e93; text-align: center; padding: 40px 20px;">
+                    <div style="color: #8e8e93; text-align: center; padding: 30px 15px;">
                         Nenhuma nota criada ainda.<br>
                         Clique no botão "+" para criar uma nova nota.
                     </div>
@@ -1006,6 +1393,45 @@
             });
         }
         
+        // Carregar lista de e-mails
+        function loadEmailsList() {
+            const emailList = document.getElementById('emailList');
+            emailList.innerHTML = '';
+            
+            if (emails.length === 0) {
+                emailList.innerHTML = `
+                    <div style="color: #8e8e93; text-align: center; padding: 30px 15px;">
+                        Nenhum e-mail na caixa de entrada.<br>
+                        Clique no botão "+" para criar um novo e-mail.
+                    </div>
+                `;
+                return;
+            }
+            
+            emails.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            emails.forEach(email => {
+                const emailElement = document.createElement('div');
+                emailElement.className = `email-item ${email.read ? '' : 'unread'}`;
+                emailElement.dataset.id = email.id;
+                
+                const preview = email.body.length > 100 ? email.body.substring(0, 100) + '...' : email.body;
+                
+                emailElement.innerHTML = `
+                    <div class="email-sender">
+                        <span>${email.from}</span>
+                        ${email.important ? '<span style="color: #ff3b30; font-size: 12px;">⚠️ Importante</span>' : ''}
+                    </div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-preview">${preview}</div>
+                    <div class="email-date">${email.date}</div>
+                `;
+                
+                emailElement.addEventListener('click', () => openEmailViewer(email.id));
+                emailList.appendChild(emailElement);
+            });
+        }
+        
         // Abrir visualizador de nota
         function openNoteViewer(noteId) {
             const note = notes.find(n => n.id == noteId);
@@ -1020,6 +1446,33 @@
             document.getElementById('notesScreen').style.display = 'none';
             document.getElementById('noteViewerScreen').style.display = 'flex';
             currentScreen = "noteViewer";
+        }
+        
+        // Abrir visualizador de e-mail
+        function openEmailViewer(emailId) {
+            const email = emails.find(e => e.id == emailId);
+            if (!email) return;
+            
+            currentEmail = email;
+            
+            // Marcar como lido
+            if (!email.read) {
+                email.read = true;
+                saveEmails();
+            }
+            
+            document.getElementById('emailViewerMeta').innerHTML = `
+                <div class="email-viewer-from">${email.from} &lt;${email.fromEmail}&gt;</div>
+                <div class="email-viewer-to">Para: ${email.to}</div>
+                <div class="email-viewer-subject">${email.subject}</div>
+                <div class="email-viewer-date">${email.date}</div>
+            `;
+            
+            document.getElementById('emailViewerBody').textContent = email.body;
+            
+            document.getElementById('emailScreen').style.display = 'none';
+            document.getElementById('emailViewerScreen').style.display = 'flex';
+            currentScreen = "emailViewer";
         }
         
         // Abrir editor de nota
@@ -1041,6 +1494,18 @@
             document.getElementById('noteEditorScreen').style.display = 'flex';
             currentScreen = "noteEditor";
             document.getElementById('noteTitleInput').focus();
+        }
+        
+        // Abrir compositor de e-mail
+        function openEmailComposer() {
+            document.getElementById('emailToInput').value = '';
+            document.getElementById('emailSubjectInput').value = '';
+            document.getElementById('emailBodyInput').value = '';
+            
+            document.getElementById('emailScreen').style.display = 'none';
+            document.getElementById('emailComposerScreen').style.display = 'flex';
+            currentScreen = "emailComposer";
+            document.getElementById('emailToInput').focus();
         }
         
         // Salvar nota
@@ -1081,6 +1546,87 @@
             currentScreen = "notes";
             
             showNotification('Nota salva com sucesso!', '#34c759');
+        }
+        
+        // Enviar e-mail
+        function sendEmail() {
+            const to = document.getElementById('emailToInput').value.trim();
+            const subject = document.getElementById('emailSubjectInput').value.trim();
+            const body = document.getElementById('emailBodyInput').value.trim();
+            const now = new Date().toLocaleString('pt-BR');
+            
+            if (!to || !subject || !body) {
+                showNotification('Preencha todos os campos!', '#ff3b30');
+                return;
+            }
+            
+            if (!to.includes('@')) {
+                showNotification('E-mail do destinatário inválido!', '#ff3b30');
+                return;
+            }
+            
+            // Criar novo e-mail
+            const newId = emails.length > 0 ? Math.max(...emails.map(e => e.id)) + 1 : 1;
+            const newEmail = {
+                id: newId,
+                from: "Você",
+                fromEmail: "você@exemplo.com",
+                to: to,
+                subject: subject,
+                body: body,
+                date: now,
+                read: true,
+                important: false
+            };
+            
+            emails.unshift(newEmail);
+            saveEmails();
+            loadEmailsList();
+            
+            // Simular e-mail de resposta (após 3 segundos)
+            setTimeout(() => {
+                const responses = [
+                    {
+                        from: "Resposta Automática",
+                        fromEmail: "auto-responder@empresa.com",
+                        subject: `Re: ${subject}`,
+                        body: `Olá,\n\nRecebemos seu e-mail. Nossa equipe responderá em até 24 horas.\n\nEsta é uma mensagem automática, por favor não responda.\n\nAtenciosamente,\nSistema de Resposta Automática`
+                    },
+                    {
+                        from: "Suporte",
+                        fromEmail: "suporte@servico.com",
+                        subject: `Confirmação: ${subject}`,
+                        body: `Prezado,\n\nConfirmamos o recebimento de sua mensagem.\n\nCaso de urgência, entre em contato pelo telefone (11) 9999-9999.\n\nAtenciosamente,\nEquipe de Suporte`
+                    }
+                ];
+                
+                const response = responses[Math.floor(Math.random() * responses.length)];
+                const responseId = newId + 1;
+                const responseEmail = {
+                    id: responseId,
+                    from: response.from,
+                    fromEmail: response.fromEmail,
+                    to: "você@exemplo.com",
+                    subject: response.subject,
+                    body: response.body,
+                    date: new Date().toLocaleString('pt-BR'),
+                    read: false,
+                    important: true
+                };
+                
+                emails.unshift(responseEmail);
+                saveEmails();
+                loadEmailsList();
+                
+                showNotification(`Resposta de ${response.from}`, '#007aff');
+            }, 3000);
+            
+            // Voltar para a lista de e-mails
+            document.getElementById('emailComposerScreen').style.display = 'none';
+            document.getElementById('emailScreen').style.display = 'flex';
+            currentScreen = "email";
+            
+            showNotification('E-mail enviado com sucesso!', '#34c759');
         }
         
         // Mostrar notificação
@@ -1259,93 +1805,6 @@
             currentScreen = "chat";
         }
 
-        // Enviar mensagem
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const messageText = input.value.trim();
-            const chatMessages = document.getElementById('chatMessages');
-            
-            if (messageText && currentChat) {
-                const now = new Date();
-                const timeString = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-                
-                // Adicionar mensagem na tela
-                const messageElement = document.createElement('div');
-                messageElement.className = 'message sent';
-                messageElement.innerHTML = `
-                    ${messageText}
-                    <div class="message-time">${timeString}</div>
-                `;
-                chatMessages.appendChild(messageElement);
-                
-                // Adicionar mensagem na conversa
-                currentChat.messages.push({
-                    text: messageText,
-                    time: timeString,
-                    type: 'sent'
-                });
-                
-                // Limpar input
-                input.value = '';
-                
-                // Simular resposta automática após 1-3 segundos
-                setTimeout(() => {
-                    const responses = [
-                        "Entendi!",
-                        "Ok!",
-                        "Legal!",
-                        "Vou verificar",
-                        "Combinado!",
-                        "Obrigado!"
-                    ];
-                    
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    const responseTime = new Date();
-                    const responseTimeString = `${responseTime.getHours().toString().padStart(2, '0')}:${responseTime.getMinutes().toString().padStart(2, '0')}`;
-                    
-                    // Adicionar resposta na tela
-                    const responseElement = document.createElement('div');
-                    responseElement.className = 'message received';
-                    responseElement.innerHTML = `
-                        ${randomResponse}
-                        <div class="message-time">${responseTimeString}</div>
-                    `;
-                    chatMessages.appendChild(responseElement);
-                    
-                    // Adicionar resposta na conversa
-                    currentChat.messages.push({
-                        text: randomResponse,
-                        time: responseTimeString,
-                        type: 'received'
-                    });
-                    
-                    // Atualizar última mensagem na lista de conversas
-                    currentChat.lastMessage = randomResponse;
-                    
-                    // Atualizar preview na lista de conversas
-                    const conversationElements = document.querySelectorAll('.conversation');
-                    conversationElements.forEach((element, index) => {
-                        if (conversations[index] === currentChat) {
-                            const previewElement = element.querySelector('.conversation-preview');
-                            if (previewElement) {
-                                previewElement.textContent = randomResponse;
-                            }
-                        }
-                    });
-                    
-                    // Rolar para baixo
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                    
-                    // Mostrar notificação
-                    showNotification(`WhatsApp: ${currentChat.name}`);
-                    
-                }, 1000 + Math.random() * 2000);
-                
-                // Rolar para baixo
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-        }
-
         // Navegação entre telas
         function goBack() {
             const homeScreen = document.getElementById('homeScreen');
@@ -1355,6 +1814,9 @@
             const notesScreen = document.getElementById('notesScreen');
             const noteViewerScreen = document.getElementById('noteViewerScreen');
             const noteEditorScreen = document.getElementById('noteEditorScreen');
+            const emailScreen = document.getElementById('emailScreen');
+            const emailViewerScreen = document.getElementById('emailViewerScreen');
+            const emailComposerScreen = document.getElementById('emailComposerScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -1392,6 +1854,21 @@
                         currentScreen = "notes";
                     }
                     break;
+                case "email":
+                    emailScreen.style.display = 'none';
+                    homeScreen.style.display = 'flex';
+                    currentScreen = "home";
+                    break;
+                case "emailViewer":
+                    emailViewerScreen.style.display = 'none';
+                    emailScreen.style.display = 'flex';
+                    currentScreen = "email";
+                    break;
+                case "emailComposer":
+                    emailComposerScreen.style.display = 'none';
+                    emailScreen.style.display = 'flex';
+                    currentScreen = "email";
+                    break;
                 case "home":
                     // Voltar para tela de bloqueio
                     homeScreen.style.display = 'none';
@@ -1423,11 +1900,23 @@
             currentScreen = "notes";
             loadNotesList();
         }
+        
+        // Abrir e-mail
+        function openEmail() {
+            const homeScreen = document.getElementById('homeScreen');
+            const emailScreen = document.getElementById('emailScreen');
+            
+            homeScreen.style.display = 'none';
+            emailScreen.style.display = 'flex';
+            currentScreen = "email";
+            loadEmailsList();
+        }
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
-            // Carregar notas
+            // Carregar dados
             loadNotes();
+            loadEmails();
             
             // Atualizar data e hora
             updateDateTime();
@@ -1470,6 +1959,9 @@
             // Evento do botão Notas
             document.getElementById('notesApp').addEventListener('click', openNotes);
             
+            // Evento do botão E-mail
+            document.getElementById('emailApp').addEventListener('click', openEmail);
+            
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
             document.getElementById('backFromChat').addEventListener('click', goBack);
@@ -1477,6 +1969,9 @@
             document.getElementById('backFromNotes').addEventListener('click', goBack);
             document.getElementById('backFromViewer').addEventListener('click', goBack);
             document.getElementById('backFromEditor').addEventListener('click', goBack);
+            document.getElementById('backFromEmail').addEventListener('click', goBack);
+            document.getElementById('backFromEmailViewer').addEventListener('click', goBack);
+            document.getElementById('backFromComposer').addEventListener('click', goBack);
             
             // Eventos das notas
             document.getElementById('newNoteButton').addEventListener('click', () => {
@@ -1491,20 +1986,22 @@
                 }
             });
             
-            // Evento de enviar mensagem
-            document.getElementById('sendMessage').addEventListener('click', sendMessage);
+            // Eventos do e-mail
+            document.getElementById('newEmailButton').addEventListener('click', openEmailComposer);
             
-            // Enviar mensagem com Enter
-            document.getElementById('messageInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
+            document.getElementById('sendEmailButton').addEventListener('click', sendEmail);
             
             // Salvar nota com Ctrl+Enter
             document.getElementById('noteContentInput').addEventListener('keydown', (e) => {
                 if (e.ctrlKey && e.key === 'Enter') {
                     saveNote();
+                }
+            });
+            
+            // Enviar e-mail com Ctrl+Enter
+            document.getElementById('emailBodyInput').addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    sendEmail();
                 }
             });
             
