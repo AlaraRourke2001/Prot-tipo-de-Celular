@@ -52,7 +52,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 60px 20px 100px;
+            padding: 60px 20px 20px;
             position: absolute;
             top: 0;
             left: 0;
@@ -78,17 +78,17 @@
         .keypad {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 15px;
             width: 100%;
-            max-width: 300px;
-            margin-bottom: 20px;
+            max-width: 280px;
+            margin: 20px 0;
         }
 
         .key {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 35px;
+            border-radius: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -108,45 +108,25 @@
         }
 
         .key-number {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 300;
         }
 
         .key-letters {
-            font-size: 10px;
+            font-size: 9px;
             opacity: 0.7;
             margin-top: 2px;
         }
 
-        #key-delete {
-            grid-column: 3;
-            font-size: 24px;
-        }
-
-        /* Posicionamento correto do 0 */
-        #key-0 {
-            grid-column: 2;
-            grid-row: 4;
-        }
-
-        #key-delete {
-            grid-column: 3;
-            grid-row: 4;
-        }
-
-        .key:empty {
-            visibility: hidden;
-        }
-
         .password-display {
             display: flex;
-            gap: 10px;
-            margin: 30px 0;
+            gap: 8px;
+            margin: 20px 0;
         }
 
         .password-dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.3);
             transition: all 0.2s;
@@ -159,39 +139,10 @@
 
         .unlock-message {
             text-align: center;
-            margin-top: 20px;
-            min-height: 24px;
+            margin-top: 15px;
+            min-height: 20px;
             font-size: 14px;
             opacity: 0.8;
-        }
-
-        /* Menu inferior */
-        .bottom-menu {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .menu-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 14px;
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .menu-button:hover {
-            background: rgba(255, 255, 255, 0.2);
         }
 
         /* Tela Principal */
@@ -210,7 +161,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 15px;
             font-size: 14px;
         }
 
@@ -218,7 +169,7 @@
             flex: 1;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 15px;
             padding: 20px;
             align-content: start;
         }
@@ -240,15 +191,15 @@
         }
 
         .app-icon-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 18px;
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 24px;
             color: white;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             overflow: hidden;
         }
 
@@ -260,8 +211,10 @@
 
         .app-name {
             color: white;
-            font-size: 12px;
+            font-size: 11px;
             text-align: center;
+            max-width: 60px;
+            word-wrap: break-word;
         }
 
         /* Tela do WhatsApp */
@@ -307,7 +260,7 @@
         .conversation {
             display: flex;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 15px;
             background: #111b21;
             border-bottom: 1px solid #222e35;
             cursor: pointer;
@@ -319,15 +272,15 @@
         }
 
         .conversation-avatar {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
-            margin-right: 15px;
+            margin-right: 12px;
             overflow: hidden;
         }
 
@@ -344,12 +297,13 @@
         .conversation-name {
             color: white;
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+            font-size: 15px;
         }
 
         .conversation-preview {
             color: #8696a0;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .chat-screen {
@@ -366,27 +320,28 @@
         .chat-header {
             background: #202c33;
             color: white;
-            padding: 15px 20px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .message {
             max-width: 70%;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 8px;
             position: relative;
             word-wrap: break-word;
+            font-size: 14px;
         }
 
         .message.received {
@@ -402,17 +357,17 @@
         }
 
         .message-time {
-            font-size: 11px;
+            font-size: 10px;
             opacity: 0.8;
             text-align: right;
-            margin-top: 5px;
+            margin-top: 4px;
         }
 
         .chat-input {
-            padding: 15px 20px;
+            padding: 12px 15px;
             background: #202c33;
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .chat-input input {
@@ -420,9 +375,9 @@
             background: #2a3942;
             border: none;
             border-radius: 20px;
-            padding: 12px 20px;
+            padding: 10px 15px;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
         }
 
         .chat-input input:focus {
@@ -434,9 +389,9 @@
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
+            width: 45px;
+            height: 45px;
+            font-size: 18px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -476,7 +431,7 @@
         }
 
         .settings-item {
-            padding: 18px 20px;
+            padding: 15px 20px;
             border-bottom: 1px solid #2c2c2e;
             color: white;
             display: flex;
@@ -489,14 +444,14 @@
         }
 
         .settings-item-icon {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 15px;
-            font-size: 18px;
+            margin-right: 12px;
+            font-size: 16px;
         }
 
         .settings-item-content {
@@ -506,15 +461,227 @@
         }
 
         .settings-item-title {
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .settings-item-status {
             color: #8e8e93;
-            font-size: 14px;
+            font-size: 13px;
         }
 
-        /* Fotos de perfil padrão */
+        /* Tela de Notas */
+        .notes-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .notes-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .notes-title {
+            font-size: 18px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .new-note-button {
+            background: #007aff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notes-list {
+            flex: 1;
+            overflow-y: auto;
+            background: #000;
+            padding: 10px;
+        }
+
+        .note-item {
+            background: #1c1c1e;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .note-item:hover {
+            background: #2c2c2e;
+        }
+
+        .note-item:active {
+            background: #3c3c3e;
+        }
+
+        .note-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .note-preview {
+            font-size: 14px;
+            color: #8e8e93;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .note-date {
+            font-size: 12px;
+            color: #5d5d60;
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        .note-editor-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .note-editor-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .note-editor-title-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 5px;
+        }
+
+        .note-editor-title-input:focus {
+            outline: none;
+        }
+
+        .note-editor-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .note-editor-action-button {
+            background: transparent;
+            border: none;
+            color: #007aff;
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .note-editor-action-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .note-editor {
+            flex: 1;
+            background: #000;
+            padding: 20px;
+        }
+
+        .note-editor-textarea {
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 16px;
+            line-height: 1.5;
+            resize: none;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .note-editor-textarea:focus {
+            outline: none;
+        }
+
+        .note-viewer-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .note-viewer-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .note-viewer-title {
+            font-size: 18px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .note-viewer-content {
+            flex: 1;
+            padding: 20px;
+            color: white;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .note-viewer-date {
+            padding: 15px 20px;
+            color: #8e8e93;
+            font-size: 14px;
+            text-align: center;
+            border-top: 1px solid #2c2c2e;
+        }
+
         .profile-pic {
             width: 100%;
             height: 100%;
@@ -529,11 +696,12 @@
             transform: translateX(-50%);
             background: #25d366;
             color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
+            padding: 12px 25px;
+            border-radius: 25px;
             display: none;
             z-index: 1000;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 14px;
         }
     </style>
 </head>
@@ -601,12 +769,6 @@
                         <div class="key-number">⌫</div>
                     </div>
                 </div>
-                
-                <!-- Menu inferior -->
-                <div class="bottom-menu">
-                    <button class="menu-button" id="emergencyButton">Emergência</button>
-                    <button class="menu-button" id="unlockButton">Desbloquear</button>
-                </div>
             </div>
             
             <!-- Tela Principal -->
@@ -628,12 +790,12 @@
                         </div>
                         <div class="app-name">Configurações</div>
                     </div>
-                </div>
-                
-                <!-- Menu inferior da tela principal -->
-                <div class="bottom-menu">
-                    <button class="menu-button" id="homeToLockButton">Bloquear</button>
-                    <button class="menu-button" id="homeSettingsButton">Configurações</button>
+                    <div class="app-icon" id="notesApp">
+                        <div class="app-icon-img" style="background: #ff9500;">
+                            📝
+                        </div>
+                        <div class="app-name">Notas</div>
+                    </div>
                 </div>
             </div>
             
@@ -645,12 +807,6 @@
                 </div>
                 <div class="conversations-list">
                     <!-- Conversas serão geradas aqui -->
-                </div>
-                
-                <!-- Menu inferior do WhatsApp -->
-                <div class="bottom-menu">
-                    <button class="menu-button" id="whatsappHomeButton">Início</button>
-                    <button class="menu-button" id="whatsappNewChat">Nova conversa</button>
                 </div>
             </div>
             
@@ -723,6 +879,45 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Tela de Notas -->
+            <div class="notes-screen" id="notesScreen">
+                <div class="notes-header">
+                    <button class="back-button" id="backFromNotes">←</button>
+                    <div class="notes-title">Notas</div>
+                    <button class="new-note-button" id="newNoteButton">+</button>
+                </div>
+                <div class="notes-list" id="notesList">
+                    <!-- Notas serão carregadas aqui -->
+                </div>
+            </div>
+            
+            <!-- Editor de Notas -->
+            <div class="note-editor-screen" id="noteEditorScreen">
+                <div class="note-editor-header">
+                    <button class="back-button" id="backFromEditor">←</button>
+                    <input type="text" class="note-editor-title-input" id="noteTitleInput" placeholder="Título" maxlength="50">
+                    <div class="note-editor-actions">
+                        <button class="note-editor-action-button" id="saveNoteButton">Salvar</button>
+                    </div>
+                </div>
+                <div class="note-editor">
+                    <textarea class="note-editor-textarea" id="noteContentInput" placeholder="Digite sua nota aqui..." maxlength="2000"></textarea>
+                </div>
+            </div>
+            
+            <!-- Visualizador de Notas -->
+            <div class="note-viewer-screen" id="noteViewerScreen">
+                <div class="note-viewer-header">
+                    <button class="back-button" id="backFromViewer">←</button>
+                    <div class="note-viewer-title" id="noteViewerTitle"></div>
+                    <div class="note-editor-actions">
+                        <button class="note-editor-action-button" id="editNoteButton">Editar</button>
+                    </div>
+                </div>
+                <div class="note-viewer-content" id="noteViewerContent"></div>
+                <div class="note-viewer-date" id="noteViewerDate"></div>
+            </div>
         </div>
     </div>
     
@@ -734,8 +929,172 @@
         let enteredPassword = "";
         let currentScreen = "lock";
         let currentChat = null;
+        let currentNote = null;
+        let notes = [];
         
-        // Conversas e mensagens simuladas com fotos reais (placeholder images)
+        // Carregar notas do localStorage
+        function loadNotes() {
+            const savedNotes = localStorage.getItem('phoneSimulatorNotes');
+            if (savedNotes) {
+                notes = JSON.parse(savedNotes);
+            } else {
+                // Notas iniciais
+                notes = [
+                    {
+                        id: 1,
+                        title: "Lista de Compras",
+                        content: "1. Leite\n2. Ovos\n3. Pão\n4. Frutas\n5. Verduras",
+                        date: new Date().toLocaleString('pt-BR'),
+                        updated: new Date().toLocaleString('pt-BR')
+                    },
+                    {
+                        id: 2,
+                        title: "Ideias para Projeto",
+                        content: "- Melhorar interface do usuário\n- Adicionar modo escuro\n- Otimizar performance\n- Testar em diferentes dispositivos",
+                        date: new Date().toLocaleString('pt-BR'),
+                        updated: new Date().toLocaleString('pt-BR')
+                    },
+                    {
+                        id: 3,
+                        title: "Lembretes",
+                        content: "Reunião: Segunda-feira 14h\nPagamento conta: Dia 10\nAniversário mãe: 25/12",
+                        date: new Date().toLocaleString('pt-BR'),
+                        updated: new Date().toLocaleString('pt-BR')
+                    }
+                ];
+                saveNotes();
+            }
+        }
+        
+        // Salvar notas no localStorage
+        function saveNotes() {
+            localStorage.setItem('phoneSimulatorNotes', JSON.stringify(notes));
+        }
+        
+        // Carregar lista de notas
+        function loadNotesList() {
+            const notesList = document.getElementById('notesList');
+            notesList.innerHTML = '';
+            
+            if (notes.length === 0) {
+                notesList.innerHTML = `
+                    <div style="color: #8e8e93; text-align: center; padding: 40px 20px;">
+                        Nenhuma nota criada ainda.<br>
+                        Clique no botão "+" para criar uma nova nota.
+                    </div>
+                `;
+                return;
+            }
+            
+            notes.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+            
+            notes.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'note-item';
+                noteElement.dataset.id = note.id;
+                
+                const preview = note.content.length > 100 ? note.content.substring(0, 100) + '...' : note.content;
+                
+                noteElement.innerHTML = `
+                    <div class="note-title">${note.title || 'Sem título'}</div>
+                    <div class="note-preview">${preview}</div>
+                    <div class="note-date">${note.updated}</div>
+                `;
+                
+                noteElement.addEventListener('click', () => openNoteViewer(note.id));
+                notesList.appendChild(noteElement);
+            });
+        }
+        
+        // Abrir visualizador de nota
+        function openNoteViewer(noteId) {
+            const note = notes.find(n => n.id == noteId);
+            if (!note) return;
+            
+            currentNote = note;
+            
+            document.getElementById('noteViewerTitle').textContent = note.title || 'Sem título';
+            document.getElementById('noteViewerContent').textContent = note.content;
+            document.getElementById('noteViewerDate').textContent = `Atualizado: ${note.updated}`;
+            
+            document.getElementById('notesScreen').style.display = 'none';
+            document.getElementById('noteViewerScreen').style.display = 'flex';
+            currentScreen = "noteViewer";
+        }
+        
+        // Abrir editor de nota
+        function openNoteEditor(noteId = null) {
+            if (noteId) {
+                const note = notes.find(n => n.id == noteId);
+                if (note) {
+                    currentNote = note;
+                    document.getElementById('noteTitleInput').value = note.title || '';
+                    document.getElementById('noteContentInput').value = note.content;
+                }
+            } else {
+                currentNote = null;
+                document.getElementById('noteTitleInput').value = '';
+                document.getElementById('noteContentInput').value = '';
+            }
+            
+            document.getElementById('noteViewerScreen').style.display = 'none';
+            document.getElementById('noteEditorScreen').style.display = 'flex';
+            currentScreen = "noteEditor";
+            document.getElementById('noteTitleInput').focus();
+        }
+        
+        // Salvar nota
+        function saveNote() {
+            const title = document.getElementById('noteTitleInput').value.trim();
+            const content = document.getElementById('noteContentInput').value.trim();
+            const now = new Date().toLocaleString('pt-BR');
+            
+            if (!content) {
+                showNotification('A nota não pode estar vazia!', '#ff3b30');
+                return;
+            }
+            
+            if (currentNote) {
+                // Editar nota existente
+                currentNote.title = title;
+                currentNote.content = content;
+                currentNote.updated = now;
+            } else {
+                // Criar nova nota
+                const newId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) + 1 : 1;
+                currentNote = {
+                    id: newId,
+                    title: title,
+                    content: content,
+                    date: now,
+                    updated: now
+                };
+                notes.push(currentNote);
+            }
+            
+            saveNotes();
+            loadNotesList();
+            
+            // Voltar para a lista de notas
+            document.getElementById('noteEditorScreen').style.display = 'none';
+            document.getElementById('notesScreen').style.display = 'flex';
+            currentScreen = "notes";
+            
+            showNotification('Nota salva com sucesso!', '#34c759');
+        }
+        
+        // Mostrar notificação
+        function showNotification(message, color = '#25d366') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.background = color;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+        
+        // Conversas e mensagens simuladas
         const conversations = [
             {
                 id: 1,
@@ -761,44 +1120,6 @@
                     { text: "Preciso daquele documento que falamos", time: "08:22", type: "received" },
                     { text: "Já vou enviar", time: "08:25", type: "sent" },
                     { text: "Mandei o arquivo", time: "08:30", type: "sent" }
-                ]
-            },
-            {
-                id: 3,
-                name: "Ana Costa",
-                lastMessage: "Obrigada pela ajuda!",
-                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { text: "Oi! Como foi a reunião?", time: "16:45", type: "sent" },
-                    { text: "Foi ótima! Conseguimos aprovar tudo", time: "16:50", type: "received" },
-                    { text: "Que bom! Parabéns!", time: "16:51", type: "sent" },
-                    { text: "Obrigada pela ajuda!", time: "16:52", type: "received" }
-                ]
-            },
-            {
-                id: 4,
-                name: "Pedro Almeida",
-                lastMessage: "Amanhã combina?",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { text: "E aí, vamos no jogo hoje?", time: "14:20", type: "received" },
-                    { text: "Hoje não posso, estou ocupado", time: "14:25", type: "sent" },
-                    { text: "Que pena! E amanhã?", time: "14:26", type: "received" },
-                    { text: "Amanhã combina?", time: "14:27", type: "received" },
-                    { text: "Amanhã sim! Às 20h?", time: "14:30", type: "sent" }
-                ]
-            },
-            {
-                id: 5,
-                name: "Grupo Família",
-                lastMessage: "Maria: Almoço no domingo!",
-                avatar: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { text: "Pessoal, domingo tem almoço na minha casa!", time: "10:00", type: "received" },
-                    { text: "Que legal! Vou sim", time: "10:05", type: "sent" },
-                    { text: "Eu também!", time: "10:07", type: "received" },
-                    { text: "Levo a sobremesa", time: "10:10", type: "received" },
-                    { text: "Perfeito! Espero todos às 13h", time: "10:15", type: "received" }
                 ]
             }
         ];
@@ -865,7 +1186,6 @@
         function unlockPhone() {
             const lockScreen = document.getElementById('lockScreen');
             const homeScreen = document.getElementById('homeScreen');
-            const notification = document.getElementById('notification');
             
             // Efeito de transição
             lockScreen.style.opacity = '0';
@@ -875,13 +1195,6 @@
                 lockScreen.style.display = 'none';
                 homeScreen.style.display = 'flex';
                 currentScreen = "home";
-                
-                // Mostrar notificação
-                notification.textContent = "Celular desbloqueado";
-                notification.style.display = 'block';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 2000);
                 
                 // Resetar tela de bloqueio
                 lockScreen.style.opacity = '1';
@@ -1024,12 +1337,7 @@
                     chatMessages.scrollTop = chatMessages.scrollHeight;
                     
                     // Mostrar notificação
-                    const notification = document.getElementById('notification');
-                    notification.textContent = `WhatsApp: ${currentChat.name}`;
-                    notification.style.display = 'block';
-                    setTimeout(() => {
-                        notification.style.display = 'none';
-                    }, 3000);
+                    showNotification(`WhatsApp: ${currentChat.name}`);
                     
                 }, 1000 + Math.random() * 2000);
                 
@@ -1044,6 +1352,9 @@
             const whatsappScreen = document.getElementById('whatsappScreen');
             const chatScreen = document.getElementById('chatScreen');
             const settingsScreen = document.getElementById('settingsScreen');
+            const notesScreen = document.getElementById('notesScreen');
+            const noteViewerScreen = document.getElementById('noteViewerScreen');
+            const noteEditorScreen = document.getElementById('noteEditorScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -1060,6 +1371,26 @@
                     settingsScreen.style.display = 'none';
                     homeScreen.style.display = 'flex';
                     currentScreen = "home";
+                    break;
+                case "notes":
+                    notesScreen.style.display = 'none';
+                    homeScreen.style.display = 'flex';
+                    currentScreen = "home";
+                    break;
+                case "noteViewer":
+                    noteViewerScreen.style.display = 'none';
+                    notesScreen.style.display = 'flex';
+                    currentScreen = "notes";
+                    break;
+                case "noteEditor":
+                    noteEditorScreen.style.display = 'none';
+                    if (currentNote) {
+                        noteViewerScreen.style.display = 'flex';
+                        currentScreen = "noteViewer";
+                    } else {
+                        notesScreen.style.display = 'flex';
+                        currentScreen = "notes";
+                    }
                     break;
                 case "home":
                     // Voltar para tela de bloqueio
@@ -1081,9 +1412,23 @@
             settingsScreen.style.display = 'flex';
             currentScreen = "settings";
         }
+        
+        // Abrir notas
+        function openNotes() {
+            const homeScreen = document.getElementById('homeScreen');
+            const notesScreen = document.getElementById('notesScreen');
+            
+            homeScreen.style.display = 'none';
+            notesScreen.style.display = 'flex';
+            currentScreen = "notes";
+            loadNotesList();
+        }
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
+            // Carregar notas
+            loadNotes();
+            
             // Atualizar data e hora
             updateDateTime();
             setInterval(updateDateTime, 60000);
@@ -1112,21 +1457,6 @@
                 document.getElementById('unlockMessage').textContent = "";
             });
             
-            // Botão de desbloquear no menu
-            document.getElementById('unlockButton').addEventListener('click', () => {
-                checkPassword();
-            });
-            
-            // Botão de emergência (não funcional)
-            document.getElementById('emergencyButton').addEventListener('click', () => {
-                const notification = document.getElementById('notification');
-                notification.textContent = "Chamando serviços de emergência...";
-                notification.style.display = 'block';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 2000);
-            });
-            
             // Evento do WhatsApp
             document.getElementById('whatsappApp').addEventListener('click', () => {
                 document.getElementById('homeScreen').style.display = 'none';
@@ -1137,33 +1467,29 @@
             // Evento do botão Configurações
             document.getElementById('settingsApp').addEventListener('click', openSettings);
             
-            // Evento do botão Nova Conversa
-            document.getElementById('whatsappNewChat').addEventListener('click', () => {
-                const notification = document.getElementById('notification');
-                notification.textContent = "Nova conversa (simulação)";
-                notification.style.display = 'block';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 2000);
-            });
-            
-            // Evento do botão Home no WhatsApp
-            document.getElementById('whatsappHomeButton').addEventListener('click', () => {
-                document.getElementById('whatsappScreen').style.display = 'none';
-                document.getElementById('homeScreen').style.display = 'flex';
-                currentScreen = "home";
-            });
-            
-            // Evento do botão Bloquear na tela principal
-            document.getElementById('homeToLockButton').addEventListener('click', goBack);
-            
-            // Evento do botão Configurações na tela principal
-            document.getElementById('homeSettingsButton').addEventListener('click', openSettings);
+            // Evento do botão Notas
+            document.getElementById('notesApp').addEventListener('click', openNotes);
             
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
             document.getElementById('backFromChat').addEventListener('click', goBack);
             document.getElementById('backFromSettings').addEventListener('click', goBack);
+            document.getElementById('backFromNotes').addEventListener('click', goBack);
+            document.getElementById('backFromViewer').addEventListener('click', goBack);
+            document.getElementById('backFromEditor').addEventListener('click', goBack);
+            
+            // Eventos das notas
+            document.getElementById('newNoteButton').addEventListener('click', () => {
+                openNoteEditor();
+            });
+            
+            document.getElementById('saveNoteButton').addEventListener('click', saveNote);
+            
+            document.getElementById('editNoteButton').addEventListener('click', () => {
+                if (currentNote) {
+                    openNoteEditor(currentNote.id);
+                }
+            });
             
             // Evento de enviar mensagem
             document.getElementById('sendMessage').addEventListener('click', sendMessage);
@@ -1172,6 +1498,13 @@
             document.getElementById('messageInput').addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     sendMessage();
+                }
+            });
+            
+            // Salvar nota com Ctrl+Enter
+            document.getElementById('noteContentInput').addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    saveNote();
                 }
             });
             
@@ -1184,6 +1517,8 @@
                 } else if (e.key === 'Backspace' && currentScreen === "lock") {
                     enteredPassword = enteredPassword.slice(0, -1);
                     updatePasswordDots();
+                } else if (e.key === 'Escape') {
+                    goBack();
                 }
             });
         });
