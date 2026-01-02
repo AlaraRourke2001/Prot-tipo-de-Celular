@@ -56,7 +56,7 @@
             z-index: 10;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 60px 20px 40px;
             transition: transform 0.5s ease;
@@ -66,17 +66,29 @@
             transform: translateY(-100%);
         }
 
+        .lock-time-container {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
         .lock-time {
             color: white;
             font-size: 60px;
             font-weight: 300;
-            margin-top: 80px;
+            margin-bottom: 5px;
         }
 
         .lock-date {
             color: white;
             font-size: 20px;
-            margin-bottom: 20px;
+        }
+
+        .unlock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 280px;
         }
 
         .password-input {
@@ -87,16 +99,16 @@
             color: white;
             font-size: 18px;
             width: 100%;
-            max-width: 280px;
             text-align: center;
             letter-spacing: 5px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .password-hint {
             color: rgba(255, 255, 255, 0.7);
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
         }
 
         .unlock-btn {
@@ -107,7 +119,8 @@
             padding: 12px 40px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 10px;
+            width: 100%;
+            max-width: 200px;
         }
 
         /* Tela inicial */
@@ -124,7 +137,7 @@
             display: flex;
         }
 
-        /* Dock de apps */
+        /* Dock de apps - apenas o botão de início centralizado */
         .app-dock {
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -132,16 +145,16 @@
             margin: 10px 20px;
             padding: 10px;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
         }
 
-        /* Área de aplicativos */
+        /* Área de aplicativos com menos espaço entre as fileiras */
         .app-grid {
             flex-grow: 1;
-            padding: 20px;
+            padding: 15px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 12px; /* Diminuído o espaçamento entre os ícones */
             overflow-y: auto;
         }
 
@@ -168,7 +181,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 6px; /* Reduzido o espaço entre ícone e texto */
         }
 
         .app-icon span {
@@ -419,6 +432,10 @@
                 height: 650px;
                 max-width: 350px;
             }
+            
+            .lock-time {
+                font-size: 55px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -433,6 +450,15 @@
             
             .lock-time {
                 font-size: 50px;
+            }
+            
+            .lock-date {
+                font-size: 18px;
+            }
+            
+            .app-grid {
+                gap: 10px; /* Ainda menos espaço em telas menores */
+                padding: 12px;
             }
         }
 
@@ -465,9 +491,12 @@
 
         <!-- Tela de bloqueio -->
         <div class="lock-screen" id="lockScreen">
-            <div class="lock-time" id="currentTime">12:30</div>
-            <div class="lock-date" id="currentDate">Sexta-feira, 15 de outubro</div>
-            <div>
+            <div class="lock-time-container">
+                <div class="lock-time" id="currentTime">12:30</div>
+                <div class="lock-date" id="currentDate">Sexta-feira, 15 de outubro</div>
+            </div>
+            
+            <div class="unlock-container">
                 <div class="password-hint">Digite a senha para desbloquear (senha: 1234)</div>
                 <input type="password" class="password-input" id="passwordInput" maxlength="4" placeholder="****">
                 <button class="unlock-btn" id="unlockBtn">Desbloquear</button>
@@ -501,21 +530,34 @@
                     <i class="fas fa-images"></i>
                     <span>Galeria</span>
                 </a>
+                <a class="app-icon" data-app="music">
+                    <i class="fas fa-music"></i>
+                    <span>Música</span>
+                </a>
+                <a class="app-icon" data-app="maps">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Mapas</span>
+                </a>
+                <a class="app-icon" data-app="calculator">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculadora</span>
+                </a>
+                <a class="app-icon" data-app="calendar">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendário</span>
+                </a>
+                <a class="app-icon" data-app="weather">
+                    <i class="fas fa-cloud-sun"></i>
+                    <span>Tempo</span>
+                </a>
+                <a class="app-icon" data-app="files">
+                    <i class="fas fa-folder"></i>
+                    <span>Arquivos</span>
+                </a>
             </div>
             
+            <!-- Dock com apenas o botão de início centralizado -->
             <div class="app-dock">
-                <a class="app-icon" data-app="phone">
-                    <i class="fas fa-phone"></i>
-                    <span>Telefone</span>
-                </a>
-                <a class="app-icon" data-app="messages">
-                    <i class="fas fa-comment"></i>
-                    <span>Mensagens</span>
-                </a>
-                <a class="app-icon" data-app="camera">
-                    <i class="fas fa-camera"></i>
-                    <span>Câmera</span>
-                </a>
                 <a class="app-icon" id="homeBtn">
                     <i class="fas fa-home"></i>
                     <span>Início</span>
@@ -615,7 +657,7 @@
                             <span>São Paulo, Brasil</span>
                         </div>
                     </div>
-                    <div class="post-image" style="background-image: url('https://images.unsplash.com/photo-1565958011703-44f9829ba187');"></div>
+                    <div class="post-image" style="background-image: url('https://images.unsplash.com/phone-1565958011703-44f9829ba187');"></div>
                     <div class="post-actions">
                         <i class="far fa-heart"></i>
                         <i class="far fa-comment"></i>
