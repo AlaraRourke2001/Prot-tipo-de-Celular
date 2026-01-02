@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Celular Protótipo - GitHub</title>
+    <title>Projeto Celular - GitHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #333;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -27,85 +26,69 @@
             width: 100%;
             max-width: 1200px;
             display: flex;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            align-items: center;
             gap: 30px;
         }
 
         h1 {
-            color: #fff;
+            color: white;
             text-align: center;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
             margin-bottom: 10px;
-            font-weight: 600;
         }
 
-        .subtitle {
-            color: #a0a0c0;
+        .description {
+            color: rgba(255, 255, 255, 0.9);
             text-align: center;
+            max-width: 800px;
             margin-bottom: 20px;
-            font-size: 1.1rem;
         }
 
         /* Estilo do celular */
         .phone {
-            width: 100%;
-            max-width: 350px;
+            width: 360px;
             height: 700px;
             background-color: #111;
-            border-radius: 35px;
-            padding: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            border: 8px solid #222;
+            position: relative;
+            border: 10px solid #222;
         }
 
         /* Barra de status */
         .status-bar {
             height: 25px;
-            background-color: #111;
+            background-color: #000;
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 10px;
-            font-size: 0.8rem;
-            border-radius: 20px 20px 0 0;
+            padding: 0 20px;
+            font-size: 14px;
         }
 
-        .time {
-            font-weight: bold;
-        }
-
-        .icons i {
-            margin-left: 5px;
-        }
-
-        /* Tela do celular */
+        /* Conteúdo da tela */
         .screen {
             height: calc(100% - 25px);
-            background-color: #f0f0f0;
-            border-radius: 0 0 20px 20px;
+            background-color: #f2f2f2;
             overflow: hidden;
             position: relative;
         }
 
         /* Tela de bloqueio */
         .lock-screen {
-            width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, #1a2980, #26d0ce);
+            background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
             color: white;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             align-items: center;
-            padding: 40px 20px 60px;
+            justify-content: space-between;
+            padding: 100px 30px 50px;
             position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
+            width: 100%;
             transition: transform 0.5s ease;
         }
 
@@ -113,88 +96,113 @@
             transform: translateY(-100%);
         }
 
-        .lock-time {
+        .time {
             font-size: 3.5rem;
             font-weight: 300;
-            margin-top: 60px;
+            text-align: center;
         }
 
-        .lock-date {
+        .date {
             font-size: 1.2rem;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-
-        .lock-prompt {
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-            opacity: 0.8;
-        }
-
-        .pin-input {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .pin-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .pin-dot.filled {
-            background-color: white;
-        }
-
-        .keypad {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            width: 260px;
-        }
-
-        .key {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
             font-weight: 300;
-            cursor: pointer;
-            user-select: none;
-            transition: background-color 0.2s;
+            margin-top: 10px;
+            text-align: center;
         }
 
-        .key:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .key:active {
-            background-color: rgba(255, 255, 255, 0.4);
-        }
-
-        .key.delete {
-            font-size: 1.2rem;
-        }
-
-        /* Tela inicial com aplicativos */
-        .home-screen {
+        .unlock-form {
             width: 100%;
-            height: 100%;
-            padding: 20px 15px;
-            overflow-y: auto;
-            display: none;
+            display: flex;
             flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
-        .home-screen.active {
+        .password-input {
+            width: 80%;
+            padding: 15px;
+            border-radius: 30px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-align: center;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .unlock-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .unlock-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Tela inicial */
+        .home-screen {
+            height: 100%;
+            background-color: #f2f2f2;
             display: flex;
+            flex-direction: column;
+            position: absolute;
+            width: 100%;
+            transform: translateY(100%);
+            transition: transform 0.5s ease;
+        }
+
+        .home-screen.visible {
+            transform: translateY(0);
+        }
+
+        /* Barra de navegação */
+        .nav-bar {
+            height: 60px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #666;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .nav-icon.active {
+            color: #3498db;
+        }
+
+        .nav-icon i {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .nav-icon span {
+            font-size: 0.7rem;
+        }
+
+        /* Área de aplicativos */
+        .app-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
         }
 
         .app-grid {
@@ -209,11 +217,6 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .app-icon:hover {
-            transform: scale(1.05);
         }
 
         .app-icon img {
@@ -221,37 +224,27 @@
             height: 50px;
             border-radius: 15px;
             margin-bottom: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         .app-icon span {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #333;
             text-align: center;
         }
 
-        .dock {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
-            border-top: 1px solid #ddd;
-            background-color: rgba(255, 255, 255, 0.7);
-            border-radius: 20px;
-        }
-
         /* Tela de aplicativos */
         .app-screen {
-            width: 100%;
             height: 100%;
             background-color: white;
             position: absolute;
+            width: 100%;
             top: 0;
             left: 100%;
-            transition: left 0.3s ease;
-            overflow-y: auto;
+            transition: left 0.4s ease;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
 
         .app-screen.active {
@@ -259,55 +252,50 @@
         }
 
         .app-header {
+            height: 60px;
             background-color: #fff;
-            padding: 15px;
             display: flex;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 5;
+            padding: 0 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .back-button {
+        .back-btn {
             background: none;
             border: none;
             font-size: 1.2rem;
-            color: #007AFF;
-            margin-right: 15px;
+            color: #3498db;
             cursor: pointer;
+            padding: 8px;
         }
 
         .app-title {
             font-size: 1.2rem;
             font-weight: 600;
+            margin-left: 15px;
             color: #333;
         }
 
         .app-content {
             flex: 1;
             overflow-y: auto;
-            padding: 15px;
+            background-color: #f9f9f9;
         }
 
         /* WhatsApp */
         .chat-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            padding: 15px;
         }
 
         .chat-item {
             display: flex;
             align-items: center;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .chat-item:hover {
-            background-color: #f9f9f9;
         }
 
         .chat-avatar {
@@ -330,15 +318,17 @@
 
         .chat-name {
             font-weight: 600;
+            color: #333;
             margin-bottom: 5px;
         }
 
         .chat-last-message {
             font-size: 0.9rem;
             color: #666;
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .chat-time {
@@ -346,28 +336,54 @@
             color: #999;
         }
 
+        .chat-screen {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin-bottom: 5px;
+        }
+
+        .message.received {
+            background-color: #e6e6e6;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.sent {
+            background-color: #3498db;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
         /* Instagram */
         .post {
             background-color: white;
+            margin-bottom: 15px;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eee;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .post-header {
             display: flex;
             align-items: center;
-            padding: 12px;
+            padding: 12px 15px;
         }
 
         .post-avatar {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
-            margin-right: 10px;
             overflow: hidden;
+            margin-right: 10px;
         }
 
         .post-avatar img {
@@ -376,9 +392,9 @@
             object-fit: cover;
         }
 
-        .post-username {
+        .post-user {
             font-weight: 600;
-            font-size: 0.95rem;
+            color: #333;
         }
 
         .post-image {
@@ -394,77 +410,79 @@
         }
 
         .post-actions {
-            padding: 10px 12px;
             display: flex;
+            padding: 10px 15px;
             gap: 15px;
             font-size: 1.3rem;
-        }
-
-        .post-actions i {
-            cursor: pointer;
             color: #333;
         }
 
+        .post-action {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .post-action:hover {
+            color: #3498db;
+        }
+
         .post-likes {
-            padding: 0 12px;
             font-weight: 600;
-            font-size: 0.95rem;
+            padding: 0 15px;
             margin-bottom: 5px;
         }
 
         .post-caption {
-            padding: 0 12px 12px;
-            font-size: 0.95rem;
-            line-height: 1.4;
+            padding: 0 15px 15px;
+            color: #333;
         }
 
         /* Configurações */
         .settings-list {
-            display: flex;
-            flex-direction: column;
+            padding: 15px;
         }
 
-        .settings-item {
-            padding: 18px 15px;
-            border-bottom: 1px solid #eee;
+        .setting-item {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            padding: 15px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
-        .settings-item:last-child {
-            border-bottom: none;
-        }
-
-        .settings-item i {
-            font-size: 1.2rem;
+        .setting-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: #3498db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-right: 15px;
-            color: #555;
-            width: 24px;
+            color: white;
+            font-size: 1.2rem;
         }
 
-        .settings-text {
+        .setting-info {
             flex: 1;
         }
 
-        .settings-text h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 3px;
+        .setting-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
         }
 
-        .settings-text p {
-            font-size: 0.85rem;
-            color: #888;
-        }
-
-        .settings-arrow {
-            color: #ccc;
+        .setting-description {
             font-size: 0.9rem;
+            color: #666;
         }
 
         /* Notas */
-        .notes-grid {
+        .notes-list {
+            padding: 15px;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
@@ -474,84 +492,91 @@
             background-color: #fffacd;
             border-radius: 10px;
             padding: 15px;
-            min-height: 150px;
-            cursor: pointer;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0e68c;
+            cursor: pointer;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
         }
 
-        .note h3 {
-            margin-bottom: 10px;
-            font-size: 1rem;
+        .note-title {
+            font-weight: 600;
             color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
         }
 
-        .note p {
-            font-size: 0.9rem;
-            line-height: 1.4;
-            color: #555;
+        .note-content {
+            color: #333;
+            flex: 1;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
         }
 
         .note-date {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #999;
             margin-top: 10px;
         }
 
         /* E-mail */
         .email-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            padding: 15px;
         }
 
         .email-item {
+            background-color: white;
+            border-radius: 10px;
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        .email-item:hover {
-            background-color: #f9f9f9;
+        .email-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
 
         .email-sender {
             font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-
-        .email-subject {
-            font-weight: 500;
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-
-        .email-preview {
-            font-size: 0.9rem;
-            color: #666;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            color: #333;
         }
 
         .email-time {
             font-size: 0.8rem;
             color: #999;
-            margin-top: 5px;
+        }
+
+        .email-subject {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .email-preview {
+            color: #666;
+            font-size: 0.9rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         /* Galeria */
-        .gallery-grid {
+        .gallery {
+            padding: 15px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
+            gap: 10px;
         }
 
         .gallery-item {
-            width: 100%;
             aspect-ratio: 1;
+            border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
         }
@@ -563,13 +588,13 @@
             transition: transform 0.3s;
         }
 
-        .gallery-item:hover img {
+        .gallery-item img:hover {
             transform: scale(1.05);
         }
 
-        /* Modal para visualização de imagem */
+        /* Modal para imagem ampliada */
         .modal {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -578,459 +603,582 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 20;
-            display: none;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
         }
 
         .modal.active {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
         }
 
-        .modal-image {
+        .modal-content {
             max-width: 90%;
-            max-height: 80%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
         }
 
-        .modal-close {
+        .close-modal {
             position: absolute;
             top: 20px;
-            right: 20px;
+            right: 30px;
             color: white;
             font-size: 2rem;
             cursor: pointer;
-            background: none;
-            border: none;
         }
 
         /* Responsividade */
         @media (max-width: 768px) {
             .phone {
-                max-width: 320px;
+                width: 320px;
                 height: 650px;
             }
             
-            .lock-time {
-                font-size: 3rem;
-            }
-            
-            .key {
-                width: 65px;
-                height: 65px;
+            .app-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+            
             .phone {
-                max-width: 300px;
+                width: 300px;
                 height: 600px;
+                border-radius: 30px;
             }
             
-            .lock-time {
-                font-size: 2.8rem;
-                margin-top: 40px;
-            }
-            
-            .key {
-                width: 60px;
-                height: 60px;
-            }
-            
-            .notes-grid {
+            .notes-list {
                 grid-template-columns: 1fr;
             }
+        }
+
+        /* Instruções */
+        .instructions {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+
+        .instructions h2 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .instructions p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .github-link {
+            display: inline-block;
+            background-color: #24292e;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .github-link:hover {
+            background-color: #444d56;
+        }
+
+        .github-link i {
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Protótipo de Celular para GitHub</h1>
-        <p class="subtitle">Interface responsiva que se ajusta a diferentes tamanhos de tela</p>
+        <h1>Projeto Celular - Protótipo para GitHub</h1>
+        <p class="description">Um protótipo de celular responsivo que simula um smartphone real com aplicativos funcionais. O design se ajusta a diferentes tamanhos de tela (notebook, tablet, celular).</p>
         
+        <!-- Celular -->
         <div class="phone">
+            <!-- Barra de status -->
             <div class="status-bar">
-                <div class="time">14:30</div>
-                <div class="icons">
-                    <i class="fas fa-signal"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-battery-three-quarters"></i>
+                <span>12:30</span>
+                <span><i class="fas fa-signal"></i> <i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span>
+            </div>
+            
+            <!-- Tela de bloqueio -->
+            <div class="lock-screen" id="lockScreen">
+                <div class="time-date">
+                    <div class="time" id="currentTime">12:30</div>
+                    <div class="date" id="currentDate">Sexta-feira, 15 de setembro</div>
+                </div>
+                
+                <form class="unlock-form" id="unlockForm">
+                    <input type="password" class="password-input" placeholder="Digite a senha (1234)" id="passwordInput">
+                    <button type="submit" class="unlock-btn">Desbloquear</button>
+                </form>
+            </div>
+            
+            <!-- Tela inicial -->
+            <div class="home-screen" id="homeScreen">
+                <div class="app-area">
+                    <div class="app-grid" id="appGrid">
+                        <!-- Os ícones dos aplicativos serão inseridos via JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Barra de navegação -->
+                <div class="nav-bar">
+                    <div class="nav-icon active" data-target="home">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </div>
+                    <div class="nav-icon" data-target="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </div>
+                    <div class="nav-icon" data-target="instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </div>
+                    <div class="nav-icon" data-target="gallery">
+                        <i class="fas fa-images"></i>
+                        <span>Galeria</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="screen">
-                <!-- Tela de bloqueio -->
-                <div class="lock-screen" id="lockScreen">
-                    <div class="lock-time" id="lockTime">14:30</div>
-                    <div class="lock-date" id="lockDate">Sexta-feira, 15 de setembro</div>
-                    
-                    <div class="lock-prompt">Digite o PIN para desbloquear</div>
-                    
-                    <div class="pin-input" id="pinInput">
-                        <div class="pin-dot"></div>
-                        <div class="pin-dot"></div>
-                        <div class="pin-dot"></div>
-                        <div class="pin-dot"></div>
-                    </div>
-                    
-                    <div class="keypad">
-                        <div class="key" data-key="1">1</div>
-                        <div class="key" data-key="2">2</div>
-                        <div class="key" data-key="3">3</div>
-                        <div class="key" data-key="4">4</div>
-                        <div class="key" data-key="5">5</div>
-                        <div class="key" data-key="6">6</div>
-                        <div class="key" data-key="7">7</div>
-                        <div class="key" data-key="8">8</div>
-                        <div class="key" data-key="9">9</div>
-                        <div class="key" data-key="0">0</div>
-                        <div class="key delete" id="deleteKey">
-                            <i class="fas fa-delete-left"></i>
-                        </div>
+            <!-- Tela do WhatsApp -->
+            <div class="app-screen" id="whatsappScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">WhatsApp</div>
+                </div>
+                <div class="app-content">
+                    <div class="chat-list" id="chatList">
+                        <!-- Conversas serão inseridas via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela inicial -->
-                <div class="home-screen active" id="homeScreen">
-                    <div class="app-grid">
-                        <!-- WhatsApp -->
-                        <div class="app-icon" data-app="whatsapp">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-                            <span>WhatsApp</span>
-                        </div>
-                        
-                        <!-- Instagram -->
-                        <div class="app-icon" data-app="instagram">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram">
-                            <span>Instagram</span>
-                        </div>
-                        
-                        <!-- Configurações -->
-                        <div class="app-icon" data-app="settings">
-                            <img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="Configurações">
-                            <span>Configurações</span>
-                        </div>
-                        
-                        <!-- Notas -->
-                        <div class="app-icon" data-app="notes">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3208/3208720.png" alt="Notas">
-                            <span>Notas</span>
-                        </div>
-                        
-                        <!-- E-mail -->
-                        <div class="app-icon" data-app="email">
-                            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="E-mail">
-                            <span>E-mail</span>
-                        </div>
-                        
-                        <!-- Galeria -->
-                        <div class="app-icon" data-app="gallery">
-                            <img src="https://cdn-icons-png.flaticon.com/512/709/709612.png" alt="Galeria">
-                            <span>Galeria</span>
-                        </div>
-                    </div>
-                    
-                    <div class="dock">
-                        <div class="app-icon" data-app="phone">
-                            <img src="https://cdn-icons-png.flaticon.com/512/126/126509.png" alt="Telefone">
-                            <span>Telefone</span>
-                        </div>
-                        
-                        <div class="app-icon" data-app="messages">
-                            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="Mensagens">
-                            <span>Mensagens</span>
-                        </div>
-                        
-                        <div class="app-icon" data-app="camera">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2983/2983067.png" alt="Câmera">
-                            <span>Câmera</span>
-                        </div>
-                        
-                        <div class="app-icon" data-app="browser">
-                            <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="Navegador">
-                            <span>Navegador</span>
-                        </div>
+            </div>
+            
+            <!-- Tela de chat individual -->
+            <div class="app-screen" id="chatScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back-to="whatsappScreen"><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title" id="chatTitle">Conversa</div>
+                </div>
+                <div class="app-content">
+                    <div class="chat-screen" id="chatContent">
+                        <!-- Mensagens serão inseridas via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela do WhatsApp -->
-                <div class="app-screen" id="whatsappScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="whatsapp"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">WhatsApp</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="chat-list">
-                            <!-- Conversas serão geradas via JavaScript -->
-                        </div>
+            </div>
+            
+            <!-- Tela do Instagram -->
+            <div class="app-screen" id="instagramScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">Instagram</div>
+                </div>
+                <div class="app-content">
+                    <div class="post-list" id="postList">
+                        <!-- Posts serão inseridos via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela do Instagram -->
-                <div class="app-screen" id="instagramScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="instagram"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">Instagram</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="posts-container">
-                            <!-- Posts serão gerados via JavaScript -->
-                        </div>
+            </div>
+            
+            <!-- Tela de Configurações -->
+            <div class="app-screen" id="settingsScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">Configurações</div>
+                </div>
+                <div class="app-content">
+                    <div class="settings-list" id="settingsList">
+                        <!-- Configurações serão inseridas via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela de Configurações -->
-                <div class="app-screen" id="settingsScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="settings"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">Configurações</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="settings-list">
-                            <div class="settings-item">
-                                <i class="fas fa-wifi"></i>
-                                <div class="settings-text">
-                                    <h3>Wi-fi</h3>
-                                    <p>Conectado a Rede_Principal</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                            <div class="settings-item">
-                                <i class="fas fa-sun"></i>
-                                <div class="settings-text">
-                                    <h3>Brilho</h3>
-                                    <p>75%</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                            <div class="settings-item">
-                                <i class="fas fa-battery-three-quarters"></i>
-                                <div class="settings-text">
-                                    <h3>Bateria</h3>
-                                    <p>78% - 3h 42min restantes</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                            <div class="settings-item">
-                                <i class="fas fa-bell"></i>
-                                <div class="settings-text">
-                                    <h3>Notificações</h3>
-                                    <p>Configurar notificações de apps</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                            <div class="settings-item">
-                                <i class="fas fa-bluetooth"></i>
-                                <div class="settings-text">
-                                    <h3>Bluetooth</h3>
-                                    <p>Desativado</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                            <div class="settings-item">
-                                <i class="fas fa-info-circle"></i>
-                                <div class="settings-text">
-                                    <h3>Sobre o telefone</h3>
-                                    <p>Modelo: Prototype v1.0</p>
-                                </div>
-                                <div class="settings-arrow"><i class="fas fa-chevron-right"></i></div>
-                            </div>
-                        </div>
+            </div>
+            
+            <!-- Tela de Notas -->
+            <div class="app-screen" id="notesScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">Notas</div>
+                </div>
+                <div class="app-content">
+                    <div class="notes-list" id="notesList">
+                        <!-- Notas serão inseridas via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela de Notas -->
-                <div class="app-screen" id="notesScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="notes"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">Notas</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="notes-grid">
-                            <!-- Notas serão geradas via JavaScript -->
-                        </div>
+            </div>
+            
+            <!-- Tela de leitura de nota -->
+            <div class="app-screen" id="noteScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back-to="notesScreen"><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">Nota</div>
+                </div>
+                <div class="app-content">
+                    <div class="note-screen" id="noteContent">
+                        <!-- Conteúdo da nota será inserido via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela de E-mail -->
-                <div class="app-screen" id="emailScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="email"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">E-mail</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="email-list">
-                            <!-- E-mails serão gerados via JavaScript -->
-                        </div>
+            </div>
+            
+            <!-- Tela de E-mail -->
+            <div class="app-screen" id="emailScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">E-mail</div>
+                </div>
+                <div class="app-content">
+                    <div class="email-list" id="emailList">
+                        <!-- E-mails serão inseridos via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Tela da Galeria -->
-                <div class="app-screen" id="galleryScreen">
-                    <div class="app-header">
-                        <button class="back-button" data-back="gallery"><i class="fas fa-arrow-left"></i></button>
-                        <div class="app-title">Galeria</div>
-                    </div>
-                    <div class="app-content">
-                        <div class="gallery-grid">
-                            <!-- Fotos serão geradas via JavaScript -->
-                        </div>
+            </div>
+            
+            <!-- Tela de leitura de e-mail -->
+            <div class="app-screen" id="emailDetailScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back-to="emailScreen"><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">E-mail</div>
+                </div>
+                <div class="app-content">
+                    <div class="email-detail" id="emailDetailContent">
+                        <!-- Conteúdo do e-mail será inserido via JavaScript -->
                     </div>
                 </div>
-                
-                <!-- Modal para visualização de imagem -->
-                <div class="modal" id="imageModal">
-                    <button class="modal-close" id="modalClose">&times;</button>
-                    <img class="modal-image" id="modalImage" src="" alt="Imagem ampliada">
+            </div>
+            
+            <!-- Tela da Galeria -->
+            <div class="app-screen" id="galleryScreen">
+                <div class="app-header">
+                    <button class="back-btn" data-back><i class="fas fa-arrow-left"></i></button>
+                    <div class="app-title">Galeria</div>
+                </div>
+                <div class="app-content">
+                    <div class="gallery" id="galleryGrid">
+                        <!-- Fotos serão inseridas via JavaScript -->
+                    </div>
                 </div>
             </div>
         </div>
         
+        <!-- Modal para imagem ampliada -->
+        <div class="modal" id="imageModal">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-content">
+                <img id="modalImage" src="" alt="Imagem ampliada">
+            </div>
+        </div>
+        
+        <!-- Instruções -->
         <div class="instructions">
-            <p style="color: #a0a0c0; text-align: center; max-width: 600px; margin-top: 20px;">
-                <strong>Instruções:</strong> Use o teclado na tela de bloqueio para digitar o PIN (1234). 
-                Clique nos aplicativos na tela inicial para abri-los. Use o botão de voltar para retornar à tela inicial.
-                Na galeria, clique em qualquer imagem para ampliá-la.
-            </p>
+            <h2>Como usar este protótipo:</h2>
+            <p>1. Na tela de bloqueio, digite a senha "1234" e clique em "Desbloquear".</p>
+            <p>2. Na tela inicial, clique em qualquer ícone de aplicativo para abri-lo.</p>
+            <p>3. Use a barra de navegação inferior para alternar entre os aplicativos principais.</p>
+            <p>4. Nos aplicativos (WhatsApp, Notas, E-mail), clique em itens individuais para abri-los.</p>
+            <p>5. Na Galeria, clique em qualquer imagem para ampliá-la.</p>
+            <p>6. Use o botão de voltar no cabeçalho dos aplicativos para retornar à tela anterior.</p>
+            
+            <p><strong>Este protótipo é totalmente responsivo e funciona em diferentes tamanhos de tela.</strong></p>
+            
+            <a href="https://github.com" class="github-link" target="_blank">
+                <i class="fab fa-github"></i> Ver no GitHub
+            </a>
         </div>
     </div>
 
     <script>
         // Dados para os aplicativos
-        const appData = {
-            whatsapp: {
-                chats: [
-                    { name: "Maria Silva", lastMessage: "Ok, nos vemos às 19h!", time: "14:25", avatar: "https://randomuser.me/api/portraits/women/32.jpg" },
-                    { name: "João Santos", lastMessage: "Você viu a reunião de ontem?", time: "13:45", avatar: "https://randomuser.me/api/portraits/men/54.jpg" },
-                    { name: "Ana Costa", lastMessage: "Mandei o documento para você", time: "12:30", avatar: "https://randomuser.me/api/portraits/women/67.jpg" },
-                    { name: "Pedro Alves", lastMessage: "Obrigado pela ajuda!", time: "11:15", avatar: "https://randomuser.me/api/portraits/men/22.jpg" },
-                    { name: "Carla Lima", lastMessage: "Precisamos conversar", time: "10:05", avatar: "https://randomuser.me/api/portraits/women/44.jpg" },
-                    { name: "Grupo da Família", lastMessage: "Carlos: Feliz aniversário!", time: "09:42", avatar: "https://cdn-icons-png.flaticon.com/512/3193/3193015.png" }
-                ]
-            },
-            instagram: {
-                posts: [
-                    { username: "viajante_aventura", avatar: "https://randomuser.me/api/portraits/men/33.jpg", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb", likes: 245, caption: "Pôr do sol incrível hoje na praia. A natureza sempre nos presenteia com suas belezas! 🌅 #natureza #pordosol #praia" },
-                    { username: "chef_gourmet", avatar: "https://randomuser.me/api/portraits/women/50.jpg", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187", likes: 189, caption: "Novo prato que desenvolvi hoje! Uma combinação de sabores mediterrâneos com toque brasileiro. 🍽️ #culinaria #gourmet #receita" },
-                    { username: "tech_innovations", avatar: "https://randomuser.me/api/portraits/men/65.jpg", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176", likes: 312, caption: "As últimas tendências em tecnologia para 2023. IA está revolucionando todos os setores! 🤖 #tecnologia #inovacao #futuro" }
-                ]
-            },
-            notes: [
-                { title: "Lista de Compras", content: "Leite, Ovos, Pão, Frutas, Verduras, Carne", date: "15/09" },
-                { title: "Ideias para Projeto", content: "Desenvolver app mobile com React Native. Implementar autenticação com Firebase.", date: "14/09" },
-                { title: "Livros para Ler", content: "1. Hábitos Atômicos\n2. O Poder do Hábito\n3. Deep Work", date: "13/09" },
-                { title: "Metas para 2023", content: "Aprender uma nova língua. Fazer mais exercícios. Viajar para 2 países novos.", date: "10/09" }
-            ],
-            emails: [
-                { sender: "GitHub Notifications", subject: "[GitHub] Repository activity", preview: "Your repository 'mobile-prototype' has 3 new commits", time: "14:15" },
-                { sender: "Amazon", subject: "Seu pedido foi enviado", preview: "Seu pedido #12345 foi enviado e chegará em 2 dias úteis", time: "13:30" },
-                { sender: "LinkedIn", subject: "Nova mensagem de Maria Silva", preview: "Maria Silva enviou uma mensagem sobre oportunidade de trabalho", time: "12:45" },
-                { sender: "Netflix", subject: "Confira o que há de novo", preview: "Novos filmes e séries adicionados este mês", time: "11:20" },
-                { sender: "Equipe do Projeto", subject: "Reunião amanhã às 10h", preview: "Lembrete: reunião de equipe amanhã para revisão do sprint", time: "09:15" }
-            ],
-            gallery: [
-                { url: "https://images.unsplash.com/photo-1501854140801-50d01698950b", alt: "Paisagem de montanhas" },
-                { url: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05", alt: "Floresta com neblina" },
-                { url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07", alt: "Cachoeira na floresta" },
-                { url: "https://images.unsplash.com/photo-1439066615861-d1af74d74000", alt: "Lago nas montanhas" },
-                { url: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1", alt: "Pôr do sol na praia" },
-                { url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", alt: "Montanhas cobertas de neve" }
-            ]
-        };
+        const apps = [
+            { id: 'whatsapp', name: 'WhatsApp', icon: 'fab fa-whatsapp', color: '#25D366' },
+            { id: 'instagram', name: 'Instagram', icon: 'fab fa-instagram', color: '#E4405F' },
+            { id: 'settings', name: 'Configurações', icon: 'fas fa-cog', color: '#7F8C8D' },
+            { id: 'notes', name: 'Notas', icon: 'fas fa-sticky-note', color: '#FFEB3B' },
+            { id: 'email', name: 'E-mail', icon: 'fas fa-envelope', color: '#EA4335' },
+            { id: 'gallery', name: 'Galeria', icon: 'fas fa-images', color: '#4CAF50' }
+        ];
 
-        // Elementos DOM principais
+        // Dados para as conversas do WhatsApp
+        const whatsappChats = [
+            { 
+                id: 1, 
+                name: 'Maria Silva', 
+                avatar: 'M', 
+                lastMessage: 'Vamos nos encontrar amanhã?', 
+                time: '10:30',
+                messages: [
+                    { text: 'Olá! Como você está?', time: '10:15', type: 'received' },
+                    { text: 'Estou bem, obrigado! E você?', time: '10:16', type: 'sent' },
+                    { text: 'Também estou bem! Vamos nos encontrar amanhã?', time: '10:30', type: 'received' }
+                ]
+            },
+            { 
+                id: 2, 
+                name: 'João Santos', 
+                avatar: 'J', 
+                lastMessage: 'O relatório está pronto.', 
+                time: '09:45',
+                messages: [
+                    { text: 'João, o relatório está pronto?', time: '09:30', type: 'sent' },
+                    { text: 'Sim, acabei de finalizar. Posso enviar agora.', time: '09:40', type: 'received' },
+                    { text: 'Perfeito! Por favor, envie para o meu e-mail.', time: '09:42', type: 'sent' },
+                    { text: 'Enviado. Verifique sua caixa de entrada.', time: '09:45', type: 'received' }
+                ]
+            },
+            { 
+                id: 3, 
+                name: 'Ana Costa', 
+                avatar: 'A', 
+                lastMessage: 'Obrigada pela ajuda!', 
+                time: 'Ontem',
+                messages: [
+                    { text: 'Ana, consegui resolver aquele problema que você tinha.', time: 'Ontem 14:20', type: 'sent' },
+                    { text: 'Sério? Que ótimo! Muito obrigada pela ajuda!', time: 'Ontem 16:45', type: 'received' },
+                    { text: 'Disponha! Estou aqui se precisar de mais alguma coisa.', time: 'Ontem 17:10', type: 'sent' }
+                ]
+            }
+        ];
+
+        // Dados para os posts do Instagram
+        const instagramPosts = [
+            {
+                user: 'viagem_pelo_mundo',
+                avatar: 'V',
+                image: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
+                likes: 1250,
+                caption: 'Pôr do sol incrível na praia hoje! 🌅 #natureza #pordosol #praia #viagem'
+            },
+            {
+                user: 'chef_de_casa',
+                avatar: 'C',
+                image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1065&q=80',
+                likes: 890,
+                caption: 'Jantar especial preparado hoje! Receita nova e deliciosa. 🍝 #culinaria #comida #chef #jantar'
+            },
+            {
+                user: 'tech_lover',
+                avatar: 'T',
+                image: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80',
+                likes: 2100,
+                caption: 'Novo setup finalizado! O que acharam? 💻 #tecnologia #setup #gamer #computador'
+            }
+        ];
+
+        // Dados para as configurações
+        const settings = [
+            { name: 'Wi-fi', description: 'Conectado a Rede_123', icon: 'fas fa-wifi' },
+            { name: 'Brilho', description: 'Ajuste automático', icon: 'fas fa-sun' },
+            { name: 'Bateria', description: '85% - 4h restantes', icon: 'fas fa-battery-three-quarters' },
+            { name: 'Notificações', description: 'Personalizar notificações', icon: 'fas fa-bell' },
+            { name: 'Bluetooth', description: 'Desligado', icon: 'fas fa-bluetooth' },
+            { name: 'Sobre o telefone', description: 'Modelo: Prototype v1.0', icon: 'fas fa-mobile-alt' }
+        ];
+
+        // Dados para as notas
+        const notes = [
+            { 
+                id: 1, 
+                title: 'Lista de compras', 
+                content: 'Leite, ovos, pão, frutas, arroz, feijão, carne, vegetais, café, açúcar', 
+                date: '15/09/2023',
+                color: '#fffacd'
+            },
+            { 
+                id: 2, 
+                title: 'Ideias para projeto', 
+                content: '1. Criar interface responsiva\n2. Implementar funcionalidades principais\n3. Testar em diferentes dispositivos\n4. Otimizar performance', 
+                date: '14/09/2023',
+                color: '#e6f7ff'
+            },
+            { 
+                id: 3, 
+                title: 'Livros para ler', 
+                content: '1. O poder do hábito\n2. Hábitos atômicos\n3. A sutil arte de ligar o f*da-se\n4. Mindset', 
+                date: '10/09/2023',
+                color: '#f0e6ff'
+            },
+            { 
+                id: 4, 
+                title: 'Metas para 2023', 
+                content: '• Aprender uma nova linguagem de programação\n• Fazer mais exercícios físicos\n• Ler 20 livros\n• Viajar para 2 países novos', 
+                date: '01/09/2023',
+                color: '#e6ffe6'
+            }
+        ];
+
+        // Dados para os e-mails
+        const emails = [
+            {
+                id: 1,
+                sender: 'GitHub Notifications',
+                subject: 'Activity on your repositories',
+                time: '10:15',
+                preview: 'You have 3 new notifications on your repositories. Check what happened in the last 24 hours.',
+                content: `Olá,
+
+Você tem 3 novas notificações em seus repositórios:
+
+1. "john_doe" fez um fork do seu repositório "mobile-prototype"
+2. "dev_sam" abriu um pull request no repositório "web-app"
+3. "code_reviewer" comentou em uma issue no repositório "api-project"
+
+Acesse o GitHub para ver todos os detalhes.
+
+Atenciosamente,
+Equipe GitHub`
+            },
+            {
+                id: 2,
+                sender: 'Equipe de Desenvolvimento',
+                subject: 'Reunião de planejamento',
+                time: '09:30',
+                preview: 'A reunião de planejamento do próximo sprint está marcada para sexta-feira às 10h.',
+                content: `Prezados membros da equipe,
+
+Convocamos todos para a reunião de planejamento do próximo sprint, que acontecerá na sexta-feira, 22 de setembro, às 10h na sala de reuniões principal.
+
+A pauta incluirá:
+1. Revisão do sprint atual
+2. Definição de metas para o próximo sprint
+3. Atribuição de tarefas
+4. Discussão sobre desafios técnicos
+
+Por favor, venham preparados com suas atualizações.
+
+Atenciosamente,
+Gerente de Projeto`
+            },
+            {
+                id: 3,
+                sender: 'Loja Online',
+                subject: 'Seu pedido foi enviado',
+                time: 'Ontem',
+                preview: 'Seu pedido #12345 foi enviado e está a caminho. Acompanhe a entrega pelo código de rastreio.',
+                content: `Olá cliente,
+
+Seu pedido #12345 foi enviado com sucesso!
+
+Detalhes do pedido:
+- Item: Smartphone XYZ
+- Quantidade: 1
+- Valor: R$ 1.599,00
+- Previsão de entrega: 20/09/2023
+
+Código de rastreio: AB123456789CD
+
+Você pode acompanhar a entrega em nosso site.
+
+Obrigado por comprar conosco!`
+            }
+        ];
+
+        // Dados para a galeria (imagens do Unsplash)
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba',
+            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05',
+            'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07',
+            'https://images.unsplash.com/photo-1426604966848-d7adac402bff',
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b',
+            'https://images.unsplash.com/photo-1439853949127-fa647821eba0',
+            'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1'
+        ];
+
+        // Elementos DOM
         const lockScreen = document.getElementById('lockScreen');
         const homeScreen = document.getElementById('homeScreen');
-        const lockTime = document.getElementById('lockTime');
-        const lockDate = document.getElementById('lockDate');
-        const pinInput = document.getElementById('pinInput');
-        const pinDots = pinInput.querySelectorAll('.pin-dot');
-        const keys = document.querySelectorAll('.key');
-        const deleteKey = document.getElementById('deleteKey');
-        const appIcons = document.querySelectorAll('.app-icon[data-app]');
-        const appScreens = document.querySelectorAll('.app-screen');
-        const backButtons = document.querySelectorAll('.back-button');
+        const unlockForm = document.getElementById('unlockForm');
+        const passwordInput = document.getElementById('passwordInput');
+        const appGrid = document.getElementById('appGrid');
+        const chatList = document.getElementById('chatList');
+        const postList = document.getElementById('postList');
+        const settingsList = document.getElementById('settingsList');
+        const notesList = document.getElementById('notesList');
+        const emailList = document.getElementById('emailList');
+        const galleryGrid = document.getElementById('galleryGrid');
+        const currentTime = document.getElementById('currentTime');
+        const currentDate = document.getElementById('currentDate');
+        const statusBarTime = document.querySelector('.status-bar span:first-child');
         const imageModal = document.getElementById('imageModal');
         const modalImage = document.getElementById('modalImage');
-        const modalClose = document.getElementById('modalClose');
+        const closeModal = document.getElementById('closeModal');
 
-        // Estado do PIN
-        let enteredPin = '';
-        const correctPin = '1234';
-
-        // Atualizar hora e data
-        function updateDateTime() {
+        // Função para atualizar o relógio
+        function updateClock() {
             const now = new Date();
-            const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-            const dateString = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
-            
-            lockTime.textContent = timeString;
-            lockDate.textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-            
-            // Atualizar também na barra de status
-            document.querySelector('.time').textContent = timeString;
-        }
-
-        // Atualizar PIN na tela
-        function updatePinDisplay() {
-            pinDots.forEach((dot, index) => {
-                if (index < enteredPin.length) {
-                    dot.classList.add('filled');
-                } else {
-                    dot.classList.remove('filled');
-                }
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const date = now.toLocaleDateString('pt-BR', { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long' 
             });
             
-            // Verificar se o PIN está correto
-            if (enteredPin.length === 4) {
-                if (enteredPin === correctPin) {
-                    // PIN correto - desbloquear
-                    setTimeout(() => {
-                        lockScreen.classList.add('hidden');
-                        homeScreen.classList.add('active');
-                        enteredPin = '';
-                        updatePinDisplay();
-                    }, 500);
-                } else {
-                    // PIN incorreto - resetar
-                    setTimeout(() => {
-                        enteredPin = '';
-                        updatePinDisplay();
-                        alert('PIN incorreto! Tente novamente.');
-                    }, 300);
-                }
-            }
+            if (currentTime) currentTime.textContent = time;
+            if (currentDate) currentDate.textContent = date;
+            if (statusBarTime) statusBarTime.textContent = time;
         }
 
-        // Teclado da tela de bloqueio
-        keys.forEach(key => {
-            if (!key.id) { // Ignorar o botão de deletar
-                key.addEventListener('click', () => {
-                    if (enteredPin.length < 4) {
-                        enteredPin += key.getAttribute('data-key');
-                        updatePinDisplay();
-                    }
-                });
+        // Inicializar relógio
+        updateClock();
+        setInterval(updateClock, 60000);
+
+        // Desbloquear celular
+        unlockForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (passwordInput.value === '1234') {
+                lockScreen.classList.add('hidden');
+                homeScreen.classList.add('visible');
+                passwordInput.value = '';
+            } else {
+                alert('Senha incorreta! Tente 1234');
+                passwordInput.value = '';
             }
         });
 
-        // Botão de deletar
-        deleteKey.addEventListener('click', () => {
-            if (enteredPin.length > 0) {
-                enteredPin = enteredPin.slice(0, -1);
-                updatePinDisplay();
-            }
-        });
+        // Carregar ícones dos aplicativos
+        function loadApps() {
+            apps.forEach(app => {
+                const appElement = document.createElement('div');
+                appElement.className = 'app-icon';
+                appElement.dataset.app = app.id;
+                appElement.innerHTML = `
+                    <div style="background-color: ${app.color}; width: 50px; height: 50px; border-radius: 15px; display: flex; justify-content: center; align-items: center; margin-bottom: 8px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+                        <i class="${app.icon}" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <span>${app.name}</span>
+                `;
+                
+                appElement.addEventListener('click', () => openApp(app.id));
+                appGrid.appendChild(appElement);
+            });
+        }
 
-        // Inicializar aplicativos
-        function initApps() {
-            // WhatsApp
-            const chatList = document.querySelector('.chat-list');
-            appData.whatsapp.chats.forEach(chat => {
+        // Carregar conversas do WhatsApp
+        function loadWhatsAppChats() {
+            chatList.innerHTML = '';
+            whatsappChats.forEach(chat => {
                 const chatElement = document.createElement('div');
                 chatElement.className = 'chat-item';
+                chatElement.dataset.chatId = chat.id;
                 chatElement.innerHTML = `
-                    <div class="chat-avatar">
-                        <img src="${chat.avatar}" alt="${chat.name}">
+                    <div class="chat-avatar" style="background-color: #3498db; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+                        ${chat.avatar}
                     </div>
                     <div class="chat-info">
                         <div class="chat-name">${chat.name}</div>
@@ -1038,145 +1186,302 @@
                     </div>
                     <div class="chat-time">${chat.time}</div>
                 `;
+                
+                chatElement.addEventListener('click', () => openChat(chat.id));
                 chatList.appendChild(chatElement);
             });
+        }
 
-            // Instagram
-            const postsContainer = document.querySelector('.posts-container');
-            appData.instagram.posts.forEach(post => {
+        // Carregar posts do Instagram
+        function loadInstagramPosts() {
+            postList.innerHTML = '';
+            instagramPosts.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'post';
                 postElement.innerHTML = `
                     <div class="post-header">
-                        <div class="post-avatar">
-                            <img src="${post.avatar}" alt="${post.username}">
+                        <div class="post-avatar" style="background-color: #E4405F; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold;">
+                            ${post.avatar}
                         </div>
-                        <div class="post-username">${post.username}</div>
+                        <div class="post-user">${post.user}</div>
                     </div>
                     <div class="post-image">
-                        <img src="${post.image}" alt="Post de ${post.username}">
+                        <img src="${post.image}" alt="${post.user}">
                     </div>
                     <div class="post-actions">
-                        <i class="far fa-heart"></i>
-                        <i class="far fa-comment"></i>
-                        <i class="far fa-paper-plane"></i>
-                        <i class="far fa-bookmark" style="margin-left: auto;"></i>
+                        <div class="post-action"><i class="far fa-heart"></i></div>
+                        <div class="post-action"><i class="far fa-comment"></i></div>
+                        <div class="post-action"><i class="far fa-paper-plane"></i></div>
+                        <div style="flex: 1;"></div>
+                        <div class="post-action"><i class="far fa-bookmark"></i></div>
                     </div>
-                    <div class="post-likes">${post.likes} curtidas</div>
-                    <div class="post-caption">
-                        <strong>${post.username}</strong> ${post.caption}
-                    </div>
+                    <div class="post-likes">${post.likes.toLocaleString()} curtidas</div>
+                    <div class="post-caption"><strong>${post.user}</strong> ${post.caption}</div>
                 `;
-                postsContainer.appendChild(postElement);
-            });
-
-            // Notas
-            const notesGrid = document.querySelector('.notes-grid');
-            appData.notes.forEach(note => {
-                const noteElement = document.createElement('div');
-                noteElement.className = 'note';
-                noteElement.innerHTML = `
-                    <h3>${note.title}</h3>
-                    <p>${note.content}</p>
-                    <div class="note-date">${note.date}</div>
-                `;
-                notesGrid.appendChild(noteElement);
-            });
-
-            // E-mails
-            const emailList = document.querySelector('.email-list');
-            appData.emails.forEach(email => {
-                const emailElement = document.createElement('div');
-                emailElement.className = 'email-item';
-                emailElement.innerHTML = `
-                    <div class="email-sender">${email.sender}</div>
-                    <div class="email-subject">${email.subject}</div>
-                    <div class="email-preview">${email.preview}</div>
-                    <div class="email-time">${email.time}</div>
-                `;
-                emailList.appendChild(emailElement);
-            });
-
-            // Galeria
-            const galleryGrid = document.querySelector('.gallery-grid');
-            appData.gallery.forEach((photo, index) => {
-                const photoElement = document.createElement('div');
-                photoElement.className = 'gallery-item';
-                photoElement.innerHTML = `<img src="${photo.url}" alt="${photo.alt}" data-index="${index}">`;
-                galleryGrid.appendChild(photoElement);
                 
-                // Adicionar evento de clique para ampliar imagem
-                photoElement.querySelector('img').addEventListener('click', () => {
-                    modalImage.src = photo.url;
-                    modalImage.alt = photo.alt;
-                    imageModal.classList.add('active');
-                });
+                postList.appendChild(postElement);
             });
         }
 
-        // Navegação entre apps
-        appIcons.forEach(icon => {
-            icon.addEventListener('click', () => {
-                const appName = icon.getAttribute('data-app');
+        // Carregar configurações
+        function loadSettings() {
+            settingsList.innerHTML = '';
+            settings.forEach(setting => {
+                const settingElement = document.createElement('div');
+                settingElement.className = 'setting-item';
+                settingElement.innerHTML = `
+                    <div class="setting-icon">
+                        <i class="${setting.icon}"></i>
+                    </div>
+                    <div class="setting-info">
+                        <div class="setting-name">${setting.name}</div>
+                        <div class="setting-description">${setting.description}</div>
+                    </div>
+                `;
                 
-                // Ocultar tela inicial
-                homeScreen.classList.remove('active');
+                settingsList.appendChild(settingElement);
+            });
+        }
+
+        // Carregar notas
+        function loadNotes() {
+            notesList.innerHTML = '';
+            notes.forEach(note => {
+                const noteElement = document.createElement('div');
+                noteElement.className = 'note';
+                noteElement.style.backgroundColor = note.color;
+                noteElement.dataset.noteId = note.id;
+                noteElement.innerHTML = `
+                    <div class="note-title">${note.title}</div>
+                    <div class="note-content">${note.content}</div>
+                    <div class="note-date">${note.date}</div>
+                `;
                 
-                // Mostrar tela do app
-                const appScreen = document.getElementById(`${appName}Screen`);
+                noteElement.addEventListener('click', () => openNote(note.id));
+                notesList.appendChild(noteElement);
+            });
+        }
+
+        // Carregar e-mails
+        function loadEmails() {
+            emailList.innerHTML = '';
+            emails.forEach(email => {
+                const emailElement = document.createElement('div');
+                emailElement.className = 'email-item';
+                emailElement.dataset.emailId = email.id;
+                emailElement.innerHTML = `
+                    <div class="email-header">
+                        <div class="email-sender">${email.sender}</div>
+                        <div class="email-time">${email.time}</div>
+                    </div>
+                    <div class="email-subject">${email.subject}</div>
+                    <div class="email-preview">${email.preview}</div>
+                `;
+                
+                emailElement.addEventListener('click', () => openEmail(email.id));
+                emailList.appendChild(emailElement);
+            });
+        }
+
+        // Carregar imagens da galeria
+        function loadGallery() {
+            galleryGrid.innerHTML = '';
+            galleryImages.forEach((image, index) => {
+                const imageElement = document.createElement('div');
+                imageElement.className = 'gallery-item';
+                imageElement.innerHTML = `
+                    <img src="${image}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Imagem ${index + 1}">
+                `;
+                
+                imageElement.addEventListener('click', () => openImage(image));
+                galleryGrid.appendChild(imageElement);
+            });
+        }
+
+        // Abrir aplicativo
+        function openApp(appId) {
+            // Esconder tela inicial
+            homeScreen.classList.remove('visible');
+            
+            // Mostrar tela do aplicativo
+            const appScreen = document.getElementById(`${appId}Screen`);
+            if (appScreen) {
                 appScreen.classList.add('active');
-            });
-        });
+            }
+            
+            // Atualizar navegação
+            updateNavBar(appId);
+        }
 
-        // Botões de voltar
-        backButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const appName = button.getAttribute('data-back');
-                
-                // Ocultar tela do app
-                const appScreen = document.getElementById(`${appName}Screen`);
-                appScreen.classList.remove('active');
-                
-                // Mostrar tela inicial
-                homeScreen.classList.add('active');
+        // Abrir chat do WhatsApp
+        function openChat(chatId) {
+            const chat = whatsappChats.find(c => c.id === chatId);
+            if (!chat) return;
+            
+            // Esconder lista de conversas
+            document.getElementById('whatsappScreen').classList.remove('active');
+            
+            // Mostrar tela do chat
+            const chatScreen = document.getElementById('chatScreen');
+            chatScreen.classList.add('active');
+            
+            // Atualizar título
+            document.getElementById('chatTitle').textContent = chat.name;
+            
+            // Carregar mensagens
+            const chatContent = document.getElementById('chatContent');
+            chatContent.innerHTML = '';
+            
+            chat.messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${message.type}`;
+                messageElement.innerHTML = `
+                    <div>${message.text}</div>
+                    <div style="font-size: 0.7rem; text-align: ${message.type === 'sent' ? 'right' : 'left'}; margin-top: 5px; color: ${message.type === 'sent' ? 'rgba(255,255,255,0.8)' : '#999'}">${message.time}</div>
+                `;
+                chatContent.appendChild(messageElement);
             });
-        });
+        }
 
-        // Fechar modal de imagem
-        modalClose.addEventListener('click', () => {
+        // Abrir nota
+        function openNote(noteId) {
+            const note = notes.find(n => n.id === noteId);
+            if (!note) return;
+            
+            // Esconder lista de notas
+            document.getElementById('notesScreen').classList.remove('active');
+            
+            // Mostrar tela da nota
+            const noteScreen = document.getElementById('noteScreen');
+            noteScreen.classList.add('active');
+            
+            // Carregar conteúdo da nota
+            const noteContent = document.getElementById('noteContent');
+            noteContent.innerHTML = `
+                <div style="padding: 20px; background-color: ${note.color}; min-height: 100%;">
+                    <h2 style="margin-bottom: 20px; color: #333;">${note.title}</h2>
+                    <div style="white-space: pre-line; line-height: 1.6; color: #333; margin-bottom: 20px;">${note.content}</div>
+                    <div style="font-size: 0.9rem; color: #666;">Criada em: ${note.date}</div>
+                </div>
+            `;
+        }
+
+        // Abrir e-mail
+        function openEmail(emailId) {
+            const email = emails.find(e => e.id === emailId);
+            if (!email) return;
+            
+            // Esconder lista de e-mails
+            document.getElementById('emailScreen').classList.remove('active');
+            
+            // Mostrar tela do e-mail
+            const emailDetailScreen = document.getElementById('emailDetailScreen');
+            emailDetailScreen.classList.add('active');
+            
+            // Carregar conteúdo do e-mail
+            const emailDetailContent = document.getElementById('emailDetailContent');
+            emailDetailContent.innerHTML = `
+                <div style="padding: 20px;">
+                    <div style="font-weight: bold; font-size: 1.2rem; margin-bottom: 15px; color: #333;">${email.subject}</div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                        <div>
+                            <div style="font-weight: bold; color: #333;">De: ${email.sender}</div>
+                        </div>
+                        <div style="color: #666;">${email.time}</div>
+                    </div>
+                    <div style="white-space: pre-line; line-height: 1.6; color: #333; padding-top: 20px; border-top: 1px solid #eee;">${email.content}</div>
+                </div>
+            `;
+        }
+
+        // Abrir imagem ampliada
+        function openImage(imageUrl) {
+            modalImage.src = `${imageUrl}?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80`;
+            imageModal.classList.add('active');
+        }
+
+        // Fechar modal
+        closeModal.addEventListener('click', () => {
             imageModal.classList.remove('active');
         });
 
-        // Fechar modal ao clicar fora da imagem
+        // Fechar modal ao clicar fora
         imageModal.addEventListener('click', (e) => {
             if (e.target === imageModal) {
                 imageModal.classList.remove('active');
             }
         });
 
-        // Simular entrada de PIN para facilitar demonstração
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'd' && lockScreen.classList.contains('hidden') === false) {
-                // Atalho para desbloquear
-                enteredPin = '1234';
-                updatePinDisplay();
-            }
+        // Atualizar barra de navegação
+        function updateNavBar(activeApp) {
+            document.querySelectorAll('.nav-icon').forEach(icon => {
+                icon.classList.remove('active');
+                if (icon.dataset.target === activeApp) {
+                    icon.classList.add('active');
+                }
+            });
+        }
+
+        // Navegação pela barra inferior
+        document.querySelectorAll('.nav-icon').forEach(icon => {
+            icon.addEventListener('click', () => {
+                const target = icon.dataset.target;
+                
+                // Esconder todas as telas de aplicativos
+                document.querySelectorAll('.app-screen').forEach(screen => {
+                    screen.classList.remove('active');
+                });
+                
+                // Se for a tela inicial
+                if (target === 'home') {
+                    homeScreen.classList.add('visible');
+                } else {
+                    // Mostrar tela do aplicativo selecionado
+                    const appScreen = document.getElementById(`${target}Screen`);
+                    if (appScreen) {
+                        homeScreen.classList.remove('visible');
+                        appScreen.classList.add('active');
+                    }
+                }
+                
+                // Atualizar barra de navegação
+                updateNavBar(target);
+            });
         });
 
-        // Inicializar
-        updateDateTime();
-        initApps();
-        
-        // Atualizar hora a cada minuto
-        setInterval(updateDateTime, 60000);
-        
-        // Inicializar com PIN já preenchido para demonstração
-        setTimeout(() => {
-            // Para facilitar a demonstração, vamos preencher automaticamente
-            // Remova estas linhas se quiser que o usuário digite manualmente
-            enteredPin = '12';
-            updatePinDisplay();
-        }, 1000);
+        // Botões de voltar
+        document.querySelectorAll('.back-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const target = btn.dataset.backTo || 'homeScreen';
+                
+                // Esconder tela atual
+                btn.closest('.app-screen').classList.remove('active');
+                
+                // Mostrar tela de destino
+                if (target === 'homeScreen') {
+                    homeScreen.classList.add('visible');
+                } else {
+                    const targetScreen = document.getElementById(target);
+                    if (targetScreen) {
+                        targetScreen.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Inicializar todos os dados
+        function initialize() {
+            loadApps();
+            loadWhatsAppChats();
+            loadInstagramPosts();
+            loadSettings();
+            loadNotes();
+            loadEmails();
+            loadGallery();
+        }
+
+        // Inicializar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', initialize);
     </script>
 </body>
 </html>
