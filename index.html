@@ -52,7 +52,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 60px 20px 40px;
+            padding: 60px 20px 100px;
             position: absolute;
             top: 0;
             left: 0;
@@ -81,7 +81,7 @@
             gap: 20px;
             width: 100%;
             max-width: 300px;
-            padding-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .key {
@@ -123,8 +123,19 @@
             font-size: 24px;
         }
 
+        /* Posicionamento correto do 0 */
         #key-0 {
             grid-column: 2;
+            grid-row: 4;
+        }
+
+        #key-delete {
+            grid-column: 3;
+            grid-row: 4;
+        }
+
+        .key:empty {
+            visibility: hidden;
         }
 
         .password-display {
@@ -152,6 +163,35 @@
             min-height: 24px;
             font-size: 14px;
             opacity: 0.8;
+        }
+
+        /* Menu inferior */
+        .bottom-menu {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
 
         /* Tela Principal */
@@ -209,6 +249,13 @@
             font-size: 28px;
             color: white;
             margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .app-icon-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .app-name {
@@ -275,13 +322,19 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #005c4b;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
             color: white;
             margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .conversation-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .conversation-info {
@@ -390,6 +443,85 @@
             justify-content: center;
         }
 
+        /* Tela de Configurações */
+        .settings-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .settings-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .settings-title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .settings-list {
+            flex: 1;
+            overflow-y: auto;
+            background: #000;
+        }
+
+        .settings-item {
+            padding: 18px 20px;
+            border-bottom: 1px solid #2c2c2e;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .settings-item:active {
+            background: #1c1c1e;
+        }
+
+        .settings-item-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        .settings-item-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .settings-item-title {
+            font-size: 16px;
+        }
+
+        .settings-item-status {
+            color: #8e8e93;
+            font-size: 14px;
+        }
+
+        /* Fotos de perfil padrão */
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
         .notification {
             position: fixed;
             bottom: 20px;
@@ -461,12 +593,19 @@
                         <div class="key-number">9</div>
                         <div class="key-letters">WXYZ</div>
                     </div>
-                    <div class="key" id="key-delete">
-                        <div class="key-number">⌫</div>
-                    </div>
+                    <div></div> <!-- Espaço vazio para alinhar o 0 no centro -->
                     <div class="key" data-key="0">
                         <div class="key-number">0</div>
                     </div>
+                    <div class="key" id="key-delete">
+                        <div class="key-number">⌫</div>
+                    </div>
+                </div>
+                
+                <!-- Menu inferior -->
+                <div class="bottom-menu">
+                    <button class="menu-button" id="emergencyButton">Emergência</button>
+                    <button class="menu-button" id="unlockButton">Desbloquear</button>
                 </div>
             </div>
             
@@ -478,37 +617,23 @@
                 </div>
                 <div class="app-grid">
                     <div class="app-icon" id="whatsappApp">
-                        <div class="app-icon-img" style="background: #25d366;">💬</div>
+                        <div class="app-icon-img" style="background: #25d366;">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M16.75 13.96c.25.13.41.2.46.3.06.11.04.61-.21 1.18-.2.56-1.24 1.1-1.7 1.12-.46.02-.47.36-2.96-.73-2.49-1.09-3.99-3.75-4.11-3.92-.12-.17-.96-1.38-.92-2.61.05-1.22.69-1.8.95-2.04.24-.26.51-.29.68-.26h.47c.15 0 .36-.06.55.45l.69 1.87c.06.13.1.28.01.44l-.27.41-.39.42c-.12.12-.26.25-.12.5c.12.26.62 1.09 1.32 1.78c.91.88 1.71 1.17 1.95 1.3c.24.14.39.12.54-.04l.81-.94c.19-.25.35-.19.58-.11l1.67.88M12 2a10 10 0 0 1 10 10a10 10 0 0 1-10 10c-1.97 0-3.8-.57-5.35-1.55L2 22l1.55-4.65A9.969 9.969 0 0 1 2 12A10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8c0 1.72.54 3.31 1.46 4.61L4.5 19.5l2.89-.96A7.95 7.95 0 0 0 12 20a8 8 0 0 0 8-8a8 8 0 0 0-8-8z'/%3E%3C/svg%3E" alt="WhatsApp">
+                        </div>
                         <div class="app-name">WhatsApp</div>
                     </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #128C7E;">📞</div>
-                        <div class="app-name">Telefone</div>
-                    </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #34B7F1;">✉️</div>
-                        <div class="app-name">Mensagens</div>
-                    </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #4285F4;">🌐</div>
-                        <div class="app-name">Chrome</div>
-                    </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #FF9500;">📷</div>
-                        <div class="app-name">Câmera</div>
-                    </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #5856D6;">📱</div>
-                        <div class="app-name">Contatos</div>
-                    </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #FF2D55;">⚙️</div>
+                    <div class="app-icon" id="settingsApp">
+                        <div class="app-icon-img" style="background: #8e8e93;">
+                            ⚙️
+                        </div>
                         <div class="app-name">Configurações</div>
                     </div>
-                    <div class="app-icon">
-                        <div class="app-icon-img" style="background: #FF9500;">📅</div>
-                        <div class="app-name">Calendário</div>
-                    </div>
+                </div>
+                
+                <!-- Menu inferior da tela principal -->
+                <div class="bottom-menu">
+                    <button class="menu-button" id="homeToLockButton">Bloquear</button>
+                    <button class="menu-button" id="homeSettingsButton">Configurações</button>
                 </div>
             </div>
             
@@ -520,6 +645,12 @@
                 </div>
                 <div class="conversations-list">
                     <!-- Conversas serão geradas aqui -->
+                </div>
+                
+                <!-- Menu inferior do WhatsApp -->
+                <div class="bottom-menu">
+                    <button class="menu-button" id="whatsappHomeButton">Início</button>
+                    <button class="menu-button" id="whatsappNewChat">Nova conversa</button>
                 </div>
             </div>
             
@@ -537,6 +668,61 @@
                     <button class="send-button" id="sendMessage">↑</button>
                 </div>
             </div>
+            
+            <!-- Tela de Configurações -->
+            <div class="settings-screen" id="settingsScreen">
+                <div class="settings-header">
+                    <button class="back-button" id="backFromSettings">←</button>
+                    <div class="settings-title">Configurações</div>
+                </div>
+                <div class="settings-list">
+                    <div class="settings-item">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #007aff;">📶</div>
+                            <div>
+                                <div class="settings-item-title">Wi-Fi</div>
+                                <div class="settings-item-status">Conectado</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #007aff;">🔵</div>
+                            <div>
+                                <div class="settings-item-title">Bluetooth</div>
+                                <div class="settings-item-status">Ativado</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #007aff;">🔔</div>
+                            <div>
+                                <div class="settings-item-title">Notificações</div>
+                                <div class="settings-item-status">Todas ativas</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #34c759;">🔋</div>
+                            <div>
+                                <div class="settings-item-title">Bateria</div>
+                                <div class="settings-item-status">100% - Saudável</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #8e8e93;">ℹ️</div>
+                            <div>
+                                <div class="settings-item-title">Sobre o telefone</div>
+                                <div class="settings-item-status">Simulador v1.0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -549,13 +735,13 @@
         let currentScreen = "lock";
         let currentChat = null;
         
-        // Conversas e mensagens simuladas
+        // Conversas e mensagens simuladas com fotos reais (placeholder images)
         const conversations = [
             {
                 id: 1,
                 name: "Maria Silva",
                 lastMessage: "Ok, te encontro lá!",
-                avatar: "👩",
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                 messages: [
                     { text: "Olá! Tudo bem?", time: "09:30", type: "received" },
                     { text: "Tudo sim! E você?", time: "09:32", type: "sent" },
@@ -568,7 +754,7 @@
                 id: 2,
                 name: "João Santos",
                 lastMessage: "Mandei o arquivo",
-                avatar: "👨",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                 messages: [
                     { text: "Bom dia! Pode me ajudar com o projeto?", time: "08:15", type: "received" },
                     { text: "Bom dia! Claro, o que precisa?", time: "08:20", type: "sent" },
@@ -581,7 +767,7 @@
                 id: 3,
                 name: "Ana Costa",
                 lastMessage: "Obrigada pela ajuda!",
-                avatar: "👩‍💼",
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                 messages: [
                     { text: "Oi! Como foi a reunião?", time: "16:45", type: "sent" },
                     { text: "Foi ótima! Conseguimos aprovar tudo", time: "16:50", type: "received" },
@@ -593,7 +779,7 @@
                 id: 4,
                 name: "Pedro Almeida",
                 lastMessage: "Amanhã combina?",
-                avatar: "🧔",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                 messages: [
                     { text: "E aí, vamos no jogo hoje?", time: "14:20", type: "received" },
                     { text: "Hoje não posso, estou ocupado", time: "14:25", type: "sent" },
@@ -606,7 +792,7 @@
                 id: 5,
                 name: "Grupo Família",
                 lastMessage: "Maria: Almoço no domingo!",
-                avatar: "👨‍👩‍👧‍👦",
+                avatar: "https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                 messages: [
                     { text: "Pessoal, domingo tem almoço na minha casa!", time: "10:00", type: "received" },
                     { text: "Que legal! Vou sim", time: "10:05", type: "sent" },
@@ -691,10 +877,11 @@
                 currentScreen = "home";
                 
                 // Mostrar notificação
+                notification.textContent = "Celular desbloqueado";
                 notification.style.display = 'block';
                 setTimeout(() => {
                     notification.style.display = 'none';
-                }, 3000);
+                }, 2000);
                 
                 // Resetar tela de bloqueio
                 lockScreen.style.opacity = '1';
@@ -713,7 +900,10 @@
                 const conversationElement = document.createElement('div');
                 conversationElement.className = 'conversation';
                 conversationElement.innerHTML = `
-                    <div class="conversation-avatar">${conversation.avatar}</div>
+                    <div class="conversation-avatar">
+                        <img src="${conversation.avatar}" alt="${conversation.name}" 
+                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23667eea%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22>${conversation.name.charAt(0)}</text></svg>';">
+                    </div>
                     <div class="conversation-info">
                         <div class="conversation-name">${conversation.name}</div>
                         <div class="conversation-preview">${conversation.lastMessage}</div>
@@ -820,10 +1010,15 @@
                     currentChat.lastMessage = randomResponse;
                     
                     // Atualizar preview na lista de conversas
-                    const conversationElement = document.querySelector(`.conversation:nth-child(${conversations.indexOf(currentChat) + 1}) .conversation-preview`);
-                    if (conversationElement) {
-                        conversationElement.textContent = randomResponse;
-                    }
+                    const conversationElements = document.querySelectorAll('.conversation');
+                    conversationElements.forEach((element, index) => {
+                        if (conversations[index] === currentChat) {
+                            const previewElement = element.querySelector('.conversation-preview');
+                            if (previewElement) {
+                                previewElement.textContent = randomResponse;
+                            }
+                        }
+                    });
                     
                     // Rolar para baixo
                     chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -848,6 +1043,7 @@
             const homeScreen = document.getElementById('homeScreen');
             const whatsappScreen = document.getElementById('whatsappScreen');
             const chatScreen = document.getElementById('chatScreen');
+            const settingsScreen = document.getElementById('settingsScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -857,6 +1053,11 @@
                     break;
                 case "whatsapp":
                     whatsappScreen.style.display = 'none';
+                    homeScreen.style.display = 'flex';
+                    currentScreen = "home";
+                    break;
+                case "settings":
+                    settingsScreen.style.display = 'none';
                     homeScreen.style.display = 'flex';
                     currentScreen = "home";
                     break;
@@ -871,6 +1072,16 @@
             }
         }
 
+        // Abrir configurações
+        function openSettings() {
+            const homeScreen = document.getElementById('homeScreen');
+            const settingsScreen = document.getElementById('settingsScreen');
+            
+            homeScreen.style.display = 'none';
+            settingsScreen.style.display = 'flex';
+            currentScreen = "settings";
+        }
+
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
             // Atualizar data e hora
@@ -881,15 +1092,11 @@
             loadConversations();
             
             // Eventos do teclado numérico
-            document.querySelectorAll('.key').forEach(key => {
+            document.querySelectorAll('.key[data-key]').forEach(key => {
                 key.addEventListener('click', () => {
                     const keyValue = key.getAttribute('data-key');
                     
-                    if (keyValue === 'delete') {
-                        // Tecla de deletar
-                        enteredPassword = enteredPassword.slice(0, -1);
-                    } else if (enteredPassword.length < 4) {
-                        // Tecla numérica
+                    if (enteredPassword.length < 4) {
                         enteredPassword += keyValue;
                     }
                     
@@ -905,6 +1112,21 @@
                 document.getElementById('unlockMessage').textContent = "";
             });
             
+            // Botão de desbloquear no menu
+            document.getElementById('unlockButton').addEventListener('click', () => {
+                checkPassword();
+            });
+            
+            // Botão de emergência (não funcional)
+            document.getElementById('emergencyButton').addEventListener('click', () => {
+                const notification = document.getElementById('notification');
+                notification.textContent = "Chamando serviços de emergência...";
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 2000);
+            });
+            
             // Evento do WhatsApp
             document.getElementById('whatsappApp').addEventListener('click', () => {
                 document.getElementById('homeScreen').style.display = 'none';
@@ -912,9 +1134,36 @@
                 currentScreen = "whatsapp";
             });
             
+            // Evento do botão Configurações
+            document.getElementById('settingsApp').addEventListener('click', openSettings);
+            
+            // Evento do botão Nova Conversa
+            document.getElementById('whatsappNewChat').addEventListener('click', () => {
+                const notification = document.getElementById('notification');
+                notification.textContent = "Nova conversa (simulação)";
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 2000);
+            });
+            
+            // Evento do botão Home no WhatsApp
+            document.getElementById('whatsappHomeButton').addEventListener('click', () => {
+                document.getElementById('whatsappScreen').style.display = 'none';
+                document.getElementById('homeScreen').style.display = 'flex';
+                currentScreen = "home";
+            });
+            
+            // Evento do botão Bloquear na tela principal
+            document.getElementById('homeToLockButton').addEventListener('click', goBack);
+            
+            // Evento do botão Configurações na tela principal
+            document.getElementById('homeSettingsButton').addEventListener('click', openSettings);
+            
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
             document.getElementById('backFromChat').addEventListener('click', goBack);
+            document.getElementById('backFromSettings').addEventListener('click', goBack);
             
             // Evento de enviar mensagem
             document.getElementById('sendMessage').addEventListener('click', sendMessage);
