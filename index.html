@@ -528,6 +528,7 @@
             color: white;
             cursor: pointer;
             transition: background 0.2s;
+            position: relative;
         }
 
         .note-item:hover {
@@ -543,6 +544,7 @@
             font-weight: 500;
             margin-bottom: 4px;
             color: white;
+            padding-right: 30px;
         }
 
         .note-preview {
@@ -561,6 +563,29 @@
             color: #5d5d60;
             margin-top: 6px;
             text-align: right;
+        }
+
+        .delete-note-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #ff3b30;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .note-item:hover .delete-note-btn {
+            opacity: 1;
         }
 
         .note-editor-screen {
@@ -616,8 +641,12 @@
             white-space: nowrap;
         }
 
+        .delete-button {
+            background: #ff3b30;
+        }
+
         .note-editor-action-button:hover {
-            background: #0056cc;
+            opacity: 0.9;
         }
 
         .note-editor {
@@ -746,6 +775,7 @@
             cursor: pointer;
             transition: background 0.2s;
             border-left: 3px solid transparent;
+            position: relative;
         }
 
         .email-item.unread {
@@ -769,6 +799,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-right: 30px;
         }
 
         .email-subject {
@@ -794,6 +825,29 @@
             color: #5d5d60;
             margin-top: 6px;
             text-align: right;
+        }
+
+        .delete-email-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #ff3b30;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .email-item:hover .delete-email-btn {
+            opacity: 1;
         }
 
         .email-viewer-screen {
@@ -955,6 +1009,110 @@
             background: #0056cc;
         }
 
+        /* Tela da Galeria */
+        .gallery-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .gallery-header {
+            background: #1c1c1e;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .gallery-title {
+            font-size: 17px;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .gallery-grid {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Modal para imagem ampliada */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .image-modal-content {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .image-modal-content img {
+            max-width: 100%;
+            max-height: calc(100vh - 40px);
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         .profile-pic {
             width: 100%;
             height: 100%;
@@ -967,7 +1125,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: #25d366;
+            background: #007aff;
             color: white;
             padding: 10px 20px;
             border-radius: 20px;
@@ -1077,6 +1235,12 @@
                         </div>
                         <div class="app-name">E-mail</div>
                     </div>
+                    <div class="app-icon" id="galleryApp">
+                        <div class="app-icon-img" style="background: #ff2d55;">
+                            🖼️
+                        </div>
+                        <div class="app-name">Galeria</div>
+                    </div>
                 </div>
             </div>
             
@@ -1179,6 +1343,7 @@
                     <button class="back-button" id="backFromEditor">←</button>
                     <input type="text" class="note-editor-title-input" id="noteTitleInput" placeholder="Título" maxlength="50">
                     <div class="note-editor-actions">
+                        <button class="note-editor-action-button delete-button" id="deleteNoteButton">Excluir</button>
                         <button class="note-editor-action-button" id="saveNoteButton">Salvar</button>
                     </div>
                 </div>
@@ -1217,6 +1382,7 @@
                 <div class="email-viewer-header">
                     <button class="back-button" id="backFromEmailViewer">←</button>
                     <div class="email-viewer-title">E-mail</div>
+                    <button class="delete-button note-editor-action-button" id="deleteEmailButton">Excluir</button>
                 </div>
                 <div class="email-viewer-content">
                     <div class="email-viewer-meta" id="emailViewerMeta">
@@ -1241,10 +1407,29 @@
                     <button class="send-email-button" id="sendEmailButton">Enviar</button>
                 </div>
             </div>
+            
+            <!-- Tela da Galeria -->
+            <div class="gallery-screen" id="galleryScreen">
+                <div class="gallery-header">
+                    <button class="back-button" id="backFromGallery">←</button>
+                    <div class="gallery-title">Galeria</div>
+                </div>
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Fotos serão carregadas aqui -->
+                </div>
+            </div>
+            
+            <!-- Modal para imagem ampliada -->
+            <div class="image-modal" id="imageModal">
+                <button class="close-modal" id="closeModal">×</button>
+                <div class="image-modal-content">
+                    <img id="modalImage" src="" alt="Imagem ampliada">
+                </div>
+            </div>
         </div>
     </div>
     
-    <div class="notification" id="notification">WhatsApp: Nova mensagem</div>
+    <div class="notification" id="notification"></div>
 
     <script>
         // Configuração inicial
@@ -1256,6 +1441,19 @@
         let currentEmail = null;
         let notes = [];
         let emails = [];
+        
+        // URLs de imagens reais para a galeria (Unsplash)
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+            "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+            "https://images.unsplash.com/photo-1518837695005-2083093ee35b",
+            "https://images.unsplash.com/photo-1493246507139-91e8fad9978e",
+            "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05",
+            "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07",
+            "https://images.unsplash.com/photo-1501854140801-50d01698950b",
+            "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+            "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1"
+        ].map(url => url + "?w=400&h=400&fit=crop&crop=center");
         
         // Carregar notas do localStorage
         function loadNotes() {
@@ -1307,8 +1505,7 @@
                         subject: "Bem-vindo ao nosso serviço!",
                         body: "Olá,\n\nAgradecemos por se inscrever em nosso serviço. Estamos muito felizes em tê-lo conosco.\n\nPara começar, recomendamos que você:\n1. Complete seu perfil\n2. Explore os tutoriais iniciais\n3. Configure suas preferências\n\nSe tiver alguma dúvida, nossa equipe de suporte está disponível 24/7.\n\nAtenciosamente,\nEquipe Empresa Tech",
                         date: new Date().toLocaleString('pt-BR'),
-                        read: false,
-                        important: true
+                        read: false
                     },
                     {
                         id: 2,
@@ -1318,8 +1515,7 @@
                         subject: "Extrato disponível",
                         body: "Prezado cliente,\n\nSeu extrato bancário referente ao mês atual já está disponível para consulta.\n\nAcesse seu internet banking para visualizar:\n- Transações do período\n- Saldo atual\n- Investimentos\n\nLembre-se de manter seus dados cadastrais atualizados.\n\nAtenciosamente,\nBanco Seguro",
                         date: new Date().toLocaleString('pt-BR'),
-                        read: false,
-                        important: false
+                        read: false
                     },
                     {
                         id: 3,
@@ -1329,8 +1525,7 @@
                         subject: "Reunião de projeto",
                         body: "Olá,\n\nGostaria de confirmar nossa reunião para amanhã às 14h.\n\nPreparei alguns pontos para discutirmos:\n1. Progresso do projeto\n2. Próximos passos\n3. Orçamento\n\nPor favor, traga os relatórios atualizados.\n\nAtenciosamente,\nMaria",
                         date: new Date().toLocaleString('pt-BR'),
-                        read: true,
-                        important: true
+                        read: true
                     },
                     {
                         id: 4,
@@ -1340,8 +1535,7 @@
                         subject: "Seu pedido foi enviado!",
                         body: "Olá,\n\nSeu pedido #12345 foi enviado com sucesso!\n\nDetalhes do envio:\n- Número de rastreamento: BR123456789\n- Transportadora: Correios\n- Previsão de entrega: 5 dias úteis\n\nVocê pode acompanhar seu pedido em nosso site.\n\nObrigado por comprar conosco!",
                         date: new Date().toLocaleString('pt-BR'),
-                        read: true,
-                        important: false
+                        read: true
                     }
                 ];
                 saveEmails();
@@ -1383,12 +1577,25 @@
                 const preview = note.content.length > 100 ? note.content.substring(0, 100) + '...' : note.content;
                 
                 noteElement.innerHTML = `
+                    <button class="delete-note-btn" data-id="${note.id}">✕</button>
                     <div class="note-title">${note.title || 'Sem título'}</div>
                     <div class="note-preview">${preview}</div>
                     <div class="note-date">${note.updated}</div>
                 `;
                 
-                noteElement.addEventListener('click', () => openNoteViewer(note.id));
+                noteElement.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('delete-note-btn')) {
+                        openNoteViewer(note.id);
+                    }
+                });
+                
+                // Evento para deletar nota
+                const deleteBtn = noteElement.querySelector('.delete-note-btn');
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteNote(note.id);
+                });
+                
                 notesList.appendChild(noteElement);
             });
         }
@@ -1418,17 +1625,50 @@
                 const preview = email.body.length > 100 ? email.body.substring(0, 100) + '...' : email.body;
                 
                 emailElement.innerHTML = `
+                    <button class="delete-email-btn" data-id="${email.id}">✕</button>
                     <div class="email-sender">
                         <span>${email.from}</span>
-                        ${email.important ? '<span style="color: #ff3b30; font-size: 12px;">⚠️ Importante</span>' : ''}
                     </div>
                     <div class="email-subject">${email.subject}</div>
                     <div class="email-preview">${preview}</div>
                     <div class="email-date">${email.date}</div>
                 `;
                 
-                emailElement.addEventListener('click', () => openEmailViewer(email.id));
+                emailElement.addEventListener('click', (e) => {
+                    if (!e.target.classList.contains('delete-email-btn')) {
+                        openEmailViewer(email.id);
+                    }
+                });
+                
+                // Evento para deletar e-mail
+                const deleteBtn = emailElement.querySelector('.delete-email-btn');
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteEmail(email.id);
+                });
+                
                 emailList.appendChild(emailElement);
+            });
+        }
+        
+        // Carregar galeria
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+            
+            galleryImages.forEach((imageUrl, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = `Imagem ${index + 1}`;
+                img.loading = "lazy";
+                
+                galleryItem.appendChild(img);
+                galleryItem.addEventListener('click', () => openImageModal(imageUrl));
+                
+                galleryGrid.appendChild(galleryItem);
             });
         }
         
@@ -1508,6 +1748,73 @@
             document.getElementById('emailToInput').focus();
         }
         
+        // Abrir galeria
+        function openGallery() {
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('galleryScreen').style.display = 'flex';
+            currentScreen = "gallery";
+            loadGallery();
+        }
+        
+        // Abrir modal de imagem ampliada
+        function openImageModal(imageUrl) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            
+            modalImage.src = imageUrl;
+            modal.style.display = 'flex';
+        }
+        
+        // Fechar modal de imagem
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+        
+        // Deletar nota
+        function deleteNote(noteId) {
+            if (confirm('Tem certeza que deseja excluir esta nota?')) {
+                const index = notes.findIndex(n => n.id == noteId);
+                if (index > -1) {
+                    notes.splice(index, 1);
+                    saveNotes();
+                    loadNotesList();
+                    
+                    // Se está vendo a nota deletada, voltar para a lista
+                    if (currentNote && currentNote.id == noteId) {
+                        if (currentScreen === "noteViewer" || currentScreen === "noteEditor") {
+                            goBack();
+                        }
+                        currentNote = null;
+                    }
+                    
+                    showNotification('Nota excluída com sucesso!', '#34c759');
+                }
+            }
+        }
+        
+        // Deletar e-mail
+        function deleteEmail(emailId) {
+            if (confirm('Tem certeza que deseja excluir este e-mail?')) {
+                const index = emails.findIndex(e => e.id == emailId);
+                if (index > -1) {
+                    emails.splice(index, 1);
+                    saveEmails();
+                    loadEmailsList();
+                    
+                    // Se está vendo o e-mail deletado, voltar para a lista
+                    if (currentEmail && currentEmail.id == emailId) {
+                        if (currentScreen === "emailViewer") {
+                            goBack();
+                        }
+                        currentEmail = null;
+                    }
+                    
+                    showNotification('E-mail excluído com sucesso!', '#34c759');
+                }
+            }
+        }
+        
         // Salvar nota
         function saveNote() {
             const title = document.getElementById('noteTitleInput').value.trim();
@@ -1540,10 +1847,9 @@
             saveNotes();
             loadNotesList();
             
-            // Voltar para a lista de notas
+            // Voltar para o visualizador
             document.getElementById('noteEditorScreen').style.display = 'none';
-            document.getElementById('notesScreen').style.display = 'flex';
-            currentScreen = "notes";
+            openNoteViewer(currentNote.id);
             
             showNotification('Nota salva com sucesso!', '#34c759');
         }
@@ -1575,50 +1881,32 @@
                 subject: subject,
                 body: body,
                 date: now,
-                read: true,
-                important: false
+                read: true
             };
             
             emails.unshift(newEmail);
             saveEmails();
             loadEmailsList();
             
-            // Simular e-mail de resposta (após 3 segundos)
+            // Simular e-mail de resposta automática (após 3 segundos)
             setTimeout(() => {
-                const responses = [
-                    {
-                        from: "Resposta Automática",
-                        fromEmail: "auto-responder@empresa.com",
-                        subject: `Re: ${subject}`,
-                        body: `Olá,\n\nRecebemos seu e-mail. Nossa equipe responderá em até 24 horas.\n\nEsta é uma mensagem automática, por favor não responda.\n\nAtenciosamente,\nSistema de Resposta Automática`
-                    },
-                    {
-                        from: "Suporte",
-                        fromEmail: "suporte@servico.com",
-                        subject: `Confirmação: ${subject}`,
-                        body: `Prezado,\n\nConfirmamos o recebimento de sua mensagem.\n\nCaso de urgência, entre em contato pelo telefone (11) 9999-9999.\n\nAtenciosamente,\nEquipe de Suporte`
-                    }
-                ];
-                
-                const response = responses[Math.floor(Math.random() * responses.length)];
                 const responseId = newId + 1;
                 const responseEmail = {
                     id: responseId,
-                    from: response.from,
-                    fromEmail: response.fromEmail,
+                    from: "Equipe do Prime Murder Suspect",
+                    fromEmail: "noreply@primemurdersuspect.com",
                     to: "você@exemplo.com",
-                    subject: response.subject,
-                    body: response.body,
+                    subject: `Re: ${subject}`,
+                    body: `Obrigada pelo seu e-mail. Esperamos que você esteja gostando do jogo! Atenciosamente, Equipe do Prime Murder Suspect`,
                     date: new Date().toLocaleString('pt-BR'),
-                    read: false,
-                    important: true
+                    read: false
                 };
                 
                 emails.unshift(responseEmail);
                 saveEmails();
                 loadEmailsList();
                 
-                showNotification(`Resposta de ${response.from}`, '#007aff');
+                showNotification('Nova resposta recebida', '#007aff');
             }, 3000);
             
             // Voltar para a lista de e-mails
@@ -1630,7 +1918,7 @@
         }
         
         // Mostrar notificação
-        function showNotification(message, color = '#25d366') {
+        function showNotification(message, color = '#007aff') {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.style.background = color;
@@ -1817,6 +2105,7 @@
             const emailScreen = document.getElementById('emailScreen');
             const emailViewerScreen = document.getElementById('emailViewerScreen');
             const emailComposerScreen = document.getElementById('emailComposerScreen');
+            const galleryScreen = document.getElementById('galleryScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -1868,6 +2157,11 @@
                     emailComposerScreen.style.display = 'none';
                     emailScreen.style.display = 'flex';
                     currentScreen = "email";
+                    break;
+                case "gallery":
+                    galleryScreen.style.display = 'none';
+                    homeScreen.style.display = 'flex';
+                    currentScreen = "home";
                     break;
                 case "home":
                     // Voltar para tela de bloqueio
@@ -1962,6 +2256,9 @@
             // Evento do botão E-mail
             document.getElementById('emailApp').addEventListener('click', openEmail);
             
+            // Evento do botão Galeria
+            document.getElementById('galleryApp').addEventListener('click', openGallery);
+            
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
             document.getElementById('backFromChat').addEventListener('click', goBack);
@@ -1972,6 +2269,15 @@
             document.getElementById('backFromEmail').addEventListener('click', goBack);
             document.getElementById('backFromEmailViewer').addEventListener('click', goBack);
             document.getElementById('backFromComposer').addEventListener('click', goBack);
+            document.getElementById('backFromGallery').addEventListener('click', goBack);
+            
+            // Evento para fechar modal
+            document.getElementById('closeModal').addEventListener('click', closeImageModal);
+            document.getElementById('imageModal').addEventListener('click', (e) => {
+                if (e.target.id === 'imageModal') {
+                    closeImageModal();
+                }
+            });
             
             // Eventos das notas
             document.getElementById('newNoteButton').addEventListener('click', () => {
@@ -1979,6 +2285,11 @@
             });
             
             document.getElementById('saveNoteButton').addEventListener('click', saveNote);
+            document.getElementById('deleteNoteButton').addEventListener('click', () => {
+                if (currentNote) {
+                    deleteNote(currentNote.id);
+                }
+            });
             
             document.getElementById('editNoteButton').addEventListener('click', () => {
                 if (currentNote) {
@@ -1988,8 +2299,12 @@
             
             // Eventos do e-mail
             document.getElementById('newEmailButton').addEventListener('click', openEmailComposer);
-            
             document.getElementById('sendEmailButton').addEventListener('click', sendEmail);
+            document.getElementById('deleteEmailButton').addEventListener('click', () => {
+                if (currentEmail) {
+                    deleteEmail(currentEmail.id);
+                }
+            });
             
             // Salvar nota com Ctrl+Enter
             document.getElementById('noteContentInput').addEventListener('keydown', (e) => {
