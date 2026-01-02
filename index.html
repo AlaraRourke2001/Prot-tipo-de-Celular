@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
             user-select: none;
         }
 
@@ -685,7 +685,7 @@
             font-size: 15px;
             line-height: 1.4;
             resize: none;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
         .note-editor-textarea:focus {
@@ -1006,7 +1006,7 @@
             font-size: 14px;
             line-height: 1.4;
             resize: none;
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
         .email-body-input:focus {
@@ -1030,7 +1030,7 @@
             background: #0056cc;
         }
 
-        /* Tela da Galeria - MODIFICADO */
+        /* Tela da Galeria */
         .gallery-screen {
             width: 100%;
             height: 100%;
@@ -1064,9 +1064,17 @@
             padding: 15px;
         }
 
-        /* REMOVIDO: .gallery-date-header e .gallery-grid */
-        .gallery-item-container {
-            margin-bottom: 15px;
+        .gallery-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gallery-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 8px;
         }
 
         .gallery-item {
@@ -1076,7 +1084,6 @@
             overflow: hidden;
             aspect-ratio: 1;
             transition: transform 0.2s;
-            margin-bottom: 8px;
         }
 
         .gallery-item img {
@@ -1090,7 +1097,7 @@
             transform: scale(1.01);
         }
 
-        /* Tela do Instagram - NOVA */
+        /* Tela do Instagram - ATUALIZADA */
         .instagram-screen {
             width: 100%;
             height: 100%;
@@ -1115,10 +1122,10 @@
 
         .instagram-title {
             font-size: 24px;
-            font-family: 'Instagram', cursive;
-            font-weight: 500;
+            font-weight: 600;
             flex: 1;
             text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
         }
 
         .instagram-content {
@@ -1127,12 +1134,20 @@
             background: #000;
         }
 
+        .instagram-content::-webkit-scrollbar {
+            display: none;
+        }
+
         .instagram-story-bar {
             padding: 10px;
             border-bottom: 1px solid #262626;
             display: flex;
             gap: 10px;
             overflow-x: auto;
+        }
+
+        .instagram-story-bar::-webkit-scrollbar {
+            display: none;
         }
 
         .story-circle {
@@ -1268,6 +1283,97 @@
             color: #8e8e8e;
             font-size: 11px;
             text-transform: uppercase;
+        }
+
+        /* Chat do Instagram */
+        .instagram-chat-screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .instagram-chat-header {
+            background: #000;
+            color: white;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border-bottom: 1px solid #262626;
+        }
+
+        .instagram-chat-title {
+            font-size: 17px;
+            font-weight: 500;
+            flex: 1;
+            text-align: center;
+        }
+
+        .instagram-chat-list {
+            flex: 1;
+            overflow-y: auto;
+            background: #000;
+        }
+
+        .instagram-chat-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            gap: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .instagram-chat-item:hover {
+            background: #262626;
+        }
+
+        .instagram-chat-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .instagram-chat-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instagram-chat-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .instagram-chat-name {
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .instagram-chat-last-message {
+            color: #a8a8a8;
+            font-size: 13px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .instagram-chat-time {
+            color: #737373;
+            font-size: 11px;
+            align-self: flex-start;
+            margin-top: 4px;
         }
 
         /* Modal para imagem ampliada */
@@ -1493,33 +1599,39 @@
                     </div>
                     <div class="app-icon" id="settingsApp">
                         <div class="app-icon-img" style="background: #8e8e93;">
-                            ⚙️
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1l2.11-1.63c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.31-.61-.22l-2.49 1c-.52-.39-1.06-.73-1.69-.98l-.37-2.65A.506.506 0 0 0 14 2h-4c-.25 0-.46.18-.5.42l-.37 2.65c-.63.25-1.17.59-1.69.98l-2.49-1c-.22-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64L4.57 11c-.04.34-.07.67-.07 1c0 .33.03.65.07.97l-2.11 1.66c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1.01c.52.4 1.06.74 1.69.99l.37 2.65c.04.24.25.42.5.42h4c.25 0 .46-.18.5-.42l.37-2.65c.63-.26 1.17-.59 1.69-.99l2.49 1.01c.22.08.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.66Z'/%3E%3C/svg%3E" alt="Configurações">
                         </div>
                         <div class="app-name">Configurações</div>
                     </div>
                     <div class="app-icon" id="notesApp">
                         <div class="app-icon-img" style="background: #ff9500;">
-                            📝
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M14 10V4.5l5.5 5.5M5 3c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9l-6-6H5m9 10H7v-2h7v2m3 4H7v-2h10v2Z'/%3E%3C/svg%3E" alt="Notas">
                         </div>
                         <div class="app-name">Notas</div>
                     </div>
                     <div class="app-icon" id="emailApp">
                         <div class="app-icon-img" style="background: #007aff;">
-                            📧
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M20 8l-8 5-8-5V6l8 5 8-5m0-2H4c-1.11 0-2 .89-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z'/%3E%3C/svg%3E" alt="E-mail">
                         </div>
                         <div class="app-name">E-mail</div>
                     </div>
                     <div class="app-icon" id="galleryApp">
                         <div class="app-icon-img" style="background: #ff2d55;">
-                            🖼️
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M4 5h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2m10.5 10.25a2.5 2.5 0 0 1-2.5-2.5a2.5 2.5 0 0 1 2.5-2.5a2.5 2.5 0 0 1 2.5 2.5a2.5 2.5 0 0 1-2.5 2.5M6 17h12l-3.75-5l-3 4L9 13l-3 4Z'/%3E%3C/svg%3E" alt="Galeria">
                         </div>
                         <div class="app-name">Galeria</div>
                     </div>
                     <div class="app-icon" id="instagramApp">
-                        <div class="app-icon-img" style="background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);">
-                            📸
+                        <div class="app-icon-img" style="background: #000;">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='white' d='M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z'/%3E%3C/svg%3E" alt="Instagram">
                         </div>
                         <div class="app-name">Instagram</div>
+                    </div>
+                    <div class="app-icon" id="instagramChatApp">
+                        <div class="app-icon-img" style="background: #000;">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM9.5 8c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8zm6.5 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E" alt="Instagram Chat">
+                        </div>
+                        <div class="app-name">Instagram Chat</div>
                     </div>
                 </div>
             </div>
@@ -1688,7 +1800,7 @@
                 </div>
             </div>
             
-            <!-- Tela da Galeria MODIFICADA -->
+            <!-- Tela da Galeria -->
             <div class="gallery-screen" id="galleryScreen">
                 <div class="gallery-header">
                     <button class="back-button" id="backFromGallery">←</button>
@@ -1699,7 +1811,7 @@
                 </div>
             </div>
             
-            <!-- Tela do Instagram NOVA -->
+            <!-- Tela do Instagram -->
             <div class="instagram-screen" id="instagramScreen">
                 <div class="instagram-header">
                     <button class="back-button" id="backFromInstagram">←</button>
@@ -1708,6 +1820,17 @@
                 </div>
                 <div class="instagram-content" id="instagramContent">
                     <!-- Conteúdo do Instagram será gerado aqui -->
+                </div>
+            </div>
+            
+            <!-- Tela do Instagram Chat -->
+            <div class="instagram-chat-screen" id="instagramChatScreen">
+                <div class="instagram-chat-header">
+                    <button class="back-button" id="backFromInstagramChat">←</button>
+                    <div class="instagram-chat-title">Mensagens</div>
+                </div>
+                <div class="instagram-chat-list" id="instagramChatList">
+                    <!-- Conversas do Instagram serão geradas aqui -->
                 </div>
             </div>
             
@@ -1739,7 +1862,7 @@
         let currentImageIndex = 0;
         let likedPosts = new Set();
         
-        // URLs de imagens reais para a galeria (Unsplash) - uma foto embaixo da outra
+        // URLs de imagens reais para a galeria (Unsplash)
         const galleryImages = [
             {
                 url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=400&fit=crop&crop=center",
@@ -1752,7 +1875,7 @@
                 date: "Hoje"
             },
             {
-                url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w-400&h=400&fit=crop&crop=center",
+                url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop&crop=center",
                 title: "Praia tropical",
                 date: "Hoje"
             },
@@ -1845,6 +1968,58 @@
                 }
             ]
         };
+
+        // Conversas do Instagram
+        const instagramChats = [
+            {
+                id: 1,
+                name: "Maria Silva",
+                lastMessage: "Que foto incrível! Onde foi tirada?",
+                time: "2 min",
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: true
+            },
+            {
+                id: 2,
+                name: "João Fotógrafo",
+                lastMessage: "Obrigado pelo like!",
+                time: "1 h",
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: false
+            },
+            {
+                id: 3,
+                name: "Ana Viagens",
+                lastMessage: "Vamos marcar uma viagem juntos?",
+                time: "3 h",
+                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: true
+            },
+            {
+                id: 4,
+                name: "Pedro Aventureiro",
+                lastMessage: "Viu meu último post? Foi épico!",
+                time: "Ontem",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: false
+            },
+            {
+                id: 5,
+                name: "Carla Design",
+                lastMessage: "Adorei sua última publicação ❤️",
+                time: "Ontem",
+                avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: false
+            },
+            {
+                id: 6,
+                name: "Lucas Tech",
+                lastMessage: "Vamos gravar aquele vídeo?",
+                time: "2 dias",
+                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                unread: false
+            }
+        ];
         
         // Conversas do WhatsApp com datas organizadas
         const conversations = [
@@ -1878,36 +2053,6 @@
                     { text: "Preciso daquele documento que falamos", time: "08:22", type: "received" },
                     { text: "Já vou enviar", time: "08:25", type: "sent" },
                     { text: "Mandei o arquivo", time: "08:30", type: "sent" }
-                ]
-            },
-            {
-                id: 3,
-                name: "Ana Clara",
-                lastMessage: "Obrigada pela ajuda!",
-                date: "26/01",
-                time: "14:20",
-                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { date: "26/01/2024", type: "date" },
-                    { text: "Oi, você tem o contato do advogado?", time: "14:10", type: "received" },
-                    { text: "Sim, vou te passar", time: "14:15", type: "sent" },
-                    { text: "O número é (11) 99999-9999", time: "14:16", type: "sent" },
-                    { text: "Obrigada pela ajuda!", time: "14:20", type: "received" }
-                ]
-            },
-            {
-                id: 4,
-                name: "Pedro Almeida",
-                lastMessage: "A reunião foi adiada",
-                date: "25/01",
-                time: "16:45",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                messages: [
-                    { date: "25/01/2024", type: "date" },
-                    { text: "Boa tarde, tudo bem?", time: "16:30", type: "received" },
-                    { text: "Tudo sim! E contigo?", time: "16:35", type: "sent" },
-                    { text: "A reunião de amanhã foi adiada para sexta", time: "16:40", type: "received" },
-                    { text: "A reunião foi adiada", time: "16:45", type: "received" }
                 ]
             }
         ];
@@ -1973,26 +2118,6 @@
                         body: "Prezado cliente,\n\nSeu extrato bancário referente ao mês atual já está disponível para consulta.\n\nAcesse seu internet banking para visualizar:\n- Transações do período\n- Saldo atual\n- Investimentos\n\nLembre-se de manter seus dados cadastrais atualizados.\n\nAtenciosamente,\nBanco Seguro",
                         date: new Date().toLocaleString('pt-BR'),
                         read: false
-                    },
-                    {
-                        id: 3,
-                        from: "Maria Silva",
-                        fromEmail: "maria.silva@email.com",
-                        to: "você@exemplo.com",
-                        subject: "Reunião de projeto",
-                        body: "Olá,\n\nGostaria de confirmar nossa reunião para amanhã às 14h.\n\nPreparei alguns pontos para discutirmos:\n1. Progresso do projeto\n2. Próximos passos\n3. Orçamento\n\nPor favor, traga os relatórios atualizados.\n\nAtenciosamente,\nMaria",
-                        date: new Date().toLocaleString('pt-BR'),
-                        read: true
-                    },
-                    {
-                        id: 4,
-                        from: "Loja Online",
-                        fromEmail: "vendas@lojaonline.com",
-                        to: "você@exemplo.com",
-                        subject: "Seu pedido foi enviado!",
-                        body: "Olá,\n\nSeu pedido #12345 foi enviado com sucesso!\n\nDetalhes do envio:\n- Número de rastreamento: BR123456789\n- Transportadora: Correios\n- Previsão de entrega: 5 dias úteis\n\nVocê pode acompanhar seu pedido em nosso site.\n\nObrigado por comprar conosco!",
-                        date: new Date().toLocaleString('pt-BR'),
-                        read: true
                     }
                 ];
                 saveEmails();
@@ -2046,7 +2171,7 @@
                     }
                 });
                 
-                // Evento para deletar nota
+                // Evento para deletar nota (sem confirmação)
                 const deleteBtn = noteElement.querySelector('.delete-note-btn');
                 deleteBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2108,32 +2233,42 @@
             });
         }
         
-        // Carregar galeria - MODIFICADA: uma foto embaixo da outra
+        // Carregar galeria com 3 fotos por linha
         function loadGallery() {
             const galleryContent = document.getElementById('galleryContent');
             galleryContent.innerHTML = '';
             
-            galleryImages.forEach((image, index) => {
-                const container = document.createElement('div');
-                container.className = 'gallery-item-container';
+            const grid = document.createElement('div');
+            grid.className = 'gallery-grid';
+            
+            // Agrupar imagens em linhas de 3
+            for (let i = 0; i < galleryImages.length; i += 3) {
+                const row = document.createElement('div');
+                row.className = 'gallery-row';
                 
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.dataset.index = index;
+                for (let j = i; j < i + 3 && j < galleryImages.length; j++) {
+                    const image = galleryImages[j];
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.dataset.index = j;
+                    
+                    const img = document.createElement('img');
+                    img.src = image.url;
+                    img.alt = image.title;
+                    img.loading = "lazy";
+                    
+                    galleryItem.appendChild(img);
+                    galleryItem.addEventListener('click', () => {
+                        openImageModal(j);
+                    });
+                    
+                    row.appendChild(galleryItem);
+                }
                 
-                const img = document.createElement('img');
-                img.src = image.url;
-                img.alt = image.title;
-                img.loading = "lazy";
-                
-                galleryItem.appendChild(img);
-                galleryItem.addEventListener('click', () => {
-                    openImageModal(index);
-                });
-                
-                container.appendChild(galleryItem);
-                galleryContent.appendChild(container);
-            });
+                grid.appendChild(row);
+            }
+            
+            galleryContent.appendChild(grid);
         }
         
         // Carregar Instagram
@@ -2232,9 +2367,36 @@
                     post.saved = !post.saved;
                     this.innerHTML = post.saved ? '💾' : '📥';
                     this.classList.toggle('saved');
-                    
-                    showNotification(post.saved ? 'Post salvo!' : 'Post removido dos salvos!', '#34c759');
                 });
+            });
+        }
+        
+        // Carregar chat do Instagram
+        function loadInstagramChat() {
+            const chatList = document.getElementById('instagramChatList');
+            chatList.innerHTML = '';
+            
+            instagramChats.forEach(chat => {
+                const chatElement = document.createElement('div');
+                chatElement.className = 'instagram-chat-item';
+                chatElement.dataset.id = chat.id;
+                
+                chatElement.innerHTML = `
+                    <div class="instagram-chat-avatar">
+                        <img src="${chat.avatar}" alt="${chat.name}">
+                    </div>
+                    <div class="instagram-chat-info">
+                        <div class="instagram-chat-name">${chat.name}</div>
+                        <div class="instagram-chat-last-message">${chat.lastMessage}</div>
+                    </div>
+                    <div class="instagram-chat-time">${chat.time}</div>
+                `;
+                
+                if (chat.unread) {
+                    chatElement.style.fontWeight = '600';
+                }
+                
+                chatList.appendChild(chatElement);
             });
         }
         
@@ -2330,6 +2492,14 @@
             loadInstagram();
         }
         
+        // Abrir chat do Instagram
+        function openInstagramChat() {
+            document.getElementById('homeScreen').style.display = 'none';
+            document.getElementById('instagramChatScreen').style.display = 'flex';
+            currentScreen = "instagramChat";
+            loadInstagramChat();
+        }
+        
         // Abrir modal de imagem ampliada
         function openImageModal(index) {
             currentImageIndex = index;
@@ -2389,46 +2559,38 @@
             modal.style.display = 'none';
         }
         
-        // Deletar nota
+        // Deletar nota (sem confirmação)
         function deleteNote(noteId) {
-            if (confirm('Tem certeza que deseja excluir esta nota?')) {
-                const index = notes.findIndex(n => n.id == noteId);
-                if (index > -1) {
-                    notes.splice(index, 1);
-                    saveNotes();
-                    loadNotesList();
-                    
-                    // Se está vendo a nota deletada, voltar para a lista
-                    if (currentNote && currentNote.id == noteId) {
-                        if (currentScreen === "noteViewer" || currentScreen === "noteEditor") {
-                            goBack();
-                        }
-                        currentNote = null;
+            const index = notes.findIndex(n => n.id == noteId);
+            if (index > -1) {
+                notes.splice(index, 1);
+                saveNotes();
+                loadNotesList();
+                
+                // Se está vendo a nota deletada, voltar para a lista
+                if (currentNote && currentNote.id == noteId) {
+                    if (currentScreen === "noteViewer" || currentScreen === "noteEditor") {
+                        goBack();
                     }
-                    
-                    // MODIFICAÇÃO: Removida a notificação "Nota excluída com sucesso!"
+                    currentNote = null;
                 }
             }
         }
         
         // Deletar e-mail
         function deleteEmail(emailId) {
-            if (confirm('Tem certeza que deseja excluir este e-mail?')) {
-                const index = emails.findIndex(e => e.id == emailId);
-                if (index > -1) {
-                    emails.splice(index, 1);
-                    saveEmails();
-                    loadEmailsList();
-                    
-                    // Se está vendo o e-mail deletado, voltar para a lista
-                    if (currentEmail && currentEmail.id == emailId) {
-                        if (currentScreen === "emailViewer") {
-                            goBack();
-                        }
-                        currentEmail = null;
+            const index = emails.findIndex(e => e.id == emailId);
+            if (index > -1) {
+                emails.splice(index, 1);
+                saveEmails();
+                loadEmailsList();
+                
+                // Se está vendo o e-mail deletado, voltar para a lista
+                if (currentEmail && currentEmail.id == emailId) {
+                    if (currentScreen === "emailViewer") {
+                        goBack();
                     }
-                    
-                    showNotification('E-mail excluído!', '#34c759');
+                    currentEmail = null;
                 }
             }
         }
@@ -2440,7 +2602,6 @@
             const now = new Date().toLocaleString('pt-BR');
             
             if (!content) {
-                showNotification('A nota não pode estar vazia!', '#ff3b30');
                 return;
             }
             
@@ -2468,8 +2629,6 @@
             // Voltar para o visualizador
             document.getElementById('noteEditorScreen').style.display = 'none';
             openNoteViewer(currentNote.id);
-            
-            showNotification('Nota salva!', '#34c759');
         }
         
         // Enviar e-mail
@@ -2480,12 +2639,10 @@
             const now = new Date().toLocaleString('pt-BR');
             
             if (!to || !subject || !body) {
-                showNotification('Preencha todos os campos!', '#ff3b30');
                 return;
             }
             
             if (!to.includes('@')) {
-                showNotification('E-mail do destinatário inválido!', '#ff3b30');
                 return;
             }
             
@@ -2506,44 +2663,10 @@
             saveEmails();
             loadEmailsList();
             
-            // Simular e-mail de resposta automática (após 3 segundos)
-            setTimeout(() => {
-                const responseId = newId + 1;
-                const responseEmail = {
-                    id: responseId,
-                    from: "Equipe do Simulador",
-                    fromEmail: "noreply@simulador.com",
-                    to: "você@exemplo.com",
-                    subject: `Re: ${subject}`,
-                    body: `Obrigada pelo seu e-mail. Esperamos que você esteja gostando do simulador! Atenciosamente, Equipe do Simulador`,
-                    date: new Date().toLocaleString('pt-BR'),
-                    read: false
-                };
-                
-                emails.unshift(responseEmail);
-                saveEmails();
-                loadEmailsList();
-                
-                showNotification('Nova resposta recebida', '#007aff');
-            }, 3000);
-            
             // Voltar para a lista de e-mails
             document.getElementById('emailComposerScreen').style.display = 'none';
             document.getElementById('emailScreen').style.display = 'flex';
             currentScreen = "email";
-            
-            showNotification('E-mail enviado!', '#34c759');
-        }
-        
-        // Mostrar notificação
-        function showNotification(message, color = '#007aff') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.style.background = color;
-            notification.style.display = 'block';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 2000);
         }
         
         // Carregar conversas do WhatsApp com datas
@@ -2709,6 +2832,7 @@
             const emailComposerScreen = document.getElementById('emailComposerScreen');
             const galleryScreen = document.getElementById('galleryScreen');
             const instagramScreen = document.getElementById('instagramScreen');
+            const instagramChatScreen = document.getElementById('instagramChatScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -2771,6 +2895,11 @@
                     homeScreen.style.display = 'flex';
                     currentScreen = "home";
                     break;
+                case "instagramChat":
+                    instagramChatScreen.style.display = 'none';
+                    homeScreen.style.display = 'flex';
+                    currentScreen = "home";
+                    break;
                 case "home":
                     // Voltar para tela de bloqueio
                     homeScreen.style.display = 'none';
@@ -2824,6 +2953,17 @@
             currentScreen = "instagram";
             loadInstagram();
         }
+        
+        // Abrir chat do Instagram
+        function openInstagramChatApp() {
+            const homeScreen = document.getElementById('homeScreen');
+            const instagramChatScreen = document.getElementById('instagramChatScreen');
+            
+            homeScreen.style.display = 'none';
+            instagramChatScreen.style.display = 'flex';
+            currentScreen = "instagramChat";
+            loadInstagramChat();
+        }
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
@@ -2859,27 +2999,19 @@
                 document.getElementById('unlockMessage').textContent = "";
             });
             
-            // Evento do WhatsApp
+            // Eventos dos apps
             document.getElementById('whatsappApp').addEventListener('click', () => {
                 document.getElementById('homeScreen').style.display = 'none';
                 document.getElementById('whatsappScreen').style.display = 'flex';
                 currentScreen = "whatsapp";
             });
             
-            // Evento do botão Configurações
             document.getElementById('settingsApp').addEventListener('click', openSettings);
-            
-            // Evento do botão Notas
             document.getElementById('notesApp').addEventListener('click', openNotes);
-            
-            // Evento do botão E-mail
             document.getElementById('emailApp').addEventListener('click', openEmail);
-            
-            // Evento do botão Galeria
             document.getElementById('galleryApp').addEventListener('click', openGallery);
-            
-            // Evento do botão Instagram
             document.getElementById('instagramApp').addEventListener('click', openInstagramApp);
+            document.getElementById('instagramChatApp').addEventListener('click', openInstagramChatApp);
             
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
@@ -2893,6 +3025,7 @@
             document.getElementById('backFromComposer').addEventListener('click', goBack);
             document.getElementById('backFromGallery').addEventListener('click', goBack);
             document.getElementById('backFromInstagram').addEventListener('click', goBack);
+            document.getElementById('backFromInstagramChat').addEventListener('click', goBack);
             
             // Eventos do modal de imagem
             document.getElementById('closeModal').addEventListener('click', closeImageModal);
