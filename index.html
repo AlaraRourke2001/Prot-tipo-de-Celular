@@ -297,6 +297,114 @@
             text-overflow: ellipsis;
         }
         
+        /* Tela de conversa do WhatsApp */
+        .chat-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: #e5ddd5;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23d1d7db' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+        
+        .chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-header-back {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        
+        .chat-contact {
+            display: flex;
+            align-items: center;
+        }
+        
+        .chat-contact-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .message {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            position: relative;
+            word-wrap: break-word;
+        }
+        
+        .message.received {
+            background-color: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .message.sent {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: #666;
+            text-align: right;
+            margin-top: 5px;
+        }
+        
+        .message-input {
+            padding: 15px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .message-input input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+        
+        .send-btn {
+            background-color: #075e54;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
         /* Instagram */
         .instagram-post {
             background-color: white;
@@ -391,6 +499,7 @@
             padding: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             min-height: 100px;
+            cursor: pointer;
         }
         
         .note-title {
@@ -419,6 +528,25 @@
             font-size: 24px;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Tela de nota individual */
+        .note-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .note-editor {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #fff9c4;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            line-height: 1.5;
+            resize: none;
+            font-family: inherit;
         }
         
         /* E-mail */
@@ -462,6 +590,55 @@
             line-height: 1.4;
             max-height: 42px;
             overflow: hidden;
+        }
+        
+        /* Tela de e-mail individual */
+        .email-screen {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .email-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: white;
+            overflow-y: auto;
+        }
+        
+        .email-full-header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .email-full-subject {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .email-full-sender {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .email-full-sender-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #007aff;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .email-full-body {
+            line-height: 1.6;
         }
         
         /* Galeria */
@@ -666,16 +843,33 @@
                     </div>
                 </div>
                 
-                <!-- Tela do WhatsApp -->
+                <!-- Tela do WhatsApp (lista de conversas) -->
                 <div class="app-screen" id="whatsappScreen">
                     <div class="app-header">
                         <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
                         <div class="app-title">WhatsApp</div>
                     </div>
                     <div class="app-content whatsapp">
-                        <div class="chat-list">
+                        <div class="chat-list" id="whatsappChatList">
                             <!-- Conversas serão geradas por JavaScript -->
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Tela de conversa individual do WhatsApp -->
+                <div class="app-screen chat-screen" id="whatsappChatScreen">
+                    <div class="chat-header">
+                        <button class="chat-header-back" id="whatsappChatBack"><i class="fas fa-arrow-left"></i></button>
+                        <div class="chat-contact" id="chatContactInfo">
+                            <!-- Informações do contato serão preenchidas por JavaScript -->
+                        </div>
+                    </div>
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Mensagens serão preenchidas por JavaScript -->
+                    </div>
+                    <div class="message-input">
+                        <input type="text" placeholder="Digite uma mensagem" id="messageInput">
+                        <button class="send-btn" id="sendMessageBtn"><i class="fas fa-paper-plane"></i></button>
                     </div>
                 </div>
                 
@@ -726,14 +920,14 @@
                     </div>
                 </div>
                 
-                <!-- Tela de Notas -->
+                <!-- Tela de Notas (lista) -->
                 <div class="app-screen" id="notesScreen">
                     <div class="app-header">
                         <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
                         <div class="app-title">Notas</div>
                     </div>
                     <div class="app-content">
-                        <div class="notes-list">
+                        <div class="notes-list" id="notesList">
                             <!-- Notas serão geradas por JavaScript -->
                         </div>
                         <div class="add-note" id="addNoteBtn">
@@ -742,16 +936,36 @@
                     </div>
                 </div>
                 
-                <!-- Tela de E-mail -->
+                <!-- Tela de nota individual -->
+                <div class="app-screen note-screen" id="noteScreen">
+                    <div class="app-header">
+                        <button class="back-btn" id="noteBackBtn"><i class="fas fa-arrow-left"></i></button>
+                        <div class="app-title">Nota</div>
+                    </div>
+                    <textarea class="note-editor" id="noteEditor" placeholder="Digite sua nota aqui..."></textarea>
+                </div>
+                
+                <!-- Tela de E-mail (lista) -->
                 <div class="app-screen" id="emailScreen">
                     <div class="app-header">
                         <button class="back-btn"><i class="fas fa-arrow-left"></i></button>
                         <div class="app-title">E-mail</div>
                     </div>
                     <div class="app-content">
-                        <div class="email-list">
+                        <div class="email-list" id="emailList">
                             <!-- E-mails serão gerados por JavaScript -->
                         </div>
+                    </div>
+                </div>
+                
+                <!-- Tela de e-mail individual -->
+                <div class="app-screen email-screen" id="emailDetailScreen">
+                    <div class="app-header">
+                        <button class="back-btn" id="emailDetailBackBtn"><i class="fas fa-arrow-left"></i></button>
+                        <div class="app-title">E-mail</div>
+                    </div>
+                    <div class="email-content" id="emailDetailContent">
+                        <!-- Conteúdo do e-mail será preenchido por JavaScript -->
                     </div>
                 </div>
                 
@@ -762,7 +976,7 @@
                         <div class="app-title">Galeria</div>
                     </div>
                     <div class="app-content">
-                        <div class="gallery-grid">
+                        <div class="gallery-grid" id="galleryGrid">
                             <!-- Imagens serão geradas por JavaScript -->
                         </div>
                     </div>
@@ -796,6 +1010,27 @@
         const closeViewer = document.querySelector('.close-viewer');
         const fullImage = document.getElementById('fullImage');
         const addNoteBtn = document.getElementById('addNoteBtn');
+        
+        // Elementos WhatsApp
+        const whatsappChatList = document.getElementById('whatsappChatList');
+        const whatsappChatScreen = document.getElementById('whatsappChatScreen');
+        const whatsappChatBack = document.getElementById('whatsappChatBack');
+        const chatContactInfo = document.getElementById('chatContactInfo');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessageBtn = document.getElementById('sendMessageBtn');
+        
+        // Elementos Notas
+        const notesList = document.getElementById('notesList');
+        const noteScreen = document.getElementById('noteScreen');
+        const noteEditor = document.getElementById('noteEditor');
+        const noteBackBtn = document.getElementById('noteBackBtn');
+        
+        // Elementos E-mail
+        const emailList = document.getElementById('emailList');
+        const emailDetailScreen = document.getElementById('emailDetailScreen');
+        const emailDetailContent = document.getElementById('emailDetailContent');
+        const emailDetailBackBtn = document.getElementById('emailDetailBackBtn');
         
         // Senha correta
         const CORRECT_PASSWORD = "1234";
@@ -878,7 +1113,7 @@
             });
         });
         
-        // Voltar para a tela inicial
+        // Voltar para a tela anterior
         backButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const currentAppScreen = this.closest('.app-screen');
@@ -896,35 +1131,179 @@
         });
         
         // Dados do WhatsApp
+        let currentChat = null;
+        const whatsappChats = [
+            {
+                id: 1,
+                name: "Maria Silva",
+                avatar: "M",
+                color: "#FF6B6B",
+                messages: [
+                    {text: "Oi, tudo bem?", sender: "them", time: "09:15"},
+                    {text: "Tudo sim! E você?", sender: "me", time: "09:16"},
+                    {text: "Também estou bem! Vamos nos encontrar hoje?", sender: "them", time: "09:17"},
+                    {text: "Claro! A que horas?", sender: "me", time: "09:18"},
+                    {text: "Que tal às 19h no shopping?", sender: "them", time: "09:20"},
+                    {text: "Perfeito! Te encontro lá!", sender: "me", time: "09:21"}
+                ]
+            },
+            {
+                id: 2,
+                name: "João Santos",
+                avatar: "J",
+                color: "#4ECDC4",
+                messages: [
+                    {text: "Bom dia! Conseguiu ver o arquivo que mandei?", sender: "them", time: "08:30"},
+                    {text: "Bom dia! Ainda não, estou no trabalho agora.", sender: "me", time: "08:35"},
+                    {text: "Sem problemas, quando puder dar uma olhada me avise.", sender: "them", time: "08:40"},
+                    {text: "Pode deixar, vou ver assim que chegar em casa.", sender: "me", time: "08:45"}
+                ]
+            },
+            {
+                id: 3,
+                name: "Ana Clara",
+                avatar: "A",
+                color: "#FFD166",
+                messages: [
+                    {text: "Muito obrigada pela ajuda com o projeto!", sender: "them", time: "Ontem"},
+                    {text: "Imagina! Fico feliz em ajudar.", sender: "me", time: "Ontem"},
+                    {text: "Sua contribuição foi essencial, mesmo!", sender: "them", time: "Ontem"}
+                ]
+            }
+        ];
+        
         function loadWhatsAppChats() {
-            const chatList = document.querySelector('.whatsapp .chat-list');
-            chatList.innerHTML = '';
+            whatsappChatList.innerHTML = '';
             
-            const chats = [
-                {name: "Maria Silva", lastMsg: "Ok, te encontro lá às 19h!", avatar: "M", color: "#FF6B6B"},
-                {name: "João Santos", lastMsg: "Mandei o arquivo por e-mail", avatar: "J", color: "#4ECDC4"},
-                {name: "Ana Clara", lastMsg: "Obrigada pela ajuda!", avatar: "A", color: "#FFD166"},
-                {name: "Carlos Eduardo", lastMsg: "A reunião foi adiada para amanhã", avatar: "C", color: "#06D6A0"},
-                {name: "Grupo da Família", lastMsg: "Tio: Alguém vai no mercado?", avatar: "F", color: "#118AB2"},
-                {name: "Luiz Fernando", lastMsg: "Vamos marcar aquela call?", avatar: "L", color: "#EF476F"},
-                {name: "Cláudia Mendes", lastMsg: "Preciso falar com você", avatar: "C", color: "#073B4C"},
-                {name: "Pedro Almeida", lastMsg: "Conseguiu resolver o problema?", avatar: "P", color: "#7209B7"}
-            ];
-            
-            chats.forEach(chat => {
+            whatsappChats.forEach(chat => {
+                const lastMsg = chat.messages[chat.messages.length - 1];
                 const chatItem = document.createElement('div');
                 chatItem.className = 'chat-item';
+                chatItem.dataset.chatId = chat.id;
                 
                 chatItem.innerHTML = `
                     <div class="chat-avatar" style="background-color: ${chat.color}">${chat.avatar}</div>
                     <div class="chat-info">
                         <div class="chat-name">${chat.name}</div>
-                        <div class="chat-last-msg">${chat.lastMsg}</div>
+                        <div class="chat-last-msg">${lastMsg.text}</div>
                     </div>
                 `;
                 
-                chatList.appendChild(chatItem);
+                chatItem.addEventListener('click', function() {
+                    openChat(chat.id);
+                });
+                
+                whatsappChatList.appendChild(chatItem);
             });
+        }
+        
+        function openChat(chatId) {
+            currentChat = whatsappChats.find(chat => chat.id === chatId);
+            
+            // Atualizar header da conversa
+            chatContactInfo.innerHTML = `
+                <div class="chat-contact-avatar" style="background-color: ${currentChat.color}">${currentChat.avatar}</div>
+                <div>
+                    <div style="font-weight: 600;">${currentChat.name}</div>
+                    <div style="font-size: 12px; opacity: 0.8;">Online</div>
+                </div>
+            `;
+            
+            // Carregar mensagens
+            chatMessages.innerHTML = '';
+            currentChat.messages.forEach(msg => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${msg.sender === 'me' ? 'sent' : 'received'}`;
+                
+                messageElement.innerHTML = `
+                    <div>${msg.text}</div>
+                    <div class="message-time">${msg.time}</div>
+                `;
+                
+                chatMessages.appendChild(messageElement);
+            });
+            
+            // Rolar para a última mensagem
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Mostrar tela da conversa
+            document.getElementById('whatsappScreen').classList.remove('active');
+            setTimeout(() => {
+                whatsappChatScreen.classList.add('active');
+            }, 50);
+        }
+        
+        // Voltar da conversa para a lista
+        whatsappChatBack.addEventListener('click', function() {
+            whatsappChatScreen.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('whatsappScreen').classList.add('active');
+            }, 50);
+        });
+        
+        // Enviar mensagem no WhatsApp
+        sendMessageBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (!text || !currentChat) return;
+            
+            // Adicionar mensagem ao chat atual
+            const now = new Date();
+            const time = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            currentChat.messages.push({
+                text: text,
+                sender: 'me',
+                time: time
+            });
+            
+            // Adicionar mensagem na tela
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message sent';
+            messageElement.innerHTML = `
+                <div>${text}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            chatMessages.appendChild(messageElement);
+            
+            // Limpar input e rolar para a nova mensagem
+            messageInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Resposta automática após 1 segundo
+            setTimeout(() => {
+                const replies = [
+                    "Entendi!",
+                    "Legal!",
+                    "Vou verificar isso.",
+                    "Perfeito!",
+                    "Obrigado!"
+                ];
+                const randomReply = replies[Math.floor(Math.random() * replies.length)];
+                
+                currentChat.messages.push({
+                    text: randomReply,
+                    sender: 'them',
+                    time: time
+                });
+                
+                const replyElement = document.createElement('div');
+                replyElement.className = 'message received';
+                replyElement.innerHTML = `
+                    <div>${randomReply}</div>
+                    <div class="message-time">${time}</div>
+                `;
+                
+                chatMessages.appendChild(replyElement);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
         }
         
         // Dados do Instagram
@@ -935,8 +1314,7 @@
             const posts = [
                 {username: "viagens_pelo_mundo", avatar: "V", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", desc: "Pôr do sol incrível hoje na praia! #viagem #praia #natureza"},
                 {username: "receitas_facil", avatar: "R", image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", desc: "Nova receita de bolo de chocolate que fiz hoje! Ficou uma delícia 🍫"},
-                {username: "tech_news", avatar: "T", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", desc: "Novo smartphone com câmera incrível acaba de ser lançado!"},
-                {username: "cultura_urbana", avatar: "C", image: "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", desc: "Arte de rua incrível que encontrei hoje no centro da cidade 🎨"}
+                {username: "tech_news", avatar: "T", image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80", desc: "Novo smartphone com câmera incrível acaba de ser lançado!"}
             ];
             
             posts.forEach(post => {
@@ -966,66 +1344,155 @@
         }
         
         // Dados de Notas
+        let currentNoteId = null;
+        let notes = [
+            {id: 1, title: "Lista de compras", content: "- Leite\n- Ovos\n- Pão\n- Frutas\n- Café"},
+            {id: 2, title: "Ideias para o projeto", content: "Melhorar a interface do usuário\nAdicionar mais funcionalidades\nOtimizar para mobile"},
+            {id: 3, title: "Reunião segunda-feira", content: "Assuntos:\n1. Apresentação do projeto\n2. Feedback da equipe\n3. Próximos passos"}
+        ];
+        
         function loadNotes() {
-            const notesList = document.querySelector('.notes-list');
             notesList.innerHTML = '';
-            
-            const notes = [
-                {title: "Lista de compras", content: "- Leite\n- Ovos\n- Pão\n- Frutas\n- Café"},
-                {title: "Ideias para o projeto", content: "Melhorar a interface do usuário\nAdicionar mais funcionalidades\nOtimizar para mobile"},
-                {title: "Reunião segunda-feira", content: "Assuntos:\n1. Apresentação do projeto\n2. Feedback da equipe\n3. Próximos passos"},
-                {title: "Livros para ler", content: "1. O poder do hábito\n2. Hábitos atômicos\n3. Como fazer amigos e influenciar pessoas"},
-                {title: "Metas para o mês", content: "• Finalizar o projeto GitHub\n• Aprender React Native\n• Fazer exercícios 3x na semana"}
-            ];
             
             notes.forEach(note => {
                 const noteElement = document.createElement('div');
                 noteElement.className = 'note-item';
+                noteElement.dataset.noteId = note.id;
+                
+                // Limitar conteúdo para visualização
+                const previewContent = note.content.length > 100 ? note.content.substring(0, 100) + "..." : note.content;
                 
                 noteElement.innerHTML = `
                     <div class="note-title">${note.title}</div>
-                    <div class="note-content">${note.content.replace(/\n/g, '<br>')}</div>
+                    <div class="note-content">${previewContent.replace(/\n/g, '<br>')}</div>
                 `;
+                
+                noteElement.addEventListener('click', function() {
+                    openNote(note.id);
+                });
                 
                 notesList.appendChild(noteElement);
             });
         }
         
+        function openNote(noteId) {
+            const note = notes.find(n => n.id === noteId);
+            if (!note) return;
+            
+            currentNoteId = noteId;
+            noteEditor.value = `${note.title}\n\n${note.content}`;
+            
+            // Mostrar tela da nota
+            document.getElementById('notesScreen').classList.remove('active');
+            setTimeout(() => {
+                noteScreen.classList.add('active');
+            }, 50);
+        }
+        
+        // Voltar da nota para a lista
+        noteBackBtn.addEventListener('click', function() {
+            // Salvar a nota antes de voltar
+            if (currentNoteId !== null) {
+                saveNote();
+            }
+            
+            noteScreen.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('notesScreen').classList.add('active');
+                loadNotes(); // Recarregar lista para mostrar atualizações
+            }, 50);
+        });
+        
+        // Salvar nota
+        function saveNote() {
+            if (currentNoteId === null) return;
+            
+            const content = noteEditor.value;
+            const lines = content.split('\n');
+            const title = lines[0] || "Nova Nota";
+            const noteContent = lines.slice(2).join('\n') || "";
+            
+            const noteIndex = notes.findIndex(n => n.id === currentNoteId);
+            if (noteIndex !== -1) {
+                notes[noteIndex].title = title;
+                notes[noteIndex].content = noteContent;
+            }
+        }
+        
         // Adicionar nova nota
         addNoteBtn.addEventListener('click', function() {
-            const notesList = document.querySelector('.notes-list');
-            const newNote = document.createElement('div');
-            newNote.className = 'note-item';
+            const newId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) + 1 : 1;
+            const newNote = {
+                id: newId,
+                title: "Nova Nota",
+                content: "Digite o conteúdo da sua nota aqui..."
+            };
             
-            newNote.innerHTML = `
-                <div class="note-title">Nova Nota</div>
-                <div class="note-content">Clique para editar esta nota...</div>
-            `;
-            
-            // Adicionar no início da lista
-            notesList.insertBefore(newNote, notesList.firstChild);
-            
-            // Rolar para a nova nota
-            newNote.scrollIntoView({behavior: 'smooth'});
+            notes.unshift(newNote);
+            openNote(newId);
         });
         
         // Dados de E-mail
+        const emails = [
+            {
+                id: 1,
+                sender: "GitHub Notifications",
+                senderInitial: "G",
+                subject: "Atividade recente no seu repositório",
+                time: "09:30",
+                body: `Olá!<br><br>
+Há novas contribuições no projeto "mobile-prototype".<br><br>
+<strong>Alterações recentes:</strong><br>
+- 3 novos commits<br>
+- 2 issues fechadas<br>
+- 1 pull request aprovado<br><br>
+Confira as alterações no link: https://github.com/seuusuario/mobile-prototype<br><br>
+Atenciosamente,<br>
+Equipe GitHub`
+            },
+            {
+                id: 2,
+                sender: "Amazon",
+                senderInitial: "A",
+                subject: "Seu pedido foi enviado",
+                time: "Ontem",
+                body: `Prezado cliente,<br><br>
+Seu pedido #123456789 foi enviado e chegará até sexta-feira, 19 de maio.<br><br>
+<strong>Itens do pedido:</strong><br>
+- Livro: Clean Code<br>
+- Fone de ouvido Bluetooth<br>
+- Carregador portátil<br><br>
+Acompanhe o rastreamento através do link: https://amazon.com/track/123456789<br><br>
+Atenciosamente,<br>
+Equipe Amazon`
+            },
+            {
+                id: 3,
+                sender: "LinkedIn",
+                senderInitial: "L",
+                subject: "Novas oportunidades de emprego",
+                time: "2 dias atrás",
+                body: `Olá!<br><br>
+Encontramos algumas vagas que combinam com seu perfil:<br><br>
+<strong>Desenvolvedor Front-end</strong><br>
+Empresa: Tech Solutions<br>
+Local: Remoto<br><br>
+<strong>UI/UX Designer</strong><br>
+Empresa: Design Studio<br>
+Local: São Paulo<br><br>
+Confira essas e outras oportunidades no LinkedIn.<br><br>
+Atenciosamente,<br>
+Equipe LinkedIn`
+            }
+        ];
+        
         function loadEmails() {
-            const emailList = document.querySelector('.email-list');
             emailList.innerHTML = '';
-            
-            const emails = [
-                {sender: "GitHub Notifications", subject: "Atividade recente no seu repositório", time: "09:30", preview: "Há novas contribuições no projeto 'mobile-prototype'. Confira as alterações..."},
-                {sender: "Amazon", subject: "Seu pedido foi enviado", time: "Ontem", preview: "Seu pedido #123456789 foi enviado e chegará até sexta-feira. Acompanhe o rastreamento..."},
-                {sender: "LinkedIn", subject: "Novas oportunidades de emprego", time: "2 dias atrás", preview: "Vagas que combinam com seu perfil: Desenvolvedor Front-end, UI/UX Designer..."},
-                {sender: "Netflix", subject: "Confira o que há de novo", time: "3 dias atrás", preview: "Novos lançamentos deste mês: Séries, filmes e documentários exclusivos..."},
-                {sender: "Banco Digital", subject: "Extrato mensal disponível", time: "5 dias atrás", preview: "Seu extrato de maio já está disponível. Acesse para ver suas transações..."},
-                {sender: "Coursera", subject: "Lembrete: Curso termina em 7 dias", time: "1 semana atrás", preview: "Complete os módulos restantes para receber seu certificado em Desenvolvimento Web..."}
-            ];
             
             emails.forEach(email => {
                 const emailElement = document.createElement('div');
                 emailElement.className = 'email-item';
+                emailElement.dataset.emailId = email.id;
                 
                 emailElement.innerHTML = `
                     <div class="email-header">
@@ -1033,16 +1500,53 @@
                         <div class="email-time">${email.time}</div>
                     </div>
                     <div class="email-subject">${email.subject}</div>
-                    <div class="email-preview">${email.preview}</div>
+                    <div class="email-preview">${email.body.replace(/<[^>]*>/g, '').substring(0, 100)}...</div>
                 `;
+                
+                emailElement.addEventListener('click', function() {
+                    openEmail(email.id);
+                });
                 
                 emailList.appendChild(emailElement);
             });
         }
         
+        function openEmail(emailId) {
+            const email = emails.find(e => e.id === emailId);
+            if (!email) return;
+            
+            emailDetailContent.innerHTML = `
+                <div class="email-full-header">
+                    <div class="email-full-subject">${email.subject}</div>
+                    <div class="email-full-sender">
+                        <div class="email-full-sender-avatar">${email.senderInitial}</div>
+                        <div>
+                            <div style="font-weight: 600;">${email.sender}</div>
+                            <div style="font-size: 14px; color: #666;">Para: eu@exemplo.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="email-full-body">${email.body}</div>
+            `;
+            
+            // Mostrar tela do e-mail
+            document.getElementById('emailScreen').classList.remove('active');
+            setTimeout(() => {
+                emailDetailScreen.classList.add('active');
+            }, 50);
+        }
+        
+        // Voltar do e-mail para a lista
+        emailDetailBackBtn.addEventListener('click', function() {
+            emailDetailScreen.classList.remove('active');
+            setTimeout(() => {
+                document.getElementById('emailScreen').classList.add('active');
+            }, 50);
+        });
+        
         // Dados da Galeria
         function loadGallery() {
-            const galleryGrid = document.querySelector('.gallery-grid');
+            const galleryGrid = document.getElementById('galleryGrid');
             galleryGrid.innerHTML = '';
             
             // Usando imagens do Unsplash para demonstração
