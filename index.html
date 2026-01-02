@@ -42,7 +42,7 @@
             position: relative;
         }
 
-        /* Tela de Bloqueio */
+        /* Tela de Bloqueio ATUALIZADA */
         .lock-screen {
             width: 100%;
             height: 100%;
@@ -154,6 +154,7 @@
             flex-direction: column;
         }
 
+        /* Status Bar ATUALIZADA - Ícones brancos */
         .status-bar {
             height: 28px;
             background: rgba(0,0,0,0.9);
@@ -163,6 +164,7 @@
             align-items: center;
             padding: 0 12px;
             font-size: 13px;
+            font-weight: 600;
         }
 
         .app-grid {
@@ -218,7 +220,7 @@
             line-height: 1.2;
         }
 
-        /* Tela do WhatsApp */
+        /* Tela do WhatsApp ATUALIZADA */
         .whatsapp-screen {
             width: 100%;
             height: 100%;
@@ -236,6 +238,7 @@
             padding: 12px 15px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 12px;
         }
 
@@ -254,9 +257,28 @@
             font-weight: 500;
         }
 
+        .new-conversation-button {
+            background: #00a884;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .new-conversation-button:hover {
+            background: #06cf9c;
+        }
+
         .conversations-list {
             flex: 1;
             overflow-y: auto;
+            position: relative;
         }
 
         .conversation {
@@ -267,6 +289,7 @@
             border-bottom: 1px solid #222e35;
             cursor: pointer;
             transition: background 0.2s;
+            position: relative;
         }
 
         .conversation:hover {
@@ -327,6 +350,38 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+
+        .conversation-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .conversation:hover .conversation-actions {
+            opacity: 1;
+        }
+
+        .conversation-action-button {
+            background: #202c33;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .conversation-action-button:hover {
+            background: #2a3942;
         }
 
         .chat-screen {
@@ -391,8 +446,6 @@
             background: #202c33;
             display: flex;
             gap: 10px;
-            pointer-events: none;
-            opacity: 0.7;
         }
 
         .chat-input input {
@@ -403,22 +456,119 @@
             padding: 8px 12px;
             color: white;
             font-size: 13px;
-            pointer-events: none;
         }
 
         .send-button {
-            background: #005c4b;
+            background: #00a884;
             color: white;
             border: none;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             font-size: 16px;
-            cursor: not-allowed;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            pointer-events: none;
+        }
+
+        .send-button:hover {
+            background: #06cf9c;
+        }
+
+        /* Modal para criar/editar conversa */
+        .conversation-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .conversation-modal-content {
+            background: #111b21;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            color: #8696a0;
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-input {
+            width: 100%;
+            background: #2a3942;
+            border: 1px solid #8696a0;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00a884;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .modal-button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-button.primary {
+            background: #00a884;
+            color: white;
+        }
+
+        .modal-button.secondary {
+            background: #2a3942;
+            color: white;
+        }
+
+        .modal-button.danger {
+            background: #ff3b30;
+            color: white;
+        }
+
+        .modal-button:hover {
+            opacity: 0.9;
         }
 
         /* Tela de Configurações */
@@ -1097,7 +1247,7 @@
             transform: scale(1.01);
         }
 
-        /* Tela do Instagram - ATUALIZADA */
+        /* Tela do Instagram ATUALIZADA */
         .instagram-screen {
             width: 100%;
             height: 100%;
@@ -1120,9 +1270,10 @@
             border-bottom: 1px solid #262626;
         }
 
+        /* Instagram title atualizado para ficar igual aos outros apps */
         .instagram-title {
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 17px;
+            font-weight: 500;
             flex: 1;
             text-align: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -1283,97 +1434,6 @@
             color: #8e8e8e;
             font-size: 11px;
             text-transform: uppercase;
-        }
-
-        /* Chat do Instagram */
-        .instagram-chat-screen {
-            width: 100%;
-            height: 100%;
-            background: #000;
-            display: none;
-            flex-direction: column;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .instagram-chat-header {
-            background: #000;
-            color: white;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            border-bottom: 1px solid #262626;
-        }
-
-        .instagram-chat-title {
-            font-size: 17px;
-            font-weight: 500;
-            flex: 1;
-            text-align: center;
-        }
-
-        .instagram-chat-list {
-            flex: 1;
-            overflow-y: auto;
-            background: #000;
-        }
-
-        .instagram-chat-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            gap: 12px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .instagram-chat-item:hover {
-            background: #262626;
-        }
-
-        .instagram-chat-avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-
-        .instagram-chat-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .instagram-chat-info {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .instagram-chat-name {
-            color: white;
-            font-weight: 500;
-            font-size: 15px;
-        }
-
-        .instagram-chat-last-message {
-            color: #a8a8a8;
-            font-size: 13px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .instagram-chat-time {
-            color: #737373;
-            font-size: 11px;
-            align-self: flex-start;
-            margin-top: 4px;
         }
 
         /* Modal para imagem ampliada */
@@ -1584,7 +1644,7 @@
                 </div>
             </div>
             
-            <!-- Tela Principal -->
+            <!-- Tela Principal (Instagram Chat removido) -->
             <div class="home-screen" id="homeScreen">
                 <div class="status-bar">
                     <span id="statusTime">00:00</span>
@@ -1627,12 +1687,6 @@
                         </div>
                         <div class="app-name">Instagram</div>
                     </div>
-                    <div class="app-icon" id="instagramChatApp">
-                        <div class="app-icon-img" style="background: #000;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM8 17.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zM9.5 8c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8zm6.5 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/%3E%3C/svg%3E" alt="Instagram Chat">
-                        </div>
-                        <div class="app-name">Instagram Chat</div>
-                    </div>
                 </div>
             </div>
             
@@ -1641,6 +1695,7 @@
                 <div class="whatsapp-header">
                     <button class="back-button" id="backFromWhatsapp">←</button>
                     <div class="whatsapp-title">WhatsApp</div>
+                    <button class="new-conversation-button" id="newConversationButton">+ Conversa</button>
                 </div>
                 <div class="conversations-list">
                     <!-- Conversas serão geradas aqui -->
@@ -1651,7 +1706,7 @@
             <div class="chat-screen" id="chatScreen">
                 <div class="chat-header">
                     <button class="back-button" id="backFromChat">←</button>
-                    <div class="whatsapp-title">Contato</div>
+                    <div class="whatsapp-title" id="chatContactName">Contato</div>
                 </div>
                 <div class="chat-messages" id="chatMessages">
                     <!-- Mensagens serão geradas aqui -->
@@ -1659,6 +1714,41 @@
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="Digite uma mensagem..." maxlength="200">
                     <button class="send-button" id="sendMessage">↑</button>
+                </div>
+            </div>
+            
+            <!-- Modal para criar/editar conversa -->
+            <div class="conversation-modal" id="conversationModal">
+                <div class="conversation-modal-content">
+                    <div class="modal-header" id="modalTitle">Nova Conversa</div>
+                    <div class="form-group">
+                        <label class="form-label" for="contactNameInput">Nome do Contato</label>
+                        <input type="text" class="form-input" id="contactNameInput" placeholder="Digite o nome do contato">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="messageDateInput">Data da Mensagem</label>
+                        <input type="date" class="form-input" id="messageDateInput">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="messageTimeInput">Hora da Mensagem</label>
+                        <input type="time" class="form-input" id="messageTimeInput">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="messageTypeSelect">Tipo de Mensagem</label>
+                        <select class="form-input" id="messageTypeSelect">
+                            <option value="received">Recebida</option>
+                            <option value="sent">Enviada</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="messageContentInput">Conteúdo da Mensagem</label>
+                        <textarea class="form-input" id="messageContentInput" rows="4" placeholder="Digite o conteúdo da mensagem"></textarea>
+                    </div>
+                    <div class="modal-buttons">
+                        <button class="modal-button primary" id="saveConversationButton">Salvar</button>
+                        <button class="modal-button secondary" id="cancelConversationButton">Cancelar</button>
+                        <button class="modal-button danger" id="deleteConversationButton" style="display: none;">Excluir</button>
+                    </div>
                 </div>
             </div>
             
@@ -1811,7 +1901,7 @@
                 </div>
             </div>
             
-            <!-- Tela do Instagram -->
+            <!-- Tela do Instagram ATUALIZADA -->
             <div class="instagram-screen" id="instagramScreen">
                 <div class="instagram-header">
                     <button class="back-button" id="backFromInstagram">←</button>
@@ -1820,17 +1910,6 @@
                 </div>
                 <div class="instagram-content" id="instagramContent">
                     <!-- Conteúdo do Instagram será gerado aqui -->
-                </div>
-            </div>
-            
-            <!-- Tela do Instagram Chat -->
-            <div class="instagram-chat-screen" id="instagramChatScreen">
-                <div class="instagram-chat-header">
-                    <button class="back-button" id="backFromInstagramChat">←</button>
-                    <div class="instagram-chat-title">Mensagens</div>
-                </div>
-                <div class="instagram-chat-list" id="instagramChatList">
-                    <!-- Conversas do Instagram serão geradas aqui -->
                 </div>
             </div>
             
@@ -1859,6 +1938,8 @@
         let currentEmail = null;
         let notes = [];
         let emails = [];
+        let conversations = [];
+        let editingConversationId = null;
         let currentImageIndex = 0;
         let likedPosts = new Set();
         
@@ -1969,60 +2050,8 @@
             ]
         };
 
-        // Conversas do Instagram
-        const instagramChats = [
-            {
-                id: 1,
-                name: "Maria Silva",
-                lastMessage: "Que foto incrível! Onde foi tirada?",
-                time: "2 min",
-                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: true
-            },
-            {
-                id: 2,
-                name: "João Fotógrafo",
-                lastMessage: "Obrigado pelo like!",
-                time: "1 h",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: false
-            },
-            {
-                id: 3,
-                name: "Ana Viagens",
-                lastMessage: "Vamos marcar uma viagem juntos?",
-                time: "3 h",
-                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: true
-            },
-            {
-                id: 4,
-                name: "Pedro Aventureiro",
-                lastMessage: "Viu meu último post? Foi épico!",
-                time: "Ontem",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: false
-            },
-            {
-                id: 5,
-                name: "Carla Design",
-                lastMessage: "Adorei sua última publicação ❤️",
-                time: "Ontem",
-                avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: false
-            },
-            {
-                id: 6,
-                name: "Lucas Tech",
-                lastMessage: "Vamos gravar aquele vídeo?",
-                time: "2 dias",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
-                unread: false
-            }
-        ];
-        
-        // Conversas do WhatsApp com datas organizadas
-        const conversations = [
+        // Dados iniciais das conversas do WhatsApp
+        const initialConversations = [
             {
                 id: 1,
                 name: "Maria Silva",
@@ -2124,6 +2153,17 @@
             }
         }
         
+        // Carregar conversas do WhatsApp do localStorage
+        function loadConversationsFromStorage() {
+            const savedConversations = localStorage.getItem('whatsappConversations');
+            if (savedConversations) {
+                conversations = JSON.parse(savedConversations);
+            } else {
+                conversations = JSON.parse(JSON.stringify(initialConversations));
+                saveConversationsToStorage();
+            }
+        }
+        
         // Salvar notas no localStorage
         function saveNotes() {
             localStorage.setItem('phoneSimulatorNotes', JSON.stringify(notes));
@@ -2132,6 +2172,11 @@
         // Salvar e-mails no localStorage
         function saveEmails() {
             localStorage.setItem('phoneSimulatorEmails', JSON.stringify(emails));
+        }
+        
+        // Salvar conversas no localStorage
+        function saveConversationsToStorage() {
+            localStorage.setItem('whatsappConversations', JSON.stringify(conversations));
         }
         
         // Carregar lista de notas
@@ -2171,7 +2216,7 @@
                     }
                 });
                 
-                // Evento para deletar nota (sem confirmação)
+                // Evento para deletar nota
                 const deleteBtn = noteElement.querySelector('.delete-note-btn');
                 deleteBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2230,6 +2275,74 @@
                 });
                 
                 emailList.appendChild(emailElement);
+            });
+        }
+        
+        // Carregar lista de conversas do WhatsApp
+        function loadConversationsList() {
+            const conversationsList = document.querySelector('.conversations-list');
+            conversationsList.innerHTML = '';
+            
+            if (conversations.length === 0) {
+                conversationsList.innerHTML = `
+                    <div style="color: #8696a0; text-align: center; padding: 30px 15px;">
+                        Nenhuma conversa.<br>
+                        Clique em "+ Conversa" para criar uma nova.
+                    </div>
+                `;
+                return;
+            }
+            
+            conversations.sort((a, b) => {
+                const dateMap = { "Hoje": 0, "Ontem": 1 };
+                const aDate = dateMap[a.date] || 2;
+                const bDate = dateMap[b.date] || 2;
+                return aDate - bDate;
+            });
+            
+            conversations.forEach(conversation => {
+                const conversationElement = document.createElement('div');
+                conversationElement.className = 'conversation';
+                conversationElement.dataset.id = conversation.id;
+                
+                conversationElement.innerHTML = `
+                    <div class="conversation-avatar">
+                        <img src="${conversation.avatar}" alt="${conversation.name}" 
+                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23667eea%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22>${conversation.name.charAt(0)}</text></svg>';">
+                    </div>
+                    <div class="conversation-info">
+                        <div class="conversation-header">
+                            <div class="conversation-name">${conversation.name}</div>
+                            <div class="conversation-date">${conversation.date}, ${conversation.time}</div>
+                        </div>
+                        <div class="conversation-preview">${conversation.lastMessage}</div>
+                    </div>
+                    <div class="conversation-actions">
+                        <button class="conversation-action-button edit-conversation" data-id="${conversation.id}">✏️</button>
+                        <button class="conversation-action-button delete-conversation" data-id="${conversation.id}">🗑️</button>
+                    </div>
+                `;
+                
+                conversationElement.addEventListener('click', (e) => {
+                    if (!e.target.closest('.conversation-actions')) {
+                        openChat(conversation);
+                    }
+                });
+                
+                // Eventos para editar e excluir
+                const editBtn = conversationElement.querySelector('.edit-conversation');
+                editBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openConversationModal(conversation.id);
+                });
+                
+                const deleteBtn = conversationElement.querySelector('.delete-conversation');
+                deleteBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    deleteConversation(conversation.id);
+                });
+                
+                conversationsList.appendChild(conversationElement);
             });
         }
         
@@ -2371,35 +2484,6 @@
             });
         }
         
-        // Carregar chat do Instagram
-        function loadInstagramChat() {
-            const chatList = document.getElementById('instagramChatList');
-            chatList.innerHTML = '';
-            
-            instagramChats.forEach(chat => {
-                const chatElement = document.createElement('div');
-                chatElement.className = 'instagram-chat-item';
-                chatElement.dataset.id = chat.id;
-                
-                chatElement.innerHTML = `
-                    <div class="instagram-chat-avatar">
-                        <img src="${chat.avatar}" alt="${chat.name}">
-                    </div>
-                    <div class="instagram-chat-info">
-                        <div class="instagram-chat-name">${chat.name}</div>
-                        <div class="instagram-chat-last-message">${chat.lastMessage}</div>
-                    </div>
-                    <div class="instagram-chat-time">${chat.time}</div>
-                `;
-                
-                if (chat.unread) {
-                    chatElement.style.fontWeight = '600';
-                }
-                
-                chatList.appendChild(chatElement);
-            });
-        }
-        
         // Abrir visualizador de nota
         function openNoteViewer(noteId) {
             const note = notes.find(n => n.id == noteId);
@@ -2441,6 +2525,238 @@
             document.getElementById('emailScreen').style.display = 'none';
             document.getElementById('emailViewerScreen').style.display = 'flex';
             currentScreen = "emailViewer";
+        }
+        
+        // Abrir modal de conversa do WhatsApp
+        function openConversationModal(conversationId = null) {
+            const modal = document.getElementById('conversationModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const deleteBtn = document.getElementById('deleteConversationButton');
+            
+            if (conversationId) {
+                // Modo edição
+                editingConversationId = conversationId;
+                const conversation = conversations.find(c => c.id === conversationId);
+                modalTitle.textContent = "Editar Conversa";
+                deleteBtn.style.display = 'block';
+                
+                // Preencher formulário
+                document.getElementById('contactNameInput').value = conversation.name;
+                document.getElementById('messageContentInput').value = conversation.lastMessage;
+                
+                // Definir data e hora atual como padrão
+                const now = new Date();
+                document.getElementById('messageDateInput').value = now.toISOString().split('T')[0];
+                document.getElementById('messageTimeInput').value = now.toTimeString().slice(0,5);
+                
+                // Definir tipo da última mensagem
+                const lastMessageType = conversation.messages[conversation.messages.length - 1]?.type;
+                document.getElementById('messageTypeSelect').value = lastMessageType || 'received';
+            } else {
+                // Modo criação
+                editingConversationId = null;
+                modalTitle.textContent = "Nova Conversa";
+                deleteBtn.style.display = 'none';
+                
+                // Limpar formulário
+                document.getElementById('contactNameInput').value = '';
+                document.getElementById('messageContentInput').value = '';
+                
+                // Definir data e hora atual como padrão
+                const now = new Date();
+                document.getElementById('messageDateInput').value = now.toISOString().split('T')[0];
+                document.getElementById('messageTimeInput').value = now.toTimeString().slice(0,5);
+                document.getElementById('messageTypeSelect').value = 'received';
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Fechar modal de conversa
+        function closeConversationModal() {
+            const modal = document.getElementById('conversationModal');
+            modal.style.display = 'none';
+            editingConversationId = null;
+        }
+        
+        // Salvar conversa do WhatsApp
+        function saveConversation() {
+            const name = document.getElementById('contactNameInput').value.trim();
+            const message = document.getElementById('messageContentInput').value.trim();
+            const date = document.getElementById('messageDateInput').value;
+            const time = document.getElementById('messageTimeInput').value;
+            const type = document.getElementById('messageTypeSelect').value;
+            
+            if (!name || !message) {
+                showNotification("Preencha todos os campos");
+                return;
+            }
+            
+            // Formatar data para exibição
+            const now = new Date();
+            const messageDate = new Date(date);
+            let displayDate = "Hoje";
+            
+            const diffDays = Math.floor((now - messageDate) / (1000 * 60 * 60 * 24));
+            if (diffDays === 1) {
+                displayDate = "Ontem";
+            } else if (diffDays > 1) {
+                displayDate = messageDate.toLocaleDateString('pt-BR');
+            }
+            
+            // Formatar hora
+            const displayTime = time || "00:00";
+            
+            if (editingConversationId) {
+                // Editar conversa existente
+                const conversation = conversations.find(c => c.id === editingConversationId);
+                if (conversation) {
+                    conversation.name = name;
+                    conversation.lastMessage = message;
+                    conversation.date = displayDate;
+                    conversation.time = displayTime;
+                    
+                    // Atualizar última mensagem na lista de mensagens
+                    const lastMessageIndex = conversation.messages.length - 1;
+                    if (lastMessageIndex >= 0 && conversation.messages[lastMessageIndex].type !== 'date') {
+                        conversation.messages[lastMessageIndex].text = message;
+                        conversation.messages[lastMessageIndex].time = displayTime;
+                        conversation.messages[lastMessageIndex].type = type;
+                    }
+                }
+            } else {
+                // Criar nova conversa
+                const newId = conversations.length > 0 ? Math.max(...conversations.map(c => c.id)) + 1 : 1;
+                
+                // Avatar aleatório
+                const avatars = [
+                    "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80"
+                ];
+                const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+                
+                const newConversation = {
+                    id: newId,
+                    name: name,
+                    lastMessage: message,
+                    date: displayDate,
+                    time: displayTime,
+                    avatar: randomAvatar,
+                    messages: [
+                        { date: displayDate, type: "date" },
+                        { text: message, time: displayTime, type: type }
+                    ]
+                };
+                
+                conversations.push(newConversation);
+            }
+            
+            saveConversationsToStorage();
+            loadConversationsList();
+            closeConversationModal();
+            showNotification(editingConversationId ? "Conversa atualizada!" : "Conversa criada!");
+        }
+        
+        // Deletar conversa do WhatsApp
+        function deleteConversation(conversationId) {
+            if (confirm("Tem certeza que deseja excluir esta conversa?")) {
+                const index = conversations.findIndex(c => c.id === conversationId);
+                if (index > -1) {
+                    conversations.splice(index, 1);
+                    saveConversationsToStorage();
+                    loadConversationsList();
+                    showNotification("Conversa excluída!");
+                    
+                    // Se está visualizando a conversa deletada, voltar
+                    if (currentChat && currentChat.id === conversationId) {
+                        goBack();
+                    }
+                }
+            }
+        }
+        
+        // Abrir chat do WhatsApp
+        function openChat(conversation) {
+            const whatsappScreen = document.getElementById('whatsappScreen');
+            const chatScreen = document.getElementById('chatScreen');
+            const chatName = document.getElementById('chatContactName');
+            const chatMessages = document.getElementById('chatMessages');
+            
+            currentChat = conversation;
+            chatName.textContent = conversation.name;
+            
+            // Carregar mensagens
+            chatMessages.innerHTML = '';
+            
+            let lastDate = '';
+            conversation.messages.forEach(message => {
+                if (message.type === "date") {
+                    const dateDivider = document.createElement('div');
+                    dateDivider.className = 'chat-date-divider';
+                    dateDivider.innerHTML = `<div class="chat-date-text">${message.date}</div>`;
+                    chatMessages.appendChild(dateDivider);
+                    lastDate = message.date;
+                } else {
+                    const messageElement = document.createElement('div');
+                    messageElement.className = `message ${message.type}`;
+                    messageElement.innerHTML = `
+                        ${message.text}
+                        <div class="message-time">${message.time}</div>
+                    `;
+                    chatMessages.appendChild(messageElement);
+                }
+            });
+            
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            whatsappScreen.style.display = 'none';
+            chatScreen.style.display = 'flex';
+            currentScreen = "chat";
+        }
+        
+        // Enviar mensagem no chat do WhatsApp
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (!message || !currentChat) return;
+            
+            const now = new Date();
+            const time = now.toTimeString().slice(0,5);
+            
+            // Adicionar mensagem à conversa atual
+            const conversation = conversations.find(c => c.id === currentChat.id);
+            if (conversation) {
+                // Verificar se precisa adicionar divisor de data
+                const today = new Date().toLocaleDateString('pt-BR');
+                if (conversation.date !== "Hoje") {
+                    conversation.messages.push({ date: "Hoje", type: "date" });
+                    conversation.date = "Hoje";
+                }
+                
+                conversation.messages.push({ text: message, time: time, type: "sent" });
+                conversation.lastMessage = message;
+                conversation.time = time;
+                
+                saveConversationsToStorage();
+                loadConversationsList();
+                
+                // Adicionar mensagem à tela
+                const chatMessages = document.getElementById('chatMessages');
+                const messageElement = document.createElement('div');
+                messageElement.className = 'message sent';
+                messageElement.innerHTML = `
+                    ${message}
+                    <div class="message-time">${time}</div>
+                `;
+                chatMessages.appendChild(messageElement);
+                
+                // Limpar input e rolar para baixo
+                input.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
         }
         
         // Abrir editor de nota
@@ -2490,14 +2806,6 @@
             document.getElementById('instagramScreen').style.display = 'flex';
             currentScreen = "instagram";
             loadInstagram();
-        }
-        
-        // Abrir chat do Instagram
-        function openInstagramChat() {
-            document.getElementById('homeScreen').style.display = 'none';
-            document.getElementById('instagramChatScreen').style.display = 'flex';
-            currentScreen = "instagramChat";
-            loadInstagramChat();
         }
         
         // Abrir modal de imagem ampliada
@@ -2559,7 +2867,7 @@
             modal.style.display = 'none';
         }
         
-        // Deletar nota (sem confirmação)
+        // Deletar nota
         function deleteNote(noteId) {
             const index = notes.findIndex(n => n.id == noteId);
             if (index > -1) {
@@ -2669,73 +2977,15 @@
             currentScreen = "email";
         }
         
-        // Carregar conversas do WhatsApp com datas
-        function loadConversations() {
-            const conversationsList = document.querySelector('.conversations-list');
-            conversationsList.innerHTML = '';
+        // Mostrar notificação
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
             
-            conversations.forEach(conversation => {
-                const conversationElement = document.createElement('div');
-                conversationElement.className = 'conversation';
-                conversationElement.innerHTML = `
-                    <div class="conversation-avatar">
-                        <img src="${conversation.avatar}" alt="${conversation.name}" 
-                             onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23667eea%22/><text x=%2250%22 y=%2260%22 text-anchor=%22middle%22 font-size=%2240%22 fill=%22white%22>${conversation.name.charAt(0)}</text></svg>';">
-                    </div>
-                    <div class="conversation-info">
-                        <div class="conversation-header">
-                            <div class="conversation-name">${conversation.name}</div>
-                            <div class="conversation-date">${conversation.date}, ${conversation.time}</div>
-                        </div>
-                        <div class="conversation-preview">${conversation.lastMessage}</div>
-                    </div>
-                `;
-                
-                conversationElement.addEventListener('click', () => openChat(conversation));
-                conversationsList.appendChild(conversationElement);
-            });
-        }
-
-        // Abrir chat com datas organizadas
-        function openChat(conversation) {
-            const whatsappScreen = document.getElementById('whatsappScreen');
-            const chatScreen = document.getElementById('chatScreen');
-            const chatHeader = chatScreen.querySelector('.whatsapp-title');
-            const chatMessages = document.getElementById('chatMessages');
-            
-            currentChat = conversation;
-            chatHeader.textContent = conversation.name;
-            
-            // Carregar mensagens com datas
-            chatMessages.innerHTML = '';
-            
-            let lastDate = '';
-            conversation.messages.forEach(message => {
-                if (message.type === "date") {
-                    // Adicionar divisor de data
-                    const dateDivider = document.createElement('div');
-                    dateDivider.className = 'chat-date-divider';
-                    dateDivider.innerHTML = `<div class="chat-date-text">${message.date}</div>`;
-                    chatMessages.appendChild(dateDivider);
-                    lastDate = message.date;
-                } else {
-                    const messageElement = document.createElement('div');
-                    messageElement.className = `message ${message.type}`;
-                    messageElement.innerHTML = `
-                        ${message.text}
-                        <div class="message-time">${message.time}</div>
-                    `;
-                    chatMessages.appendChild(messageElement);
-                }
-            });
-            
-            // Rolar para baixo
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            
-            // Transição
-            whatsappScreen.style.display = 'none';
-            chatScreen.style.display = 'flex';
-            currentScreen = "chat";
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
         }
 
         // Atualizar data e hora
@@ -2832,7 +3082,6 @@
             const emailComposerScreen = document.getElementById('emailComposerScreen');
             const galleryScreen = document.getElementById('galleryScreen');
             const instagramScreen = document.getElementById('instagramScreen');
-            const instagramChatScreen = document.getElementById('instagramChatScreen');
             
             switch(currentScreen) {
                 case "chat":
@@ -2895,11 +3144,6 @@
                     homeScreen.style.display = 'flex';
                     currentScreen = "home";
                     break;
-                case "instagramChat":
-                    instagramChatScreen.style.display = 'none';
-                    homeScreen.style.display = 'flex';
-                    currentScreen = "home";
-                    break;
                 case "home":
                     // Voltar para tela de bloqueio
                     homeScreen.style.display = 'none';
@@ -2954,15 +3198,15 @@
             loadInstagram();
         }
         
-        // Abrir chat do Instagram
-        function openInstagramChatApp() {
+        // Abrir galeria
+        function openGalleryApp() {
             const homeScreen = document.getElementById('homeScreen');
-            const instagramChatScreen = document.getElementById('instagramChatScreen');
+            const galleryScreen = document.getElementById('galleryScreen');
             
             homeScreen.style.display = 'none';
-            instagramChatScreen.style.display = 'flex';
-            currentScreen = "instagramChat";
-            loadInstagramChat();
+            galleryScreen.style.display = 'flex';
+            currentScreen = "gallery";
+            loadGallery();
         }
 
         // Inicialização
@@ -2970,13 +3214,14 @@
             // Carregar dados
             loadNotes();
             loadEmails();
+            loadConversationsFromStorage();
             
             // Atualizar data e hora
             updateDateTime();
             setInterval(updateDateTime, 60000);
             
-            // Carregar conversas
-            loadConversations();
+            // Carregar lista de conversas inicialmente
+            loadConversationsList();
             
             // Eventos do teclado numérico
             document.querySelectorAll('.key[data-key]').forEach(key => {
@@ -3004,14 +3249,37 @@
                 document.getElementById('homeScreen').style.display = 'none';
                 document.getElementById('whatsappScreen').style.display = 'flex';
                 currentScreen = "whatsapp";
+                loadConversationsList();
+            });
+            
+            // Botão de nova conversa no WhatsApp
+            document.getElementById('newConversationButton').addEventListener('click', () => {
+                openConversationModal();
+            });
+            
+            // Botões do modal de conversa
+            document.getElementById('saveConversationButton').addEventListener('click', saveConversation);
+            document.getElementById('cancelConversationButton').addEventListener('click', closeConversationModal);
+            document.getElementById('deleteConversationButton').addEventListener('click', () => {
+                if (editingConversationId) {
+                    deleteConversation(editingConversationId);
+                    closeConversationModal();
+                }
+            });
+            
+            // Enviar mensagem no chat
+            document.getElementById('sendMessage').addEventListener('click', sendMessage);
+            document.getElementById('messageInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
             });
             
             document.getElementById('settingsApp').addEventListener('click', openSettings);
             document.getElementById('notesApp').addEventListener('click', openNotes);
             document.getElementById('emailApp').addEventListener('click', openEmail);
-            document.getElementById('galleryApp').addEventListener('click', openGallery);
+            document.getElementById('galleryApp').addEventListener('click', openGalleryApp);
             document.getElementById('instagramApp').addEventListener('click', openInstagramApp);
-            document.getElementById('instagramChatApp').addEventListener('click', openInstagramChatApp);
             
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
@@ -3025,7 +3293,6 @@
             document.getElementById('backFromComposer').addEventListener('click', goBack);
             document.getElementById('backFromGallery').addEventListener('click', goBack);
             document.getElementById('backFromInstagram').addEventListener('click', goBack);
-            document.getElementById('backFromInstagramChat').addEventListener('click', goBack);
             
             // Eventos do modal de imagem
             document.getElementById('closeModal').addEventListener('click', closeImageModal);
