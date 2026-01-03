@@ -2410,31 +2410,40 @@
                     </div>
                     <div class="app-icon" id="instagramApp">
                         <div class="app-icon-img" style="background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);">
-                            <!-- Ícones brancos para Instagram -->
-                            <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                            <!-- ÍCONE DO INSTAGRAM CORRIGIDO - SVG COM CÂMERA MAIOR -->
+                            <svg viewBox="0 0 24 24" width="42" height="42" style="transform: scale(1.2);">
+                                <defs>
+                                    <linearGradient id="insta-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#405de6;stop-opacity:1" />
+                                        <stop offset="25%" style="stop-color:#5851db;stop-opacity:1" />
+                                        <stop offset="50%" style="stop-color:#833ab4;stop-opacity:1" />
+                                        <stop offset="75%" style="stop-color:#c13584;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#fd1d1d;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <path fill="url(#insta-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                             </svg>
                         </div>
                         <div class="app-name">Instagram</div>
                     </div>
-                    <!-- Apps adicionais para preencher o grid 3xN -->
-                    <div class="app-icon" id="cameraApp">
+                    <!-- Apps adicionais mantidos para preencher o grid 3xN -->
+                    <div class="app-icon" id="musicApp">
                         <div class="app-icon-img" style="background: #32d74b;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m10 10.5a2.5 2.5 0 0 1-2.5-2.5a2.5 2.5 0 0 1 2.5-2.5a2.5 2.5 0 0 1 2.5 2.5a2.5 2.5 0 0 1-2.5 2.5Z'/%3E%3C/svg%3E" alt="Câmera">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z'/%3E%3C/svg%3E" alt="Música">
                         </div>
-                        <div class="app-name">Câmera</div>
+                        <div class="app-name">Música</div>
                     </div>
-                    <div class="app-icon" id="calendarApp">
+                    <div class="app-icon" id="browserApp">
                         <div class="app-icon-img" style="background: #5ac8fa;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M19 19H5V8h14m-3-7v2H8V1H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z'/%3E%3C/svg%3E" alt="Calendário">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/%3E%3C/svg%3E" alt="Navegador">
                         </div>
-                        <div class="app-name">Calendário</div>
+                        <div class="app-name">Navegador</div>
                     </div>
-                    <div class="app-icon" id="mapsApp">
+                    <div class="app-icon" id="calculatorApp">
                         <div class="app-icon-img" style="background: #ff453a;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7m0 9.5a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5Z'/%3E%3C/svg%3E" alt="Mapas">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m0 2v4h10V4H7m0 6v2h2v-2H7m4 0v2h2v-2h-2m4 0v2h2v-2h-2m-8 4v2h2v-2H7m4 0v2h2v-2h-2m4 0v2h2v-2h-2m-8 4v2h2v-2H7m4 0v2h2v-2h-2m4 0v2h2v-2h-2Z'/%3E%3C/svg%3E" alt="Calculadora">
                         </div>
-                        <div class="app-name">Mapas</div>
+                        <div class="app-name">Calculadora</div>
                     </div>
                 </div>
             </div>
@@ -2612,8 +2621,8 @@
                     <div class="note-editor-actions">
                         <button class="note-editor-action-button" id="editEmailButton">Editar</button>
                         <button class="delete-button note-editor-action-button" id="deleteEmailButton">Excluir</button>
-                        <!-- NOVO BOTÃO: MARCAR COMO NÃO LIDO -->
-                        <button class="note-editor-action-button" id="markUnreadEmailButton" style="background: #ff9500;">Marcar como não lido</button>
+                        <!-- NOVO BOTÃO: MARCAR COMO NÃO LIDO/LIDO -->
+                        <button class="note-editor-action-button" id="toggleReadEmailButton" style="background: #ff9500;">Marcar como não lido</button>
                     </div>
                 </div>
                 <div class="email-viewer-content">
@@ -2663,6 +2672,11 @@
                     <div class="email-editor-datetime">
                         <input type="date" class="datetime-input" id="editEmailDateInput">
                         <input type="time" class="datetime-input" id="editEmailTimeInput">
+                    </div>
+                    <!-- NOVO: CHECKBOX PARA MARCAR COMO LIDO/NÃO LIDO -->
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 8px; background: #1c1c1e; border-radius: 8px;">
+                        <input type="checkbox" id="editEmailReadStatus" style="width: 18px; height: 18px;">
+                        <label for="editEmailReadStatus" style="color: white; font-size: 14px;">Marcar como lido</label>
                     </div>
                     <textarea class="email-body-input" id="editEmailBodyInput" placeholder="Digite sua mensagem..." maxlength="2000"></textarea>
                     <button class="send-email-button" id="saveEditedEmailButton">Salvar Alterações</button>
@@ -2739,6 +2753,15 @@
                 <div>
                     <div class="editor-label">Nome do Contato</div>
                     <input type="text" class="editor-input" id="editContactName" placeholder="Digite o nome" maxlength="30">
+                </div>
+                
+                <!-- NOVO CAMPO: LINK DA FOTO DE PERFIL -->
+                <div>
+                    <div class="editor-label">Link da Foto de Perfil (Opcional)</div>
+                    <input type="text" class="editor-input" id="editContactAvatar" placeholder="https://exemplo.com/foto-perfil.jpg" maxlength="500">
+                    <div style="color: #8696a0; font-size: 11px; margin-top: 4px;">
+                        Deixe em branco para usar avatar padrão
+                    </div>
                 </div>
                 
                 <div>
@@ -3300,10 +3323,16 @@
         function updateHomeScreenBackground() {
             const homeScreen = document.getElementById('homeScreen');
             if (homeScreenBackground && homeScreenBackground !== 'none') {
-                homeScreen.style.backgroundImage = `url('${homeScreenBackground}')`;
-                homeScreen.style.backgroundSize = 'cover';
-                homeScreen.style.backgroundPosition = 'center';
-                homeScreen.style.backgroundRepeat = 'no-repeat';
+                if (homeScreenBackground.startsWith('http') || homeScreenBackground.startsWith('url')) {
+                    homeScreen.style.backgroundImage = `url('${homeScreenBackground.replace('url(', '').replace(')', '').replace(/'/g, '')}')`;
+                    homeScreen.style.backgroundSize = 'cover';
+                    homeScreen.style.backgroundPosition = 'center';
+                    homeScreen.style.backgroundRepeat = 'no-repeat';
+                    homeScreen.style.background = 'none';
+                } else if (homeScreenBackground.startsWith('linear-gradient')) {
+                    homeScreen.style.background = homeScreenBackground;
+                    homeScreen.style.backgroundImage = '';
+                }
             } else {
                 homeScreen.style.backgroundImage = '';
                 homeScreen.style.background = '#000';
@@ -3686,6 +3715,16 @@
             currentEmail = email;
             editingEmailId = emailId;
             
+            // Atualizar botão de marcar como lido/não lido
+            const toggleButton = document.getElementById('toggleReadEmailButton');
+            if (email.read) {
+                toggleButton.textContent = "Marcar como não lido";
+                toggleButton.style.background = "#ff9500";
+            } else {
+                toggleButton.textContent = "Marcar como lido";
+                toggleButton.style.background = "#007aff";
+            }
+            
             document.getElementById('emailViewerMeta').innerHTML = `
                 <div class="email-viewer-from">${email.from} &lt;${email.fromEmail}&gt;</div>
                 <div class="email-viewer-to">Para: ${email.to}</div>
@@ -3725,26 +3764,38 @@
                 });
             }
             
+            // Marcar e-mail como lido quando aberto
+            if (!email.read) {
+                email.read = true;
+                saveEmails();
+                loadEmailsList();
+            }
+            
             document.getElementById('emailScreen').style.display = 'none';
             document.getElementById('emailViewerScreen').style.display = 'flex';
             currentScreen = "emailViewer";
         }
         
-        // Marcar e-mail como não lido
-        function markEmailAsUnread(emailId) {
+        // Alternar status de lido/não lido do e-mail
+        function toggleEmailReadStatus(emailId) {
             const email = emails.find(e => e.id == emailId);
             if (!email) return;
             
-            email.read = false;
+            email.read = !email.read;
             saveEmails();
             loadEmailsList();
             
-            // Voltar para lista de e-mails
-            document.getElementById('emailViewerScreen').style.display = 'none';
-            document.getElementById('emailScreen').style.display = 'flex';
-            currentScreen = "email";
+            // Atualizar botão no visualizador
+            const toggleButton = document.getElementById('toggleReadEmailButton');
+            if (email.read) {
+                toggleButton.textContent = "Marcar como não lido";
+                toggleButton.style.background = "#ff9500";
+            } else {
+                toggleButton.textContent = "Marcar como lido";
+                toggleButton.style.background = "#007aff";
+            }
             
-            showNotification('E-mail marcado como não lido!');
+            showNotification(`E-mail marcado como ${email.read ? 'lido' : 'não lido'}!`);
         }
         
         // Abrir anexo
@@ -3831,6 +3882,9 @@
             } else {
                 document.getElementById('editEmailAttachmentInput').value = '';
             }
+            
+            // Status de lido/não lido
+            document.getElementById('editEmailReadStatus').checked = email.read;
             
             // Extrair data e hora do e-mail
             const emailDate = new Date(email.date);
@@ -4186,6 +4240,7 @@
             const body = document.getElementById('editEmailBodyInput').value.trim();
             const date = document.getElementById('editEmailDateInput').value;
             const time = document.getElementById('editEmailTimeInput').value;
+            const readStatus = document.getElementById('editEmailReadStatus').checked;
             
             if (!from || !to || !subject || !body) {
                 showNotification('Preencha todos os campos obrigatórios!', 'error');
@@ -4198,6 +4253,7 @@
             email.to = to;
             email.subject = subject;
             email.body = body;
+            email.read = readStatus;
             
             // Atualizar data
             const dateTimeString = `${date} ${time}`;
@@ -4454,10 +4510,12 @@
                 const conversation = conversations.find(c => c.id === conversationId);
                 if (conversation) {
                     document.getElementById('editContactName').value = conversation.name;
+                    document.getElementById('editContactAvatar').value = conversation.avatar;
                 }
             } else {
                 title.textContent = "Nova Conversa";
                 document.getElementById('editContactName').value = '';
+                document.getElementById('editContactAvatar').value = '';
             }
             
             // Resetar campos
@@ -4525,6 +4583,7 @@
         // Adicionar mensagem à conversa
         function addMessageToConversation() {
             const contactName = document.getElementById('editContactName').value.trim();
+            const contactAvatar = document.getElementById('editContactAvatar').value.trim();
             const messageDate = document.getElementById('editMessageDate').value;
             const messageTime = document.getElementById('editMessageTime').value;
             const messageContent = document.getElementById('editMessageContent').value.trim();
@@ -4552,6 +4611,12 @@
             let conversation;
             if (editingConversationId) {
                 conversation = conversations.find(c => c.id === editingConversationId);
+                if (conversation) {
+                    // Atualizar avatar se fornecido
+                    if (contactAvatar) {
+                        conversation.avatar = contactAvatar;
+                    }
+                }
             } else {
                 // Criar nova conversa
                 const newId = conversations.length > 0 ? Math.max(...conversations.map(c => c.id)) + 1 : 1;
@@ -4561,7 +4626,7 @@
                     lastMessage: messageContent || (mediaLink ? 'Mídia' : 'Mensagem'),
                     date: dateString,
                     time: messageTime,
-                    avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(contactName)}&background=667eea&color=fff`,
+                    avatar: contactAvatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(contactName)}&background=667eea&color=fff`,
                     messages: []
                 };
                 conversations.push(conversation);
@@ -4808,10 +4873,16 @@
             
             // Atualizar preview com fundo atual
             if (homeScreenBackground && homeScreenBackground !== 'none') {
-                preview.style.backgroundImage = `url('${homeScreenBackground}')`;
-                preview.style.backgroundSize = 'cover';
-                preview.style.backgroundPosition = 'center';
-                preview.style.backgroundRepeat = 'no-repeat';
+                if (homeScreenBackground.startsWith('http') || homeScreenBackground.startsWith('url')) {
+                    preview.style.backgroundImage = `url('${homeScreenBackground.replace('url(', '').replace(')', '').replace(/'/g, '')}')`;
+                    preview.style.backgroundSize = 'cover';
+                    preview.style.backgroundPosition = 'center';
+                    preview.style.backgroundRepeat = 'no-repeat';
+                    preview.style.background = 'none';
+                } else if (homeScreenBackground.startsWith('linear-gradient')) {
+                    preview.style.background = homeScreenBackground;
+                    preview.style.backgroundImage = '';
+                }
             } else {
                 preview.style.backgroundImage = '';
                 preview.style.background = '#000';
@@ -5186,6 +5257,17 @@
             document.getElementById('galleryApp').addEventListener('click', openGallery);
             document.getElementById('instagramApp').addEventListener('click', openInstagramApp);
             
+            // Novos apps adicionados
+            document.getElementById('musicApp').addEventListener('click', () => {
+                showNotification('App de Música em desenvolvimento!');
+            });
+            document.getElementById('browserApp').addEventListener('click', () => {
+                showNotification('Navegador em desenvolvimento!');
+            });
+            document.getElementById('calculatorApp').addEventListener('click', () => {
+                showNotification('Calculadora em desenvolvimento!');
+            });
+            
             // Eventos dos botões de voltar
             document.getElementById('backFromWhatsapp').addEventListener('click', goBack);
             document.getElementById('backFromChat').addEventListener('click', goBack);
@@ -5247,9 +5329,10 @@
                     deleteEmail(currentEmail.id);
                 }
             });
-            document.getElementById('markUnreadEmailButton').addEventListener('click', () => {
+            // NOVO: Evento para o botão de marcar como lido/não lido
+            document.getElementById('toggleReadEmailButton').addEventListener('click', () => {
                 if (currentEmail) {
-                    markEmailAsUnread(currentEmail.id);
+                    toggleEmailReadStatus(currentEmail.id);
                 }
             });
             document.getElementById('saveEditedEmailButton').addEventListener('click', saveEditedEmail);
