@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Celular</title>
+    <title>Simulador de Celular - Versão Completa</title>
     <style>
+        /* RESET E CONFIGURAÇÕES GERAIS */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +43,7 @@
             position: relative;
         }
 
-        /* Tela de Bloqueio - COM TECLADO PARA CIMA */
+        /* TELA DE BLOQUEIO - COM CONFIGURAÇÃO DE IMAGEM */
         .lock-screen {
             width: 100%;
             height: 100%;
@@ -56,11 +57,18 @@
             position: absolute;
             top: 0;
             left: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .time-container {
             text-align: center;
             margin-top: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .time {
@@ -71,8 +79,15 @@
 
         .date {
             font-size: 18px;
-            opacity: 0.8;
+            opacity: 0.9;
             margin-top: 8px;
+        }
+
+        .lock-screen-info {
+            text-align: center;
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 10px;
         }
 
         .keypad {
@@ -82,6 +97,10 @@
             width: 100%;
             max-width: 260px;
             margin: 10px 0 0;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
 
         .key {
@@ -145,25 +164,28 @@
             opacity: 0.8;
         }
 
-        /* Tela Principal */
+        /* TELA PRINCIPAL */
         .home-screen {
             width: 100%;
             height: 100%;
             background: #000;
             display: none;
             flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* Status bar com ícones brancos */
         .status-bar {
             height: 28px;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0,0,0,0.7);
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 12px;
             font-size: 13px;
+            backdrop-filter: blur(10px);
         }
 
         .status-icons {
@@ -223,9 +245,10 @@
             max-width: 55px;
             word-wrap: break-word;
             line-height: 1.2;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
         }
 
-        /* Tela do WhatsApp - NOVA VERSÃO COM EDITOR DE CONVERSAS */
+        /* TELA DO WHATSAPP - COM LINK DE ARQUIVOS */
         .whatsapp-screen {
             width: 100%;
             height: 100%;
@@ -428,12 +451,44 @@
             margin-bottom: 5px;
             border-radius: 8px;
             overflow: hidden;
+            cursor: pointer;
+            position: relative;
         }
 
-        .message-media img {
+        .message-media img, .message-media video {
             width: 100%;
             height: auto;
             display: block;
+        }
+
+        .message-media-pdf {
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .message-media-pdf-icon {
+            font-size: 24px;
+            color: #ff3b30;
+        }
+
+        .message-media-pdf-info {
+            flex: 1;
+        }
+
+        .message-media-pdf-name {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .message-media-pdf-size {
+            font-size: 10px;
+            color: #666;
         }
 
         .chat-input {
@@ -455,6 +510,12 @@
 
         .chat-input input:focus {
             outline: none;
+        }
+
+        .chat-input-actions {
+            display: flex;
+            gap: 5px;
+            align-items: center;
         }
 
         .send-button {
@@ -481,7 +542,21 @@
             opacity: 0.5;
         }
 
-        /* Tela de Configurações */
+        .media-button {
+            background: #2a3942;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* TELA DE CONFIGURAÇÕES COM CONFIGURAÇÃO DE FUNDO */
         .settings-screen {
             width: 100%;
             height: 100%;
@@ -520,6 +595,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            cursor: pointer;
         }
 
         .settings-item:active {
@@ -552,7 +628,7 @@
             font-size: 12px;
         }
 
-        /* Tela de Notas */
+        /* TELA DE NOTAS COM EDIÇÃO COMPLETA */
         .notes-screen {
             width: 100%;
             height: 100%;
@@ -734,6 +810,9 @@
             flex: 1;
             background: #000;
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         .note-editor-textarea {
@@ -750,6 +829,25 @@
 
         .note-editor-textarea:focus {
             outline: none;
+        }
+
+        .note-editor-datetime {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            background: #1c1c1e;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .datetime-input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid #2c2c2e;
+            color: white;
+            padding: 6px;
+            border-radius: 4px;
+            font-size: 12px;
         }
 
         .note-viewer-screen {
@@ -798,7 +896,7 @@
             border-top: 1px solid #2c2c2e;
         }
 
-        /* Tela de E-mail */
+        /* TELA DE E-MAIL COM ANEXOS POR LINK */
         .email-screen {
             width: 100%;
             height: 100%;
@@ -1003,6 +1101,40 @@
             word-wrap: break-word;
         }
 
+        .email-attachments {
+            padding: 15px;
+            border-top: 1px solid #2c2c2e;
+        }
+
+        .attachment-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: #1c1c1e;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .attachment-icon {
+            font-size: 24px;
+        }
+
+        .attachment-info {
+            flex: 1;
+        }
+
+        .attachment-name {
+            color: white;
+            font-size: 13px;
+        }
+
+        .attachment-size {
+            color: #8e8e93;
+            font-size: 11px;
+        }
+
         .email-composer-screen {
             width: 100%;
             height: 100%;
@@ -1074,6 +1206,21 @@
             border-color: #007aff;
         }
 
+        .email-attachment-input {
+            background: #1c1c1e;
+            border: 1px dashed #2c2c2e;
+            border-radius: 8px;
+            padding: 12px;
+            color: #8e8e93;
+            font-size: 13px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .email-attachment-input:hover {
+            border-color: #007aff;
+        }
+
         .send-email-button {
             background: #007aff;
             color: white;
@@ -1090,7 +1237,7 @@
             background: #0056cc;
         }
 
-        /* Tela da Galeria */
+        /* TELA DA GALERIA */
         .gallery-screen {
             width: 100%;
             height: 100%;
@@ -1157,7 +1304,7 @@
             transform: scale(1.01);
         }
 
-        /* Tela do Instagram - ATUALIZADA */
+        /* TELA DO INSTAGRAM COM EDIÇÃO DE POSTS */
         .instagram-screen {
             width: 100%;
             height: 100%;
@@ -1186,6 +1333,21 @@
             flex: 1;
             text-align: center;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .instagram-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .instagram-action-btn {
+            background: #0095f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 13px;
+            cursor: pointer;
         }
 
         .instagram-content {
@@ -1285,6 +1447,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: pointer;
         }
 
         .post-actions {
@@ -1338,6 +1501,21 @@
             margin-right: 5px;
         }
 
+        .post-comments {
+            padding: 0 15px;
+            color: #8e8e8e;
+            font-size: 14px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .post-shares {
+            padding: 0 15px;
+            color: #8e8e8e;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
         .post-time {
             padding: 0 15px 15px;
             color: #8e8e8e;
@@ -1345,9 +1523,7 @@
             text-transform: uppercase;
         }
 
-        /* Chat do Instagram REMOVIDO */
-
-        /* Modal para imagem ampliada */
+        /* MODAL PARA IMAGEM AMPLIADA */
         .image-modal {
             display: none;
             position: fixed;
@@ -1368,7 +1544,7 @@
             position: relative;
         }
 
-        .image-modal-content img {
+        .image-modal-content img, .image-modal-content video {
             max-width: 100%;
             max-height: calc(100vh - 40px);
             object-fit: contain;
@@ -1437,55 +1613,45 @@
             opacity: 0.8;
         }
 
-        .profile-pic {
+        /* MODAL PDF VIEWER */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1002;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #007aff;
+        .pdf-viewer {
+            width: 90%;
+            height: 90%;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdf-header {
+            background: #333;
             color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            display: none;
-            z-index: 1000;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            font-size: 13px;
-            max-width: 90%;
-            text-align: center;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .chat-date-divider {
-            text-align: center;
-            margin: 15px 0;
-            position: relative;
-        }
-
-        .chat-date-text {
-            display: inline-block;
-            background: rgba(0,0,0,0.3);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 12px;
-            opacity: 0.8;
-        }
-
-        .chat-date-divider:before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 15px;
-            right: 15px;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            z-index: -1;
+        .pdf-content {
+            flex: 1;
+            overflow: auto;
+            padding: 20px;
+            background: #f5f5f5;
         }
 
         /* MODAL EDITOR DE CONVERSAS WHATSAPP */
@@ -1579,30 +1745,44 @@
             border-color: #005c4b;
         }
 
-        .media-upload {
+        .media-link-input {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .media-link-input input {
+            flex: 1;
             background: #2a3942;
-            border: 2px dashed #3d4a52;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
+            border: 1px solid #3d4a52;
+            border-radius: 6px;
+            padding: 8px;
+            color: white;
+            font-size: 13px;
+        }
+
+        .media-type-selector {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .media-type-btn {
+            flex: 1;
+            background: #2a3942;
+            border: 1px solid #3d4a52;
+            color: white;
+            padding: 6px;
+            border-radius: 4px;
             cursor: pointer;
+            text-align: center;
+            font-size: 12px;
             transition: all 0.2s;
         }
 
-        .media-upload:hover {
+        .media-type-btn.active {
+            background: #005c4b;
             border-color: #005c4b;
-            background: #2f3e47;
-        }
-
-        .media-upload-icon {
-            font-size: 32px;
-            color: #8696a0;
-            margin-bottom: 10px;
-        }
-
-        .media-upload-text {
-            color: #8696a0;
-            font-size: 13px;
         }
 
         .message-preview {
@@ -1661,7 +1841,240 @@
             background: #3d4a52;
         }
 
-        /* Animações */
+        /* MODAL EDITOR DE POSTS INSTAGRAM */
+        .instagram-editor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1003;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .instagram-editor {
+            background: #000;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 320px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+            border: 1px solid #262626;
+        }
+
+        .instagram-editor-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .instagram-editor-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .instagram-editor-input {
+            background: #1c1c1e;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 10px 12px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .instagram-editor-input:focus {
+            outline: none;
+            border-color: #0095f6;
+        }
+
+        .instagram-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .stat-item {
+            background: #1c1c1e;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-label {
+            color: #8e8e8e;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .stat-value {
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .instagram-editor-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .instagram-editor-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .instagram-editor-btn.primary {
+            background: #0095f6;
+            color: white;
+        }
+
+        .instagram-editor-btn.primary:hover {
+            background: #0078d4;
+        }
+
+        /* MODAL CONFIGURAÇÃO DE FUNDO */
+        .background-config-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1004;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .background-config {
+            background: #1c1c1e;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 320px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .background-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 2px solid #2c2c2e;
+        }
+
+        .background-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .background-option {
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .background-option:hover {
+            transform: scale(1.05);
+        }
+
+        .background-option.active {
+            border-color: #007aff;
+        }
+
+        .background-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .background-custom-input {
+            background: #2c2c2e;
+            border: 1px dashed #3c3c3e;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            color: #8e8e93;
+            font-size: 13px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .background-custom-input:hover {
+            border-color: #007aff;
+        }
+
+        /* NOTIFICAÇÕES */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #007aff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-size: 13px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .chat-date-divider {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .chat-date-text {
+            display: inline-block;
+            background: rgba(0,0,0,0.3);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .chat-date-divider:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            right: 15px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            z-index: -1;
+        }
+
+        /* ANIMAÇÕES */
         @keyframes messageAppear {
             from {
                 opacity: 0;
@@ -1678,12 +2091,99 @@
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* SCROLLBAR PERSONALIZADA */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 400px) {
+            .phone {
+                width: 300px;
+                height: 640px;
+            }
+            
+            .app-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                padding: 10px;
+            }
+            
+            .app-icon-img {
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        /* UTILITÁRIOS */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-10 {
+            margin-top: 10px;
+        }
+
+        .mb-10 {
+            margin-bottom: 10px;
+        }
+
+        .p-10 {
+            padding: 10px;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+        .h-100 {
+            height: 100%;
+        }
+
+        /* LOADING SPINNER */
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #fff;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
     <div class="phone">
         <div class="screen">
-            <!-- Tela de Bloqueio -->
+            <!-- TELA DE BLOQUEIO -->
             <div class="lock-screen" id="lockScreen">
                 <div class="time-container">
                     <div class="time" id="currentTime">00:00</div>
@@ -1746,7 +2246,7 @@
                 </div>
             </div>
             
-            <!-- Tela Principal -->
+            <!-- TELA PRINCIPAL -->
             <div class="home-screen" id="homeScreen">
                 <div class="status-bar">
                     <span id="statusTime">00:00</span>
@@ -1787,15 +2287,18 @@
                         <div class="app-name">Galeria</div>
                     </div>
                     <div class="app-icon" id="instagramApp">
-                        <div class="app-icon-img" style="background: #000;">
-                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath fill='white' d='M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z'/%3E%3C/svg%3E" alt="Instagram">
+                        <div class="app-icon-img" style="background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);">
+                            <!-- Ícones brancos para Instagram -->
+                            <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                            </svg>
                         </div>
                         <div class="app-name">Instagram</div>
                     </div>
                 </div>
             </div>
             
-            <!-- Tela do WhatsApp -->
+            <!-- TELA DO WHATSAPP -->
             <div class="whatsapp-screen" id="whatsappScreen">
                 <div class="whatsapp-header">
                     <button class="back-button" id="backFromWhatsapp">←</button>
@@ -1809,7 +2312,7 @@
                 </div>
             </div>
             
-            <!-- Tela de Chat -->
+            <!-- TELA DE CHAT -->
             <div class="chat-screen" id="chatScreen">
                 <div class="chat-header">
                     <div class="chat-header-info">
@@ -1823,17 +2326,29 @@
                 </div>
                 <div class="chat-input">
                     <input type="text" id="messageInput" placeholder="Digite uma mensagem..." maxlength="200">
-                    <button class="send-button" id="sendMessage">↑</button>
+                    <div class="chat-input-actions">
+                        <button class="media-button" id="attachMediaBtn" title="Anexar mídia">📎</button>
+                        <button class="send-button" id="sendMessage">↑</button>
+                    </div>
                 </div>
             </div>
             
-            <!-- Tela de Configurações -->
+            <!-- TELA DE CONFIGURAÇÕES -->
             <div class="settings-screen" id="settingsScreen">
                 <div class="settings-header">
                     <button class="back-button" id="backFromSettings">←</button>
                     <div class="settings-title">Configurações</div>
                 </div>
                 <div class="settings-list">
+                    <div class="settings-item" id="configBackgroundBtn">
+                        <div class="settings-item-content">
+                            <div class="settings-item-icon" style="background: #007aff;">🎨</div>
+                            <div>
+                                <div class="settings-item-title">Fundo da Tela</div>
+                                <div class="settings-item-status">Personalizar imagem</div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="settings-item">
                         <div class="settings-item-content">
                             <div class="settings-item-icon" style="background: #007aff;">📶</div>
@@ -1875,14 +2390,14 @@
                             <div class="settings-item-icon" style="background: #8e8e93;">ℹ️</div>
                             <div>
                                 <div class="settings-item-title">Sobre o telefone</div>
-                                <div class="settings-item-status">Simulador v2.0</div>
+                                <div class="settings-item-status">Simulador v3.0</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Tela de Notas -->
+            <!-- TELA DE NOTAS -->
             <div class="notes-screen" id="notesScreen">
                 <div class="notes-header">
                     <button class="back-button" id="backFromNotes">←</button>
@@ -1894,7 +2409,7 @@
                 </div>
             </div>
             
-            <!-- Editor de Notas -->
+            <!-- EDITOR DE NOTAS -->
             <div class="note-editor-screen" id="noteEditorScreen">
                 <div class="note-editor-header">
                     <button class="back-button" id="backFromEditor">←</button>
@@ -1905,11 +2420,15 @@
                     </div>
                 </div>
                 <div class="note-editor">
+                    <div class="note-editor-datetime">
+                        <input type="date" class="datetime-input" id="noteDateInput">
+                        <input type="time" class="datetime-input" id="noteTimeInput">
+                    </div>
                     <textarea class="note-editor-textarea" id="noteContentInput" placeholder="Digite sua nota aqui..." maxlength="2000"></textarea>
                 </div>
             </div>
             
-            <!-- Visualizador de Notas -->
+            <!-- VISUALIZADOR DE NOTAS -->
             <div class="note-viewer-screen" id="noteViewerScreen">
                 <div class="note-viewer-header">
                     <button class="back-button" id="backFromViewer">←</button>
@@ -1922,7 +2441,7 @@
                 <div class="note-viewer-date" id="noteViewerDate"></div>
             </div>
             
-            <!-- Tela de E-mail -->
+            <!-- TELA DE E-MAIL -->
             <div class="email-screen" id="emailScreen">
                 <div class="email-header">
                     <button class="back-button" id="backFromEmail">←</button>
@@ -1934,16 +2453,22 @@
                 </div>
             </div>
             
-            <!-- Visualizador de E-mail -->
+            <!-- VISUALIZADOR DE E-MAIL -->
             <div class="email-viewer-screen" id="emailViewerScreen">
                 <div class="email-viewer-header">
                     <button class="back-button" id="backFromEmailViewer">←</button>
                     <div class="email-viewer-title">E-mail</div>
-                    <button class="delete-button note-editor-action-button" id="deleteEmailButton">Excluir</button>
+                    <div class="note-editor-actions">
+                        <button class="note-editor-action-button" id="editEmailButton">Editar</button>
+                        <button class="delete-button note-editor-action-button" id="deleteEmailButton">Excluir</button>
+                    </div>
                 </div>
                 <div class="email-viewer-content">
                     <div class="email-viewer-meta" id="emailViewerMeta">
                         <!-- Metadados do e-mail -->
+                    </div>
+                    <div class="email-attachments" id="emailAttachments">
+                        <!-- Anexos do e-mail -->
                     </div>
                     <div class="email-viewer-body" id="emailViewerBody">
                         <!-- Corpo do e-mail -->
@@ -1951,21 +2476,47 @@
                 </div>
             </div>
             
-            <!-- Compositor de E-mail -->
+            <!-- COMPOSITOR DE E-MAIL -->
             <div class="email-composer-screen" id="emailComposerScreen">
                 <div class="email-composer-header">
                     <button class="back-button" id="backFromComposer">←</button>
                     <div class="email-composer-title">Novo E-mail</div>
                 </div>
                 <div class="email-composer-form">
-                    <input type="text" class="email-input" id="emailToInput" placeholder="Para" maxlength="100">
-                    <input type="text" class="email-input subject" id="emailSubjectInput" placeholder="Assunto" maxlength="100">
+                    <input type="text" class="email-input" id="emailFromInput" placeholder="De (Remetente)" maxlength="100">
+                    <input type="text" class="email-input" id="emailToInput" placeholder="Para (Destinatário)" maxlength="100">
+                    <input type="text" class="email-input" id="emailSubjectInput" placeholder="Assunto" maxlength="100">
+                    <input type="text" class="email-input" id="emailAttachmentInput" placeholder="Link do anexo (vídeo, foto ou PDF)" maxlength="500">
+                    <div class="email-editor-datetime">
+                        <input type="date" class="datetime-input" id="emailDateInput">
+                        <input type="time" class="datetime-input" id="emailTimeInput">
+                    </div>
                     <textarea class="email-body-input" id="emailBodyInput" placeholder="Digite sua mensagem..." maxlength="2000"></textarea>
                     <button class="send-email-button" id="sendEmailButton">Enviar</button>
                 </div>
             </div>
             
-            <!-- Tela da Galeria -->
+            <!-- EDITOR DE E-MAIL -->
+            <div class="email-composer-screen" id="emailEditorScreen">
+                <div class="email-composer-header">
+                    <button class="back-button" id="backFromEmailEditor">←</button>
+                    <div class="email-composer-title">Editar E-mail</div>
+                </div>
+                <div class="email-composer-form">
+                    <input type="text" class="email-input" id="editEmailFromInput" placeholder="De (Remetente)" maxlength="100">
+                    <input type="text" class="email-input" id="editEmailToInput" placeholder="Para (Destinatário)" maxlength="100">
+                    <input type="text" class="email-input" id="editEmailSubjectInput" placeholder="Assunto" maxlength="100">
+                    <input type="text" class="email-input" id="editEmailAttachmentInput" placeholder="Link do anexo (vídeo, foto ou PDF)" maxlength="500">
+                    <div class="email-editor-datetime">
+                        <input type="date" class="datetime-input" id="editEmailDateInput">
+                        <input type="time" class="datetime-input" id="editEmailTimeInput">
+                    </div>
+                    <textarea class="email-body-input" id="editEmailBodyInput" placeholder="Digite sua mensagem..." maxlength="2000"></textarea>
+                    <button class="send-email-button" id="saveEditedEmailButton">Salvar Alterações</button>
+                </div>
+            </div>
+            
+            <!-- TELA DA GALERIA -->
             <div class="gallery-screen" id="galleryScreen">
                 <div class="gallery-header">
                     <button class="back-button" id="backFromGallery">←</button>
@@ -1976,91 +2527,213 @@
                 </div>
             </div>
             
-            <!-- Tela do Instagram -->
+            <!-- TELA DO INSTAGRAM -->
             <div class="instagram-screen" id="instagramScreen">
                 <div class="instagram-header">
                     <button class="back-button" id="backFromInstagram">←</button>
                     <div class="instagram-title">Instagram</div>
-                    <div style="width: 30px;"></div>
+                    <div class="instagram-actions">
+                        <button class="instagram-action-btn" id="newPostBtn">Novo Post</button>
+                    </div>
                 </div>
                 <div class="instagram-content" id="instagramContent">
                     <!-- Conteúdo do Instagram será gerado aqui -->
                 </div>
             </div>
-            
-            <!-- Modal para imagem ampliada -->
-            <div class="image-modal" id="imageModal">
-                <button class="close-modal" id="closeModal">×</button>
-                <button class="modal-nav modal-prev" id="modalPrev">‹</button>
-                <button class="modal-nav modal-next" id="modalNext">›</button>
-                <div class="image-modal-content">
-                    <img id="modalImage" src="" alt="Imagem ampliada">
-                    <div class="image-info" id="imageInfo"></div>
-                </div>
-            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL PARA IMAGEM AMPLIADA -->
+    <div class="image-modal" id="imageModal">
+        <button class="close-modal" id="closeModal">×</button>
+        <button class="modal-nav modal-prev" id="modalPrev">‹</button>
+        <button class="modal-nav modal-next" id="modalNext">›</button>
+        <div class="image-modal-content">
+            <img id="modalImage" src="" alt="Imagem ampliada">
+            <div class="image-info" id="imageInfo"></div>
+        </div>
+    </div>
 
-            <!-- Modal Editor de Conversas WhatsApp -->
-            <div class="conversation-editor-modal" id="conversationEditorModal">
-                <div class="conversation-editor">
-                    <div class="editor-title" id="editorTitle">Nova Conversa</div>
-                    <div class="editor-form">
-                        <div>
-                            <div class="editor-label">Nome do Contato</div>
-                            <input type="text" class="editor-input" id="editContactName" placeholder="Digite o nome" maxlength="30">
-                        </div>
-                        
-                        <div>
-                            <div class="editor-label">Data da Mensagem</div>
-                            <input type="date" class="editor-input" id="editMessageDate">
-                        </div>
-                        
-                        <div class="editor-row">
-                            <div style="flex: 1;">
-                                <div class="editor-label">Horário</div>
-                                <input type="time" class="editor-input" id="editMessageTime">
-                            </div>
-                            <div style="flex: 1;">
-                                <div class="editor-label">Tipo de Mensagem</div>
-                                <div class="message-type-selector">
-                                    <button class="message-type-btn" data-type="sent">Enviada</button>
-                                    <button class="message-type-btn active" data-type="received">Recebida</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="editor-label">Conteúdo da Mensagem</div>
-                            <textarea class="editor-input" id="editMessageContent" placeholder="Digite o texto da mensagem..." rows="3" maxlength="500"></textarea>
-                        </div>
-                        
-                        <div>
-                            <div class="editor-label">Mídia (Opcional)</div>
-                            <div class="media-upload" id="mediaUpload">
-                                <div class="media-upload-icon">📷</div>
-                                <div class="media-upload-text">Clique para adicionar foto/vídeo</div>
-                            </div>
-                        </div>
-                        
-                        <div class="message-preview">
-                            <div class="preview-title">Prévia da Mensagem:</div>
-                            <div class="preview-message" id="messagePreview">Mensagem aparecerá aqui</div>
-                            <div class="preview-title" id="messagePreviewTime">Horário: --:--</div>
-                        </div>
-                        
-                        <div class="editor-buttons">
-                            <button class="editor-btn secondary" id="cancelEdit">Cancelar</button>
-                            <button class="editor-btn primary" id="saveMessage">Adicionar Mensagem</button>
-                        </div>
+    <!-- MODAL PDF VIEWER -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="pdf-viewer">
+            <div class="pdf-header">
+                <span id="pdfTitle">Documento PDF</span>
+                <button class="close-modal" id="closePdfModal">×</button>
+            </div>
+            <div class="pdf-content" id="pdfContent">
+                <div style="text-align: center; padding: 50px;">
+                    <h2>Visualização de PDF</h2>
+                    <p>Este é um simulador de visualização de PDF.</p>
+                    <p>URL do documento: <span id="pdfUrl"></span></p>
+                    <div style="background: #eee; padding: 20px; border-radius: 8px; margin: 20px;">
+                        <p>Página 1 de 3</p>
+                        <p>Conteúdo do documento PDF...</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- MODAL EDITOR DE CONVERSAS WHATSAPP -->
+    <div class="conversation-editor-modal" id="conversationEditorModal">
+        <div class="conversation-editor">
+            <div class="editor-title" id="editorTitle">Nova Conversa</div>
+            <div class="editor-form">
+                <div>
+                    <div class="editor-label">Nome do Contato</div>
+                    <input type="text" class="editor-input" id="editContactName" placeholder="Digite o nome" maxlength="30">
+                </div>
+                
+                <div>
+                    <div class="editor-label">Data da Mensagem</div>
+                    <input type="date" class="editor-input" id="editMessageDate">
+                </div>
+                
+                <div class="editor-row">
+                    <div style="flex: 1;">
+                        <div class="editor-label">Horário</div>
+                        <input type="time" class="editor-input" id="editMessageTime">
+                    </div>
+                    <div style="flex: 1;">
+                        <div class="editor-label">Tipo de Mensagem</div>
+                        <div class="message-type-selector">
+                            <button class="message-type-btn" data-type="sent">Enviada</button>
+                            <button class="message-type-btn active" data-type="received">Recebida</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="editor-label">Conteúdo da Mensagem</div>
+                    <textarea class="editor-input" id="editMessageContent" placeholder="Digite o texto da mensagem..." rows="3" maxlength="500"></textarea>
+                </div>
+                
+                <div>
+                    <div class="editor-label">Mídia (Opcional - Coloque o link)</div>
+                    <div class="media-link-input">
+                        <input type="text" id="mediaLinkInput" placeholder="https://exemplo.com/foto.jpg">
+                    </div>
+                    <div class="media-type-selector">
+                        <button class="media-type-btn" data-type="image">Foto</button>
+                        <button class="media-type-btn" data-type="video">Vídeo</button>
+                        <button class="media-type-btn" data-type="pdf">PDF</button>
+                    </div>
+                </div>
+                
+                <div class="message-preview">
+                    <div class="preview-title">Prévia da Mensagem:</div>
+                    <div class="preview-message" id="messagePreview">Mensagem aparecerá aqui</div>
+                    <div class="preview-title" id="messagePreviewTime">Horário: --:--</div>
+                </div>
+                
+                <div class="editor-buttons">
+                    <button class="editor-btn secondary" id="cancelEdit">Cancelar</button>
+                    <button class="editor-btn primary" id="saveMessage">Adicionar Mensagem</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR DE POSTS INSTAGRAM -->
+    <div class="instagram-editor-modal" id="instagramEditorModal">
+        <div class="instagram-editor">
+            <div class="instagram-editor-title" id="instagramEditorTitle">Novo Post</div>
+            <div class="instagram-editor-form">
+                <div>
+                    <div class="editor-label">Nome do Usuário</div>
+                    <input type="text" class="instagram-editor-input" id="editPostUsername" placeholder="Ex: maria_silva" maxlength="30">
+                </div>
+                
+                <div>
+                    <div class="editor-label">Link da Foto do Post</div>
+                    <input type="text" class="instagram-editor-input" id="editPostImage" placeholder="https://exemplo.com/foto.jpg" maxlength="500">
+                </div>
+                
+                <div>
+                    <div class="editor-label">Link da Foto do Perfil</div>
+                    <input type="text" class="instagram-editor-input" id="editPostAvatar" placeholder="https://exemplo.com/perfil.jpg" maxlength="500">
+                </div>
+                
+                <div>
+                    <div class="editor-label">Descrição do Post</div>
+                    <textarea class="instagram-editor-input" id="editPostCaption" placeholder="Digite a legenda..." rows="3" maxlength="500"></textarea>
+                </div>
+                
+                <div class="instagram-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Curtidas</div>
+                        <input type="number" class="stat-value" id="editPostLikes" value="0" min="0" style="width: 50px; background: transparent; border: none; color: white; text-align: center; font-size: 16px;">
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Comentários</div>
+                        <input type="number" class="stat-value" id="editPostComments" value="0" min="0" style="width: 50px; background: transparent; border: none; color: white; text-align: center; font-size: 16px;">
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Compartilhamentos</div>
+                        <input type="number" class="stat-value" id="editPostShares" value="0" min="0" style="width: 50px; background: transparent; border: none; color: white; text-align: center; font-size: 16px;">
+                    </div>
+                </div>
+                
+                <div>
+                    <label style="color: white; font-size: 12px; display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="editPostSaved"> Post Salvo
+                    </label>
+                </div>
+                
+                <div class="instagram-editor-buttons">
+                    <button class="instagram-editor-btn secondary" id="cancelPostEdit">Cancelar</button>
+                    <button class="instagram-editor-btn primary" id="savePost">Salvar Post</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CONFIGURAÇÃO DE FUNDO -->
+    <div class="background-config-modal" id="backgroundConfigModal">
+        <div class="background-config">
+            <div class="editor-title">Configurar Fundo</div>
+            
+            <div class="background-preview" id="backgroundPreview"></div>
+            
+            <div class="editor-label">Opções de Fundo:</div>
+            <div class="background-options">
+                <div class="background-option" data-bg="linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);"></div>
+                </div>
+                <div class="background-option" data-bg="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                </div>
+                <div class="background-option" data-bg="linear-gradient(45deg, #ff6b6b 0%, #ffa500 100%)">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #ff6b6b 0%, #ffa500 100%);"></div>
+                </div>
+                <div class="background-option" data-bg="linear-gradient(45deg, #00b09b 0%, #96c93d 100%)">
+                    <div style="width: 100%; height: 100%; background: linear-gradient(45deg, #00b09b 0%, #96c93d 100%);"></div>
+                </div>
+                <div class="background-option" data-bg="url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=800&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=100&h=100&fit=crop" alt="Montanhas">
+                </div>
+                <div class="background-option" data-bg="url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=800&fit=crop')">
+                    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=100&h=100&fit=crop" alt="Floresta">
+                </div>
+            </div>
+            
+            <div class="editor-label">Ou insira um link personalizado:</div>
+            <input type="text" class="editor-input" id="customBackgroundInput" placeholder="https://exemplo.com/sua-imagem.jpg">
+            
+            <div class="editor-buttons" style="margin-top: 20px;">
+                <button class="editor-btn secondary" id="cancelBackgroundConfig">Cancelar</button>
+                <button class="editor-btn primary" id="saveBackgroundConfig">Aplicar Fundo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICAÇÃO -->
     <div class="notification" id="notification"></div>
 
     <script>
-        // Configuração inicial
+        // CONFIGURAÇÃO INICIAL
         const CORRECT_PASSWORD = "1234";
         let enteredPassword = "";
         let currentScreen = "lock";
@@ -2071,66 +2744,62 @@
         let emails = [];
         let currentImageIndex = 0;
         let likedPosts = new Set();
+        let savedPosts = new Set();
         let editingConversationId = null;
+        let editingPostId = null;
         let currentMessageType = "received";
-        let selectedMedia = null;
+        let selectedMediaType = "image";
+        let currentMediaItems = [];
+        let lockScreenBackground = "linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)";
+        let homeScreenBackground = "";
+        let editingEmailId = null;
         
-        // URLs de imagens reais para a galeria (Unsplash)
+        // URLs de imagens reais para a galeria
         const galleryImages = [
             {
                 url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=400&fit=crop&crop=center",
-                title: "Montanhas ao entardecer",
                 date: "Hoje"
             },
             {
                 url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop&crop=center",
-                title: "Floresta nevada",
                 date: "Hoje"
             },
             {
                 url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop&crop=center",
-                title: "Praia tropical",
                 date: "Hoje"
             },
             {
                 url: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400&h=400&fit=crop&crop=center",
-                title: "Cachoeira na floresta",
                 date: "Ontem"
             },
             {
                 url: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400&h=400&fit=crop&crop=center",
-                title: "Neblina nas montanhas",
                 date: "Ontem"
             },
             {
                 url: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=400&h=400&fit=crop&crop=center",
-                title: "Campo de flores",
                 date: "Ontem"
             },
             {
                 url: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=400&h=400&fit=crop&crop=center",
-                title: "Lago nas montanhas",
                 date: "Esta semana"
             },
             {
                 url: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop&crop=center",
-                title: "Aurora boreal",
                 date: "Esta semana"
             },
             {
                 url: "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=400&h=400&fit=crop&crop=center",
-                title: "Pôr do sol na praia",
                 date: "Este mês"
             },
             {
                 url: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&crop=center",
-                title: "Floresta de outono",
                 date: "Este mês"
             }
         ];
         
         // Dados do Instagram
-        const instagramData = {
+        let instagramData = {
             stories: [
                 { username: "seu_story", avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" },
                 { username: "viagens", avatar: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=200&h=200&fit=crop&crop=face" },
@@ -2145,6 +2814,8 @@
                     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                     image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&h=400&fit=crop&crop=center",
                     likes: 245,
+                    comments: 12,
+                    shares: 3,
                     caption: "Que lugar incrível! Nunca vou esquecer este pôr do sol nas montanhas. #natureza #viagem #aventura",
                     time: "HÁ 2 HORAS",
                     saved: false
@@ -2155,6 +2826,8 @@
                     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                     image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400&h=400&fit=crop&crop=center",
                     likes: 512,
+                    comments: 24,
+                    shares: 8,
                     caption: "Caminhada matinal pela floresta nevada. O silêncio era absoluto. #inverno #neve #fotografia",
                     time: "HÁ 6 HORAS",
                     saved: false
@@ -2165,6 +2838,8 @@
                     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                     image: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=400&fit=crop&crop=center",
                     likes: 389,
+                    comments: 18,
+                    shares: 5,
                     caption: "Paraíso tropical encontrado! Águas cristalinas e areia branca. #praia #verão #ferias",
                     time: "HÁ 1 DIA",
                     saved: false
@@ -2175,6 +2850,8 @@
                     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                     image: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400&h=400&fit=crop&crop=center",
                     likes: 621,
+                    comments: 32,
+                    shares: 12,
                     caption: "Chegando ao topo da cachoeira depois de 3 horas de trilha. Valeu cada gota! #aventura #cachoeira #natureza",
                     time: "HÁ 2 DIAS",
                     saved: false
@@ -2185,18 +2862,27 @@
         // Conversas do WhatsApp - Armazenadas em localStorage
         let conversations = [];
         
+        // Carregar dados do localStorage
+        function loadAllData() {
+            loadConversationsFromStorage();
+            loadNotes();
+            loadEmails();
+            loadInstagramData();
+            loadBackgroundSettings();
+        }
+        
         // Carregar conversas do localStorage
         function loadConversationsFromStorage() {
             const savedConversations = localStorage.getItem('whatsappConversations');
             if (savedConversations) {
                 conversations = JSON.parse(savedConversations);
             } else {
-                // Conversas iniciais
+                // Conversas iniciais com links para pastas
                 conversations = [
                     {
                         id: 1,
                         name: "Maria Silva",
-                        lastMessage: "Ok, te encontro lá!",
+                        lastMessage: "Te enviei a foto que você pediu!",
                         date: "Hoje",
                         time: "09:36",
                         avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
@@ -2204,25 +2890,37 @@
                             { date: "Hoje", type: "date" },
                             { text: "Olá! Tudo bem?", time: "09:30", type: "received" },
                             { text: "Tudo sim! E você?", time: "09:32", type: "sent" },
-                            { text: "Também tudo bem. Vamos nos encontrar hoje?", time: "09:33", type: "received" },
-                            { text: "Claro! Às 15h no shopping?", time: "09:35", type: "sent" },
-                            { text: "Ok, te encontro lá!", time: "09:36", type: "received" }
+                            { text: "Também tudo bem. Pode me enviar aquela foto?", time: "09:33", type: "received" },
+                            { text: "Claro! Já te envio.", time: "09:35", type: "sent" },
+                            { text: "Te enviei a foto que você pediu!", time: "09:36", type: "sent", media: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&h=300&fit=crop", mediaType: "image" }
                         ]
                     },
                     {
                         id: 2,
                         name: "João Santos",
-                        lastMessage: "Mandei o arquivo",
+                        lastMessage: "Documento do projeto anexado",
                         date: "Ontem",
-                        time: "08:30",
+                        time: "14:20",
                         avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
                         messages: [
                             { date: "Ontem", type: "date" },
-                            { text: "Bom dia! Pode me ajudar com o projeto?", time: "08:15", type: "received" },
-                            { text: "Bom dia! Claro, o que precisa?", time: "08:20", type: "sent" },
-                            { text: "Preciso daquele documento que falamos", time: "08:22", type: "received" },
-                            { text: "Já vou enviar", time: "08:25", type: "sent" },
-                            { text: "Mandei o arquivo", time: "08:30", type: "sent" }
+                            { text: "Bom dia! Pode revisar o documento?", time: "14:15", type: "received" },
+                            { text: "Bom dia! Claro, pode enviar", time: "14:18", type: "sent" },
+                            { text: "Documento do projeto anexado", time: "14:20", type: "received", media: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", mediaType: "pdf" }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: "Carlos Souza",
+                        lastMessage: "Vídeo do evento",
+                        date: "Esta semana",
+                        time: "16:45",
+                        avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80",
+                        messages: [
+                            { date: "Esta semana", type: "date" },
+                            { text: "Olá! Como foi o evento?", time: "16:30", type: "sent" },
+                            { text: "Foi incrível! Te envio um vídeo", time: "16:40", type: "received" },
+                            { text: "Vídeo do evento", time: "16:45", type: "received", media: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4", mediaType: "video" }
                         ]
                     }
                 ];
@@ -2275,7 +2973,7 @@
             if (savedEmails) {
                 emails = JSON.parse(savedEmails);
             } else {
-                // E-mails iniciais
+                // E-mails iniciais com anexos
                 emails = [
                     {
                         id: 1,
@@ -2285,6 +2983,9 @@
                         subject: "Bem-vindo ao nosso serviço!",
                         body: "Olá,\n\nAgradecemos por se inscrever em nosso serviço. Estamos muito felizes em tê-lo conosco.\n\nPara começar, recomendamos que você:\n1. Complete seu perfil\n2. Explore os tutoriais iniciais\n3. Configure suas preferências\n\nSe tiver alguma dúvida, nossa equipe de suporte está disponível 24/7.\n\nAtenciosamente,\nEquipe Empresa Tech",
                         date: new Date().toLocaleString('pt-BR'),
+                        attachments: [
+                            { name: "Manual_do_Usuario.pdf", url: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", type: "pdf" }
+                        ],
                         read: false
                     },
                     {
@@ -2295,10 +2996,52 @@
                         subject: "Extrato disponível",
                         body: "Prezado cliente,\n\nSeu extrato bancário referente ao mês atual já está disponível para consulta.\n\nAcesse seu internet banking para visualizar:\n- Transações do período\n- Saldo atual\n- Investimentos\n\nLembre-se de manter seus dados cadastrais atualizados.\n\nAtenciosamente,\nBanco Seguro",
                         date: new Date().toLocaleString('pt-BR'),
+                        attachments: [],
+                        read: false
+                    },
+                    {
+                        id: 3,
+                        from: "Fotógrafo Profissional",
+                        fromEmail: "fotos@fotografo.com",
+                        to: "você@exemplo.com",
+                        subject: "Suas fotos do evento",
+                        body: "Olá,\n\nSegue em anexo as fotos que tiramos no evento do último final de semana.\n\nForam selecionadas as melhores para você!\n\nAtenciosamente,\nEquipe de Fotografia",
+                        date: new Date().toLocaleString('pt-BR'),
+                        attachments: [
+                            { name: "foto_evento_1.jpg", url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&h=400&fit=crop", type: "image" },
+                            { name: "foto_evento_2.jpg", url: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=600&h=400&fit=crop", type: "image" }
+                        ],
                         read: false
                     }
                 ];
                 saveEmails();
+            }
+        }
+        
+        // Carregar dados do Instagram do localStorage
+        function loadInstagramData() {
+            const savedInstagramData = localStorage.getItem('phoneSimulatorInstagram');
+            if (savedInstagramData) {
+                const data = JSON.parse(savedInstagramData);
+                instagramData = data.posts ? data : instagramData;
+                likedPosts = new Set(data.likedPosts || []);
+                savedPosts = new Set(data.savedPosts || []);
+            }
+        }
+        
+        // Carregar configurações de fundo
+        function loadBackgroundSettings() {
+            const savedLockBackground = localStorage.getItem('lockScreenBackground');
+            const savedHomeBackground = localStorage.getItem('homeScreenBackground');
+            
+            if (savedLockBackground) {
+                lockScreenBackground = savedLockBackground;
+                document.getElementById('lockScreen').style.background = lockScreenBackground;
+            }
+            
+            if (savedHomeBackground) {
+                homeScreenBackground = savedHomeBackground;
+                document.getElementById('homeScreen').style.backgroundImage = homeScreenBackground ? `url('${homeScreenBackground}')` : '';
             }
         }
         
@@ -2310,6 +3053,23 @@
         // Salvar e-mails no localStorage
         function saveEmails() {
             localStorage.setItem('phoneSimulatorEmails', JSON.stringify(emails));
+        }
+        
+        // Salvar dados do Instagram
+        function saveInstagramData() {
+            const data = {
+                posts: instagramData.posts,
+                stories: instagramData.stories,
+                likedPosts: Array.from(likedPosts),
+                savedPosts: Array.from(savedPosts)
+            };
+            localStorage.setItem('phoneSimulatorInstagram', JSON.stringify(data));
+        }
+        
+        // Salvar configurações de fundo
+        function saveBackgroundSettings() {
+            localStorage.setItem('lockScreenBackground', lockScreenBackground);
+            localStorage.setItem('homeScreenBackground', homeScreenBackground);
         }
         
         // Carregar lista de notas
@@ -2349,7 +3109,6 @@
                     }
                 });
                 
-                // Evento para deletar nota (sem confirmação)
                 const deleteBtn = noteElement.querySelector('.delete-note-btn');
                 deleteBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2388,6 +3147,7 @@
                     <button class="delete-email-btn" data-id="${email.id}">✕</button>
                     <div class="email-sender">
                         <span>${email.from}</span>
+                        ${email.attachments && email.attachments.length > 0 ? '<span style="font-size: 12px;">📎</span>' : ''}
                     </div>
                     <div class="email-subject">${email.subject}</div>
                     <div class="email-preview">${preview}</div>
@@ -2400,7 +3160,6 @@
                     }
                 });
                 
-                // Evento para deletar e-mail
                 const deleteBtn = emailElement.querySelector('.delete-email-btn');
                 deleteBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
@@ -2419,7 +3178,6 @@
             const grid = document.createElement('div');
             grid.className = 'gallery-grid';
             
-            // Agrupar imagens em linhas de 3
             for (let i = 0; i < galleryImages.length; i += 3) {
                 const row = document.createElement('div');
                 row.className = 'gallery-row';
@@ -2432,7 +3190,7 @@
                     
                     const img = document.createElement('img');
                     img.src = image.url;
-                    img.alt = image.title;
+                    img.alt = `Foto ${j + 1}`;
                     img.loading = "lazy";
                     
                     galleryItem.appendChild(img);
@@ -2465,6 +3223,7 @@
                 const img = document.createElement('img');
                 img.src = story.avatar;
                 img.alt = story.username;
+                img.loading = "lazy";
                 
                 storyCircle.appendChild(img);
                 storyBar.appendChild(storyCircle);
@@ -2482,33 +3241,36 @@
                 postElement.dataset.id = post.id;
                 
                 const isLiked = likedPosts.has(post.id);
+                const isSaved = savedPosts.has(post.id);
                 const likeCount = isLiked ? post.likes + 1 : post.likes;
                 
                 postElement.innerHTML = `
                     <div class="post-header">
                         <div class="post-user">
                             <div class="post-avatar">
-                                <img src="${post.avatar}" alt="${post.username}">
+                                <img src="${post.avatar}" alt="${post.username}" loading="lazy">
                             </div>
                             <div class="post-username">${post.username}</div>
                         </div>
                         <div class="post-more">⋯</div>
                     </div>
                     <div class="post-image">
-                        <img src="${post.image}" alt="Post de ${post.username}">
+                        <img src="${post.image}" alt="Post de ${post.username}" loading="lazy">
                     </div>
                     <div class="post-actions">
                         <div class="post-action-left">
-                            <button class="post-action-button like-button ${isLiked ? 'liked' : ''}" data-id="${post.id}">❤️</button>
-                            <button class="post-action-button comment-button" data-id="${post.id}">💬</button>
-                            <button class="post-action-button share-button" data-id="${post.id}">📤</button>
+                            <button class="post-action-button like-button ${isLiked ? 'liked' : ''}" data-id="${post.id}" title="Curtir">❤️</button>
+                            <button class="post-action-button comment-button" data-id="${post.id}" title="Comentar">💬</button>
+                            <button class="post-action-button share-button" data-id="${post.id}" title="Compartilhar">📤</button>
                         </div>
-                        <button class="post-action-button save-button ${post.saved ? 'saved' : ''}" data-id="${post.id}">${post.saved ? '💾' : '📥'}</button>
+                        <button class="post-action-button save-button ${isSaved ? 'saved' : ''}" data-id="${post.id}" title="${isSaved ? 'Remover dos salvos' : 'Salvar'}">${isSaved ? '💾' : '📥'}</button>
                     </div>
                     <div class="post-likes">${likeCount.toLocaleString()} curtidas</div>
                     <div class="post-caption">
                         <span class="post-caption-user">${post.username}</span> ${post.caption}
                     </div>
+                    ${post.comments > 0 ? `<div class="post-comments">Ver todos os ${post.comments} comentários</div>` : ''}
+                    ${post.shares > 0 ? `<div class="post-shares">${post.shares} compartilhamentos</div>` : ''}
                     <div class="post-time">${post.time}</div>
                 `;
                 
@@ -2517,13 +3279,21 @@
             
             instagramContent.appendChild(feed);
             
-            // Adicionar eventos aos botões
+            // Adicionar eventos
+            addInstagramEventListeners();
+        }
+        
+        // Adicionar eventos ao Instagram
+        function addInstagramEventListeners() {
+            // Curtir posts
             document.querySelectorAll('.like-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const postId = parseInt(this.dataset.id);
                     const postElement = this.closest('.instagram-post');
                     const likesElement = postElement.querySelector('.post-likes');
                     const post = instagramData.posts.find(p => p.id === postId);
+                    
+                    if (!post) return;
                     
                     if (likedPosts.has(postId)) {
                         likedPosts.delete(postId);
@@ -2534,17 +3304,52 @@
                         this.classList.add('liked');
                         likesElement.textContent = `${(post.likes + 1).toLocaleString()} curtidas`;
                     }
+                    
+                    saveInstagramData();
                 });
             });
             
+            // Salvar posts
             document.querySelectorAll('.save-button').forEach(button => {
                 button.addEventListener('click', function() {
                     const postId = parseInt(this.dataset.id);
                     const post = instagramData.posts.find(p => p.id === postId);
                     
-                    post.saved = !post.saved;
-                    this.innerHTML = post.saved ? '💾' : '📥';
-                    this.classList.toggle('saved');
+                    if (!post) return;
+                    
+                    if (savedPosts.has(postId)) {
+                        savedPosts.delete(postId);
+                        this.innerHTML = '📥';
+                        this.classList.remove('saved');
+                    } else {
+                        savedPosts.add(postId);
+                        this.innerHTML = '💾';
+                        this.classList.add('saved');
+                    }
+                    
+                    saveInstagramData();
+                });
+            });
+            
+            // Ampliar imagens dos posts
+            document.querySelectorAll('.post-image img').forEach(img => {
+                img.addEventListener('click', function() {
+                    const postElement = this.closest('.instagram-post');
+                    const postId = parseInt(postElement.dataset.id);
+                    const post = instagramData.posts.find(p => p.id === postId);
+                    
+                    if (post) {
+                        openImageModalWithUrl(post.image);
+                    }
+                });
+            });
+            
+            // Editar posts (botão de mais opções)
+            document.querySelectorAll('.post-more').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postElement = this.closest('.instagram-post');
+                    const postId = parseInt(postElement.dataset.id);
+                    openInstagramEditor(postId);
                 });
             });
         }
@@ -2571,6 +3376,7 @@
             if (!email) return;
             
             currentEmail = email;
+            editingEmailId = emailId;
             
             // Marcar como lido
             if (!email.read) {
@@ -2587,9 +3393,50 @@
             
             document.getElementById('emailViewerBody').textContent = email.body;
             
+            // Carregar anexos
+            const attachmentsContainer = document.getElementById('emailAttachments');
+            attachmentsContainer.innerHTML = '';
+            
+            if (email.attachments && email.attachments.length > 0) {
+                email.attachments.forEach(attachment => {
+                    const attachmentElement = document.createElement('div');
+                    attachmentElement.className = 'attachment-item';
+                    attachmentElement.dataset.url = attachment.url;
+                    attachmentElement.dataset.type = attachment.type;
+                    
+                    const icon = attachment.type === 'pdf' ? '📄' : 
+                                 attachment.type === 'video' ? '🎬' : '📷';
+                    
+                    attachmentElement.innerHTML = `
+                        <div class="attachment-icon">${icon}</div>
+                        <div class="attachment-info">
+                            <div class="attachment-name">${attachment.name}</div>
+                            <div class="attachment-size">${attachment.type.toUpperCase()}</div>
+                        </div>
+                    `;
+                    
+                    attachmentElement.addEventListener('click', () => {
+                        openAttachment(attachment.url, attachment.type, attachment.name);
+                    });
+                    
+                    attachmentsContainer.appendChild(attachmentElement);
+                });
+            }
+            
             document.getElementById('emailScreen').style.display = 'none';
             document.getElementById('emailViewerScreen').style.display = 'flex';
             currentScreen = "emailViewer";
+        }
+        
+        // Abrir anexo
+        function openAttachment(url, type, name) {
+            if (type === 'pdf') {
+                openPdfViewer(url, name);
+            } else if (type === 'video') {
+                openVideoViewer(url);
+            } else {
+                openImageModalWithUrl(url);
+            }
         }
         
         // Abrir editor de nota
@@ -2600,11 +3447,21 @@
                     currentNote = note;
                     document.getElementById('noteTitleInput').value = note.title || '';
                     document.getElementById('noteContentInput').value = note.content;
+                    
+                    // Extrair data e hora da nota
+                    const noteDate = new Date(note.updated);
+                    document.getElementById('noteDateInput').value = noteDate.toISOString().split('T')[0];
+                    document.getElementById('noteTimeInput').value = noteDate.toTimeString().slice(0, 5);
                 }
             } else {
                 currentNote = null;
                 document.getElementById('noteTitleInput').value = '';
                 document.getElementById('noteContentInput').value = '';
+                
+                // Usar data e hora atuais
+                const now = new Date();
+                document.getElementById('noteDateInput').value = now.toISOString().split('T')[0];
+                document.getElementById('noteTimeInput').value = now.toTimeString().slice(0, 5);
             }
             
             document.getElementById('noteViewerScreen').style.display = 'none';
@@ -2615,14 +3472,62 @@
         
         // Abrir compositor de e-mail
         function openEmailComposer() {
+            editingEmailId = null;
+            
+            // Limpar campos
+            document.getElementById('emailFromInput').value = '';
             document.getElementById('emailToInput').value = '';
             document.getElementById('emailSubjectInput').value = '';
+            document.getElementById('emailAttachmentInput').value = '';
             document.getElementById('emailBodyInput').value = '';
+            
+            // Data e hora atuais
+            const now = new Date();
+            document.getElementById('emailDateInput').value = now.toISOString().split('T')[0];
+            document.getElementById('emailTimeInput').value = now.toTimeString().slice(0, 5);
             
             document.getElementById('emailScreen').style.display = 'none';
             document.getElementById('emailComposerScreen').style.display = 'flex';
             currentScreen = "emailComposer";
-            document.getElementById('emailToInput').focus();
+            document.getElementById('emailFromInput').focus();
+        }
+        
+        // Abrir editor de e-mail
+        function openEmailEditor(emailId) {
+            const email = emails.find(e => e.id == emailId);
+            if (!email) return;
+            
+            editingEmailId = emailId;
+            currentEmail = email;
+            
+            // Preencher campos
+            document.getElementById('editEmailFromInput').value = email.from;
+            document.getElementById('editEmailToInput').value = email.to;
+            document.getElementById('editEmailSubjectInput').value = email.subject;
+            document.getElementById('editEmailBodyInput').value = email.body;
+            
+            // Anexos (usar o primeiro se existir)
+            if (email.attachments && email.attachments.length > 0) {
+                document.getElementById('editEmailAttachmentInput').value = email.attachments[0].url;
+            } else {
+                document.getElementById('editEmailAttachmentInput').value = '';
+            }
+            
+            // Extrair data e hora do e-mail
+            const emailDate = new Date(email.date);
+            if (!isNaN(emailDate.getTime())) {
+                document.getElementById('editEmailDateInput').value = emailDate.toISOString().split('T')[0];
+                document.getElementById('editEmailTimeInput').value = emailDate.toTimeString().slice(0, 5);
+            } else {
+                const now = new Date();
+                document.getElementById('editEmailDateInput').value = now.toISOString().split('T')[0];
+                document.getElementById('editEmailTimeInput').value = now.toTimeString().slice(0, 5);
+            }
+            
+            document.getElementById('emailViewerScreen').style.display = 'none';
+            document.getElementById('emailEditorScreen').style.display = 'flex';
+            currentScreen = "emailEditor";
+            document.getElementById('editEmailFromInput').focus();
         }
         
         // Abrir galeria
@@ -2650,11 +3555,70 @@
             const imageInfo = document.getElementById('imageInfo');
             
             modalImage.src = image.url;
-            imageInfo.textContent = `${image.title} (${index + 1}/${galleryImages.length})`;
+            modalImage.style.display = 'block';
+            imageInfo.textContent = `Imagem ${index + 1} de ${galleryImages.length}`;
             modal.style.display = 'flex';
             
-            // Atualizar estado dos botões de navegação
+            currentMediaItems = galleryImages.map(img => ({ url: img.url, type: 'image' }));
             updateModalNavButtons();
+        }
+        
+        // Abrir imagem por URL
+        function openImageModalWithUrl(url) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const imageInfo = document.getElementById('imageInfo');
+            
+            modalImage.src = url;
+            modalImage.style.display = 'block';
+            imageInfo.textContent = 'Imagem';
+            modal.style.display = 'flex';
+            
+            currentMediaItems = [{ url: url, type: 'image' }];
+            currentImageIndex = 0;
+            updateModalNavButtons();
+        }
+        
+        // Abrir visualizador de vídeo
+        function openVideoViewer(url) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const imageInfo = document.getElementById('imageInfo');
+            
+            modalImage.style.display = 'none';
+            
+            // Criar elemento de vídeo
+            let video = document.getElementById('modalVideo');
+            if (!video) {
+                video = document.createElement('video');
+                video.id = 'modalVideo';
+                video.controls = true;
+                video.autoplay = true;
+                video.style.maxWidth = '100%';
+                video.style.maxHeight = 'calc(100vh - 40px)';
+                video.style.borderRadius = '8px';
+                document.querySelector('.image-modal-content').appendChild(video);
+            }
+            
+            video.src = url;
+            video.style.display = 'block';
+            imageInfo.textContent = 'Vídeo';
+            modal.style.display = 'flex';
+            
+            currentMediaItems = [{ url: url, type: 'video' }];
+            currentImageIndex = 0;
+            updateModalNavButtons();
+        }
+        
+        // Abrir visualizador de PDF
+        function openPdfViewer(url, title = 'Documento PDF') {
+            const modal = document.getElementById('pdfModal');
+            const pdfTitle = document.getElementById('pdfTitle');
+            const pdfUrl = document.getElementById('pdfUrl');
+            
+            pdfTitle.textContent = title;
+            pdfUrl.textContent = url;
+            modal.style.display = 'flex';
         }
         
         // Atualizar botões de navegação do modal
@@ -2663,75 +3627,121 @@
             const modalNext = document.getElementById('modalNext');
             
             modalPrev.style.display = currentImageIndex > 0 ? 'flex' : 'none';
-            modalNext.style.display = currentImageIndex < galleryImages.length - 1 ? 'flex' : 'none';
+            modalNext.style.display = currentImageIndex < currentMediaItems.length - 1 ? 'flex' : 'none';
         }
         
-        // Navegar para imagem anterior
-        function navigateToPrevImage() {
+        // Navegar para mídia anterior
+        function navigateToPrevMedia() {
             if (currentImageIndex > 0) {
                 currentImageIndex--;
-                const image = galleryImages[currentImageIndex];
-                const modalImage = document.getElementById('modalImage');
-                const imageInfo = document.getElementById('imageInfo');
-                
-                modalImage.src = image.url;
-                imageInfo.textContent = `${image.title} (${currentImageIndex + 1}/${galleryImages.length})`;
-                updateModalNavButtons();
+                const media = currentMediaItems[currentImageIndex];
+                openMediaInModal(media);
             }
         }
         
-        // Navegar para próxima imagem
-        function navigateToNextImage() {
-            if (currentImageIndex < galleryImages.length - 1) {
+        // Navegar para próxima mídia
+        function navigateToNextMedia() {
+            if (currentImageIndex < currentMediaItems.length - 1) {
                 currentImageIndex++;
-                const image = galleryImages[currentImageIndex];
-                const modalImage = document.getElementById('modalImage');
-                const imageInfo = document.getElementById('imageInfo');
-                
-                modalImage.src = image.url;
-                imageInfo.textContent = `${image.title} (${currentImageIndex + 1}/${galleryImages.length})`;
-                updateModalNavButtons();
+                const media = currentMediaItems[currentImageIndex];
+                openMediaInModal(media);
             }
         }
         
-        // Fechar modal de imagem
+        // Abrir mídia no modal
+        function openMediaInModal(media) {
+            const modalImage = document.getElementById('modalImage');
+            const imageInfo = document.getElementById('imageInfo');
+            
+            // Esconder vídeo se existir
+            const video = document.getElementById('modalVideo');
+            if (video) {
+                video.style.display = 'none';
+                video.pause();
+            }
+            
+            if (media.type === 'image') {
+                modalImage.src = media.url;
+                modalImage.style.display = 'block';
+                imageInfo.textContent = `Imagem ${currentImageIndex + 1} de ${currentMediaItems.length}`;
+            } else if (media.type === 'video') {
+                modalImage.style.display = 'none';
+                
+                if (!video) {
+                    const newVideo = document.createElement('video');
+                    newVideo.id = 'modalVideo';
+                    newVideo.controls = true;
+                    newVideo.autoplay = true;
+                    newVideo.style.maxWidth = '100%';
+                    newVideo.style.maxHeight = 'calc(100vh - 40px)';
+                    newVideo.style.borderRadius = '8px';
+                    document.querySelector('.image-modal-content').appendChild(newVideo);
+                }
+                
+                video.src = media.url;
+                video.style.display = 'block';
+                imageInfo.textContent = `Vídeo ${currentImageIndex + 1} de ${currentMediaItems.length}`;
+            }
+            
+            updateModalNavButtons();
+        }
+        
+        // Fechar modal de imagem/vídeo
         function closeImageModal() {
             const modal = document.getElementById('imageModal');
             modal.style.display = 'none';
+            
+            // Pausar vídeo se estiver aberto
+            const video = document.getElementById('modalVideo');
+            if (video) {
+                video.pause();
+            }
         }
         
-        // Deletar nota (sem confirmação)
+        // Fechar modal de PDF
+        function closePdfModal() {
+            const modal = document.getElementById('pdfModal');
+            modal.style.display = 'none';
+        }
+        
+        // Deletar nota
         function deleteNote(noteId) {
-            const index = notes.findIndex(n => n.id == noteId);
-            if (index > -1) {
-                notes.splice(index, 1);
-                saveNotes();
-                loadNotesList();
-                
-                // Se está vendo a nota deletada, voltar para a lista
-                if (currentNote && currentNote.id == noteId) {
-                    if (currentScreen === "noteViewer" || currentScreen === "noteEditor") {
-                        goBack();
+            if (confirm('Tem certeza que deseja excluir esta nota?')) {
+                const index = notes.findIndex(n => n.id == noteId);
+                if (index > -1) {
+                    notes.splice(index, 1);
+                    saveNotes();
+                    loadNotesList();
+                    
+                    if (currentNote && currentNote.id == noteId) {
+                        if (currentScreen === "noteViewer" || currentScreen === "noteEditor") {
+                            goBack();
+                        }
+                        currentNote = null;
                     }
-                    currentNote = null;
+                    
+                    showNotification('Nota excluída com sucesso!');
                 }
             }
         }
         
         // Deletar e-mail
         function deleteEmail(emailId) {
-            const index = emails.findIndex(e => e.id == emailId);
-            if (index > -1) {
-                emails.splice(index, 1);
-                saveEmails();
-                loadEmailsList();
-                
-                // Se está vendo o e-mail deletado, voltar para a lista
-                if (currentEmail && currentEmail.id == emailId) {
-                    if (currentScreen === "emailViewer") {
-                        goBack();
+            if (confirm('Tem certeza que deseja excluir este e-mail?')) {
+                const index = emails.findIndex(e => e.id == emailId);
+                if (index > -1) {
+                    emails.splice(index, 1);
+                    saveEmails();
+                    loadEmailsList();
+                    
+                    if (currentEmail && currentEmail.id == emailId) {
+                        if (currentScreen === "emailViewer") {
+                            goBack();
+                        }
+                        currentEmail = null;
                     }
-                    currentEmail = null;
+                    
+                    showNotification('E-mail excluído com sucesso!');
                 }
             }
         }
@@ -2740,17 +3750,23 @@
         function saveNote() {
             const title = document.getElementById('noteTitleInput').value.trim();
             const content = document.getElementById('noteContentInput').value.trim();
-            const now = new Date().toLocaleString('pt-BR');
+            const date = document.getElementById('noteDateInput').value;
+            const time = document.getElementById('noteTimeInput').value;
             
             if (!content) {
+                showNotification('Digite o conteúdo da nota!', 'error');
                 return;
             }
+            
+            // Criar data combinada
+            const dateTimeString = `${date} ${time}`;
+            const updated = new Date(dateTimeString).toLocaleString('pt-BR') || new Date().toLocaleString('pt-BR');
             
             if (currentNote) {
                 // Editar nota existente
                 currentNote.title = title;
                 currentNote.content = content;
-                currentNote.updated = now;
+                currentNote.updated = updated;
             } else {
                 // Criar nova nota
                 const newId = notes.length > 0 ? Math.max(...notes.map(n => n.id)) + 1 : 1;
@@ -2758,8 +3774,8 @@
                     id: newId,
                     title: title,
                     content: content,
-                    date: now,
-                    updated: now
+                    date: updated,
+                    updated: updated
                 };
                 notes.push(currentNote);
             }
@@ -2770,33 +3786,58 @@
             // Voltar para o visualizador
             document.getElementById('noteEditorScreen').style.display = 'none';
             openNoteViewer(currentNote.id);
+            
+            showNotification('Nota salva com sucesso!');
         }
         
         // Enviar e-mail
         function sendEmail() {
+            const from = document.getElementById('emailFromInput').value.trim();
             const to = document.getElementById('emailToInput').value.trim();
             const subject = document.getElementById('emailSubjectInput').value.trim();
+            const attachment = document.getElementById('emailAttachmentInput').value.trim();
             const body = document.getElementById('emailBodyInput').value.trim();
-            const now = new Date().toLocaleString('pt-BR');
+            const date = document.getElementById('emailDateInput').value;
+            const time = document.getElementById('emailTimeInput').value;
             
-            if (!to || !subject || !body) {
+            if (!from || !to || !subject || !body) {
+                showNotification('Preencha todos os campos obrigatórios!', 'error');
                 return;
             }
             
-            if (!to.includes('@')) {
-                return;
+            // Criar data combinada
+            const dateTimeString = `${date} ${time}`;
+            const emailDate = new Date(dateTimeString).toLocaleString('pt-BR') || new Date().toLocaleString('pt-BR');
+            
+            // Preparar anexos
+            const attachments = [];
+            if (attachment) {
+                // Detectar tipo de arquivo pela extensão
+                let type = 'image';
+                if (attachment.toLowerCase().endsWith('.pdf')) {
+                    type = 'pdf';
+                } else if (attachment.toLowerCase().match(/\.(mp4|mov|avi|wmv|flv|mkv)$/)) {
+                    type = 'video';
+                }
+                
+                attachments.push({
+                    name: attachment.split('/').pop() || 'anexo',
+                    url: attachment,
+                    type: type
+                });
             }
             
             // Criar novo e-mail
             const newId = emails.length > 0 ? Math.max(...emails.map(e => e.id)) + 1 : 1;
             const newEmail = {
                 id: newId,
-                from: "Você",
-                fromEmail: "você@exemplo.com",
+                from: from,
+                fromEmail: from.includes('@') ? from : `${from.toLowerCase().replace(/\s+/g, '.')}@exemplo.com`,
                 to: to,
                 subject: subject,
                 body: body,
-                date: now,
+                date: emailDate,
+                attachments: attachments,
                 read: true
             };
             
@@ -2808,6 +3849,70 @@
             document.getElementById('emailComposerScreen').style.display = 'none';
             document.getElementById('emailScreen').style.display = 'flex';
             currentScreen = "email";
+            
+            showNotification('E-mail enviado com sucesso!');
+        }
+        
+        // Salvar e-mail editado
+        function saveEditedEmail() {
+            if (!editingEmailId) return;
+            
+            const email = emails.find(e => e.id == editingEmailId);
+            if (!email) return;
+            
+            const from = document.getElementById('editEmailFromInput').value.trim();
+            const to = document.getElementById('editEmailToInput').value.trim();
+            const subject = document.getElementById('editEmailSubjectInput').value.trim();
+            const attachment = document.getElementById('editEmailAttachmentInput').value.trim();
+            const body = document.getElementById('editEmailBodyInput').value.trim();
+            const date = document.getElementById('editEmailDateInput').value;
+            const time = document.getElementById('editEmailTimeInput').value;
+            
+            if (!from || !to || !subject || !body) {
+                showNotification('Preencha todos os campos obrigatórios!', 'error');
+                return;
+            }
+            
+            // Atualizar e-mail
+            email.from = from;
+            email.fromEmail = from.includes('@') ? from : `${from.toLowerCase().replace(/\s+/g, '.')}@exemplo.com`;
+            email.to = to;
+            email.subject = subject;
+            email.body = body;
+            
+            // Atualizar data
+            const dateTimeString = `${date} ${time}`;
+            const newDate = new Date(dateTimeString).toLocaleString('pt-BR');
+            if (!isNaN(new Date(dateTimeString).getTime())) {
+                email.date = newDate;
+            }
+            
+            // Atualizar anexos
+            if (attachment) {
+                let type = 'image';
+                if (attachment.toLowerCase().endsWith('.pdf')) {
+                    type = 'pdf';
+                } else if (attachment.toLowerCase().match(/\.(mp4|mov|avi|wmv|flv|mkv)$/)) {
+                    type = 'video';
+                }
+                
+                email.attachments = [{
+                    name: attachment.split('/').pop() || 'anexo',
+                    url: attachment,
+                    type: type
+                }];
+            } else {
+                email.attachments = [];
+            }
+            
+            saveEmails();
+            loadEmailsList();
+            
+            // Voltar para o visualizador
+            document.getElementById('emailEditorScreen').style.display = 'none';
+            openEmailViewer(editingEmailId);
+            
+            showNotification('E-mail atualizado com sucesso!');
         }
         
         // Carregar conversas do WhatsApp
@@ -2890,22 +3995,61 @@
                     const messageElement = document.createElement('div');
                     messageElement.className = `message ${message.type}`;
                     
+                    let messageContent = '';
+                    
                     if (message.media) {
-                        messageElement.innerHTML = `
-                            <div class="message-media">
-                                <img src="${message.media}" alt="Mídia">
-                            </div>
-                            ${message.text ? message.text : ''}
-                            <div class="message-time">${message.time}</div>
-                        `;
-                    } else {
-                        messageElement.innerHTML = `
-                            ${message.text}
-                            <div class="message-time">${message.time}</div>
-                        `;
+                        if (message.mediaType === 'pdf') {
+                            messageContent += `
+                                <div class="message-media-pdf" data-url="${message.media}">
+                                    <div class="message-media-pdf-icon">📄</div>
+                                    <div class="message-media-pdf-info">
+                                        <div class="message-media-pdf-name">Documento.pdf</div>
+                                        <div class="message-media-pdf-size">PDF - Clique para abrir</div>
+                                    </div>
+                                </div>
+                            `;
+                        } else if (message.mediaType === 'video') {
+                            messageContent += `
+                                <div class="message-media" data-url="${message.media}" data-type="video">
+                                    <video style="width: 100%; border-radius: 8px;" controls>
+                                        <source src="${message.media}" type="video/mp4">
+                                        Seu navegador não suporta o elemento de vídeo.
+                                    </video>
+                                </div>
+                            `;
+                        } else {
+                            messageContent += `
+                                <div class="message-media" data-url="${message.media}">
+                                    <img src="${message.media}" alt="Imagem" style="cursor: pointer;">
+                                </div>
+                            `;
+                        }
                     }
                     
+                    if (message.text) {
+                        messageContent += `${message.text}`;
+                    }
+                    
+                    messageContent += `<div class="message-time">${message.time}</div>`;
+                    messageElement.innerHTML = messageContent;
+                    
                     chatMessages.appendChild(messageElement);
+                    
+                    // Adicionar eventos para mídias
+                    if (message.media) {
+                        const mediaElement = messageElement.querySelector('.message-media, .message-media-pdf');
+                        if (mediaElement) {
+                            mediaElement.addEventListener('click', () => {
+                                if (message.mediaType === 'pdf') {
+                                    openPdfViewer(message.media, 'Documento WhatsApp');
+                                } else if (message.mediaType === 'video') {
+                                    openVideoViewer(message.media);
+                                } else {
+                                    openImageModalWithUrl(message.media);
+                                }
+                            });
+                        }
+                    }
                 }
             });
             
@@ -2965,16 +4109,25 @@
             }
             
             // Resetar campos
-            document.getElementById('editMessageDate').value = new Date().toISOString().split('T')[0];
-            document.getElementById('editMessageTime').value = new Date().toTimeString().slice(0, 5);
+            const now = new Date();
+            document.getElementById('editMessageDate').value = now.toISOString().split('T')[0];
+            document.getElementById('editMessageTime').value = now.toTimeString().slice(0, 5);
             document.getElementById('editMessageContent').value = '';
-            selectedMedia = null;
+            document.getElementById('mediaLinkInput').value = '';
             
-            // Resetar tipo de mensagem
+            // Resetar tipo de mensagem e mídia
             currentMessageType = "received";
+            selectedMediaType = "image";
             document.querySelectorAll('.message-type-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.type === currentMessageType) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.querySelectorAll('.media-type-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.type === selectedMediaType) {
                     btn.classList.add('active');
                 }
             });
@@ -2989,11 +4142,30 @@
         function updateMessagePreview() {
             const content = document.getElementById('editMessageContent').value || "Mensagem de exemplo";
             const time = document.getElementById('editMessageTime').value || "--:--";
+            const mediaLink = document.getElementById('mediaLinkInput').value;
             
             const preview = document.getElementById('messagePreview');
             const timePreview = document.getElementById('messagePreviewTime');
             
-            preview.textContent = content;
+            let previewContent = '';
+            
+            if (mediaLink) {
+                if (selectedMediaType === 'pdf') {
+                    previewContent = '📄 Documento PDF';
+                } else if (selectedMediaType === 'video') {
+                    previewContent = '🎬 Vídeo';
+                } else {
+                    previewContent = '📷 Imagem';
+                }
+                
+                if (content) {
+                    previewContent += `<br>${content}`;
+                }
+            } else {
+                previewContent = content;
+            }
+            
+            preview.innerHTML = previewContent;
             preview.className = `preview-message ${currentMessageType}`;
             timePreview.textContent = `Horário: ${time} (${currentMessageType === 'sent' ? 'Enviada' : 'Recebida'})`;
         }
@@ -3004,9 +4176,15 @@
             const messageDate = document.getElementById('editMessageDate').value;
             const messageTime = document.getElementById('editMessageTime').value;
             const messageContent = document.getElementById('editMessageContent').value.trim();
+            const mediaLink = document.getElementById('mediaLinkInput').value.trim();
             
-            if (!contactName || !messageContent) {
-                showNotification("Preencha o nome e a mensagem!", "error");
+            if (!contactName) {
+                showNotification("Digite o nome do contato!", "error");
+                return;
+            }
+            
+            if (!messageContent && !mediaLink) {
+                showNotification("Digite uma mensagem ou adicione uma mídia!", "error");
                 return;
             }
             
@@ -3028,7 +4206,7 @@
                 conversation = {
                     id: newId,
                     name: contactName,
-                    lastMessage: messageContent,
+                    lastMessage: messageContent || (mediaLink ? 'Mídia' : 'Mensagem'),
                     date: dateString,
                     time: messageTime,
                     avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(contactName)}&background=667eea&color=fff`,
@@ -3050,14 +4228,15 @@
                 type: currentMessageType
             };
             
-            if (selectedMedia) {
-                message.media = selectedMedia;
+            if (mediaLink) {
+                message.media = mediaLink;
+                message.mediaType = selectedMediaType;
             }
             
             conversation.messages.push(message);
             
             // Atualizar última mensagem
-            conversation.lastMessage = messageContent;
+            conversation.lastMessage = messageContent || (mediaLink ? 'Mídia' : 'Mensagem');
             conversation.date = dateString;
             conversation.time = messageTime;
             
@@ -3071,12 +4250,165 @@
             showNotification(editingConversationId ? "Conversa atualizada!" : "Nova conversa criada!");
         }
 
+        // Abrir editor de posts do Instagram
+        function openInstagramEditor(postId = null) {
+            editingPostId = postId;
+            
+            const modal = document.getElementById('instagramEditorModal');
+            const title = document.getElementById('instagramEditorTitle');
+            
+            if (postId) {
+                title.textContent = "Editar Post";
+                const post = instagramData.posts.find(p => p.id === postId);
+                if (post) {
+                    document.getElementById('editPostUsername').value = post.username;
+                    document.getElementById('editPostImage').value = post.image;
+                    document.getElementById('editPostAvatar').value = post.avatar;
+                    document.getElementById('editPostCaption').value = post.caption;
+                    document.getElementById('editPostLikes').value = post.likes;
+                    document.getElementById('editPostComments').value = post.comments;
+                    document.getElementById('editPostShares').value = post.shares;
+                    document.getElementById('editPostSaved').checked = savedPosts.has(postId);
+                }
+            } else {
+                title.textContent = "Novo Post";
+                document.getElementById('editPostUsername').value = '';
+                document.getElementById('editPostImage').value = '';
+                document.getElementById('editPostAvatar').value = '';
+                document.getElementById('editPostCaption').value = '';
+                document.getElementById('editPostLikes').value = 0;
+                document.getElementById('editPostComments').value = 0;
+                document.getElementById('editPostShares').value = 0;
+                document.getElementById('editPostSaved').checked = false;
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        // Salvar post do Instagram
+        function saveInstagramPost() {
+            const username = document.getElementById('editPostUsername').value.trim();
+            const image = document.getElementById('editPostImage').value.trim();
+            const avatar = document.getElementById('editPostAvatar').value.trim();
+            const caption = document.getElementById('editPostCaption').value.trim();
+            const likes = parseInt(document.getElementById('editPostLikes').value) || 0;
+            const comments = parseInt(document.getElementById('editPostComments').value) || 0;
+            const shares = parseInt(document.getElementById('editPostShares').value) || 0;
+            const saved = document.getElementById('editPostSaved').checked;
+            
+            if (!username || !image) {
+                showNotification("Preencha o nome de usuário e o link da imagem!", "error");
+                return;
+            }
+            
+            if (editingPostId) {
+                // Editar post existente
+                const post = instagramData.posts.find(p => p.id === editingPostId);
+                if (post) {
+                    post.username = username;
+                    post.image = image;
+                    post.avatar = avatar || "https://ui-avatars.com/api/?name=" + encodeURIComponent(username) + "&background=667eea&color=fff";
+                    post.caption = caption;
+                    post.likes = likes;
+                    post.comments = comments;
+                    post.shares = shares;
+                    
+                    if (saved) {
+                        savedPosts.add(editingPostId);
+                    } else {
+                        savedPosts.delete(editingPostId);
+                    }
+                }
+            } else {
+                // Criar novo post
+                const newId = instagramData.posts.length > 0 ? Math.max(...instagramData.posts.map(p => p.id)) + 1 : 1;
+                const newPost = {
+                    id: newId,
+                    username: username,
+                    avatar: avatar || "https://ui-avatars.com/api/?name=" + encodeURIComponent(username) + "&background=667eea&color=fff",
+                    image: image,
+                    likes: likes,
+                    comments: comments,
+                    shares: shares,
+                    caption: caption,
+                    time: "AGORA",
+                    saved: false
+                };
+                
+                instagramData.posts.unshift(newPost);
+                
+                if (saved) {
+                    savedPosts.add(newId);
+                }
+            }
+            
+            saveInstagramData();
+            loadInstagram();
+            
+            // Fechar modal
+            document.getElementById('instagramEditorModal').style.display = 'none';
+            
+            showNotification(editingPostId ? "Post atualizado!" : "Novo post criado!");
+        }
+
+        // Abrir configuração de fundo
+        function openBackgroundConfig() {
+            const modal = document.getElementById('backgroundConfigModal');
+            const preview = document.getElementById('backgroundPreview');
+            
+            // Atualizar preview com fundo atual
+            preview.style.background = lockScreenBackground;
+            
+            // Marcar opção ativa
+            document.querySelectorAll('.background-option').forEach(option => {
+                option.classList.remove('active');
+                if (option.dataset.bg === lockScreenBackground) {
+                    option.classList.add('active');
+                }
+            });
+            
+            document.getElementById('customBackgroundInput').value = '';
+            
+            modal.style.display = 'flex';
+        }
+
+        // Aplicar configuração de fundo
+        function applyBackgroundConfig() {
+            const customInput = document.getElementById('customBackgroundInput').value.trim();
+            let newBackground = lockScreenBackground;
+            
+            // Verificar se foi selecionada uma opção
+            const activeOption = document.querySelector('.background-option.active');
+            if (activeOption) {
+                newBackground = activeOption.dataset.bg;
+            }
+            
+            // Sobrescrever com input personalizado se preenchido
+            if (customInput) {
+                newBackground = `url('${customInput}')`;
+            }
+            
+            // Aplicar fundo na tela de bloqueio
+            lockScreenBackground = newBackground;
+            document.getElementById('lockScreen').style.background = newBackground;
+            
+            // Salvar configurações
+            saveBackgroundSettings();
+            
+            // Fechar modal
+            document.getElementById('backgroundConfigModal').style.display = 'none';
+            
+            showNotification('Fundo da tela de bloqueio atualizado!');
+        }
+
         // Mostrar notificação
         function showNotification(message, type = "success") {
             const notification = document.getElementById('notification');
             notification.textContent = message;
-            notification.style.background = type === "error" ? "#ff3b30" : "#007aff";
+            notification.style.background = type === "error" ? "#ff3b30" : 
+                                           type === "warning" ? "#ff9500" : "#007aff";
             notification.style.display = 'block';
+            notification.style.animation = 'fadeIn 0.3s';
             
             setTimeout(() => {
                 notification.style.display = 'none';
@@ -3175,9 +4507,9 @@
             const emailScreen = document.getElementById('emailScreen');
             const emailViewerScreen = document.getElementById('emailViewerScreen');
             const emailComposerScreen = document.getElementById('emailComposerScreen');
+            const emailEditorScreen = document.getElementById('emailEditorScreen');
             const galleryScreen = document.getElementById('galleryScreen');
             const instagramScreen = document.getElementById('instagramScreen');
-            const editorModal = document.getElementById('conversationEditorModal');
             
             switch(currentScreen) {
                 case "chat":
@@ -3230,6 +4562,16 @@
                     emailScreen.style.display = 'flex';
                     currentScreen = "email";
                     break;
+                case "emailEditor":
+                    emailEditorScreen.style.display = 'none';
+                    if (currentEmail) {
+                        emailViewerScreen.style.display = 'flex';
+                        currentScreen = "emailViewer";
+                    } else {
+                        emailScreen.style.display = 'flex';
+                        currentScreen = "email";
+                    }
+                    break;
                 case "gallery":
                     galleryScreen.style.display = 'none';
                     homeScreen.style.display = 'flex';
@@ -3250,10 +4592,17 @@
                     break;
             }
             
-            // Fechar modal se aberto
-            if (editorModal.style.display === 'flex') {
-                editorModal.style.display = 'none';
-            }
+            // Fechar modais se abertos
+            closeAllModals();
+        }
+
+        // Fechar todos os modais
+        function closeAllModals() {
+            document.getElementById('conversationEditorModal').style.display = 'none';
+            document.getElementById('instagramEditorModal').style.display = 'none';
+            document.getElementById('backgroundConfigModal').style.display = 'none';
+            document.getElementById('imageModal').style.display = 'none';
+            document.getElementById('pdfModal').style.display = 'none';
         }
 
         // Abrir configurações
@@ -3312,10 +4661,8 @@
 
         // Inicialização
         document.addEventListener('DOMContentLoaded', () => {
-            // Carregar dados
-            loadNotes();
-            loadEmails();
-            loadConversationsFromStorage();
+            // Carregar todos os dados
+            loadAllData();
             
             // Atualizar data e hora
             updateDateTime();
@@ -3360,16 +4707,23 @@
             document.getElementById('backFromEmail').addEventListener('click', goBack);
             document.getElementById('backFromEmailViewer').addEventListener('click', goBack);
             document.getElementById('backFromComposer').addEventListener('click', goBack);
+            document.getElementById('backFromEmailEditor').addEventListener('click', goBack);
             document.getElementById('backFromGallery').addEventListener('click', goBack);
             document.getElementById('backFromInstagram').addEventListener('click', goBack);
             
             // Eventos do modal de imagem
             document.getElementById('closeModal').addEventListener('click', closeImageModal);
-            document.getElementById('modalPrev').addEventListener('click', navigateToPrevImage);
-            document.getElementById('modalNext').addEventListener('click', navigateToNextImage);
+            document.getElementById('modalPrev').addEventListener('click', navigateToPrevMedia);
+            document.getElementById('modalNext').addEventListener('click', navigateToNextMedia);
+            document.getElementById('closePdfModal').addEventListener('click', closePdfModal);
             document.getElementById('imageModal').addEventListener('click', (e) => {
                 if (e.target.id === 'imageModal') {
                     closeImageModal();
+                }
+            });
+            document.getElementById('pdfModal').addEventListener('click', (e) => {
+                if (e.target.id === 'pdfModal') {
+                    closePdfModal();
                 }
             });
             
@@ -3394,11 +4748,17 @@
             // Eventos do e-mail
             document.getElementById('newEmailButton').addEventListener('click', openEmailComposer);
             document.getElementById('sendEmailButton').addEventListener('click', sendEmail);
+            document.getElementById('editEmailButton').addEventListener('click', () => {
+                if (currentEmail) {
+                    openEmailEditor(currentEmail.id);
+                }
+            });
             document.getElementById('deleteEmailButton').addEventListener('click', () => {
                 if (currentEmail) {
                     deleteEmail(currentEmail.id);
                 }
             });
+            document.getElementById('saveEditedEmailButton').addEventListener('click', saveEditedEmail);
             
             // Salvar nota com Ctrl+Enter
             document.getElementById('noteContentInput').addEventListener('keydown', (e) => {
@@ -3414,6 +4774,12 @@
                 }
             });
             
+            document.getElementById('editEmailBodyInput').addEventListener('keydown', (e) => {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    saveEditedEmail();
+                }
+            });
+            
             // Eventos do WhatsApp
             document.getElementById('newConversationBtn').addEventListener('click', () => {
                 openConversationEditor();
@@ -3423,6 +4789,11 @@
                 if (currentChat) {
                     openConversationEditor(currentChat.id);
                 }
+            });
+            
+            // Anexar mídia no WhatsApp
+            document.getElementById('attachMediaBtn').addEventListener('click', () => {
+                showNotification('Use o editor de conversas para adicionar mídia com links!');
             });
             
             // Enviar mensagem no chat
@@ -3450,29 +4821,47 @@
                 });
             });
             
-            // Upload de mídia
-            document.getElementById('mediaUpload').addEventListener('click', () => {
-                // Simular upload de mídia
-                const mediaOptions = [
-                    "https://images.unsplash.com/photo-1541963463532-d68292c34b19?w=200&h=200&fit=crop",
-                    "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=200&h=200&fit=crop",
-                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=200&h=200&fit=crop"
-                ];
-                
-                selectedMedia = mediaOptions[Math.floor(Math.random() * mediaOptions.length)];
-                
-                const uploadArea = document.getElementById('mediaUpload');
-                uploadArea.innerHTML = `
-                    <div class="media-upload-icon">✅</div>
-                    <div class="media-upload-text">Mídia selecionada!</div>
-                `;
-                
-                showNotification("Mídia adicionada à mensagem!");
+            // Selecionar tipo de mídia
+            document.querySelectorAll('.media-type-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.media-type-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedMediaType = this.dataset.type;
+                    updateMessagePreview();
+                });
             });
             
             // Atualizar prévia ao digitar
             document.getElementById('editMessageContent').addEventListener('input', updateMessagePreview);
             document.getElementById('editMessageTime').addEventListener('change', updateMessagePreview);
+            document.getElementById('mediaLinkInput').addEventListener('input', updateMessagePreview);
+            
+            // Eventos do Instagram
+            document.getElementById('newPostBtn').addEventListener('click', () => {
+                openInstagramEditor();
+            });
+            
+            document.getElementById('cancelPostEdit').addEventListener('click', () => {
+                document.getElementById('instagramEditorModal').style.display = 'none';
+            });
+            
+            document.getElementById('savePost').addEventListener('click', saveInstagramPost);
+            
+            // Eventos de configuração de fundo
+            document.getElementById('configBackgroundBtn').addEventListener('click', openBackgroundConfig);
+            
+            document.querySelectorAll('.background-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    document.querySelectorAll('.background-option').forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            document.getElementById('cancelBackgroundConfig').addEventListener('click', () => {
+                document.getElementById('backgroundConfigModal').style.display = 'none';
+            });
+            
+            document.getElementById('saveBackgroundConfig').addEventListener('click', applyBackgroundConfig);
             
             // Teclado físico (para teste)
             document.addEventListener('keydown', (e) => {
@@ -3484,13 +4873,7 @@
                     enteredPassword = enteredPassword.slice(0, -1);
                     updatePasswordDots();
                 } else if (e.key === 'Escape') {
-                    if (document.getElementById('imageModal').style.display === 'flex') {
-                        closeImageModal();
-                    } else if (document.getElementById('conversationEditorModal').style.display === 'flex') {
-                        document.getElementById('conversationEditorModal').style.display = 'none';
-                    } else {
-                        goBack();
-                    }
+                    goBack();
                 }
             });
         });
